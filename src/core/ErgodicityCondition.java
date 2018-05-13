@@ -9,9 +9,7 @@ import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
 import static java.math.BigDecimal.valueOf;
 
-/**
- * Created by Lenovo on 09.05.2018.
- */
+
 public class ErgodicityCondition {
 
     //Approved

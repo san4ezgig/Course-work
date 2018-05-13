@@ -23,7 +23,6 @@ public class BigDecimalMatrix extends AbstractMatrix<BigDecimal> implements Clon
         matrix = new ArrayMatrix<BigDecimal>(matr);
         this.scale = scale;
     }
-
     public BigDecimalMatrix(int height, int width, int scale)
     {
         matrix = new ArrayMatrix<BigDecimal>(height, width);

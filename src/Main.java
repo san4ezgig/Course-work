@@ -1,8 +1,10 @@
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import core.GeneratorCreator;
 import kurs.BigDecimalMatrix;
+import core.*;
 import kurs.Matrix;
 
 public class Main {
@@ -16,9 +18,9 @@ public class Main {
             BigDecimal gamma = new BigDecimal(0.4);
             BigDecimal lambda = new BigDecimal(0.3);
             int scale = 20;
-            BigDecimal T = new BigDecimal(2);
+            BigDecimal T = new BigDecimal(1);
             BigDecimal accuracy = new BigDecimal(0.00001);
-            BigDecimal K = new BigDecimal(5);
+            BigDecimal K = new BigDecimal(20);
 
             BigDecimal[][] d0 = {
                     {new BigDecimal(-0.81156/2), new BigDecimal(0)},
@@ -30,17 +32,20 @@ public class Main {
             };
             BigDecimalMatrix one = new BigDecimalMatrix(d0, scale);
             BigDecimalMatrix two = new BigDecimalMatrix(d1, scale);
-            GeneratorCreator gC = new GeneratorCreator(gamma, lambda, K.intValue(), one, two, T, accuracy);
-            BigDecimalMatrix mn = gC.funcM(2);
-            BigDecimalMatrix mWithHat = gC.funcMWithHat(2);
 
+            BigDecimalMatrix g0 = BigDecimalMatrix.identity(2*K.intValue() + 2);
+            GeneratorCreator generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), one, two, T, accuracy);
+            GMatrixCreator gMatrixCreator = new GMatrixCreator(generatorCreator);
+            PSlashMatrixCreator pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
+            PhiMatrixCreator phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
+            StationaryDistributionCreator sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
+            PerformanceParameters pParameters = new PerformanceParameters(sdCreator.getPiVectors());
 
-            System.out.println(gC.funcPhi(new BigDecimal(3), new BigDecimal(2)));
-            //System.out.println(gC.funcPHi(0));
-            //System.out.println(gC.funcP(one, two, 0));
-            System.out.println("Matrix Mn:");
-            System.out.println(mn);
-            System.out.println("Matrix mWithHat:");
-            System.out.println(mWithHat);
+            System.out.println(pParameters.getAverageNumberOfRequests().toString());
+            System.out.println(pParameters.getAverageNumberOfEnergyUnits().toString());
+            //System.out.println(sdCreator.getPiVectors());
+            //System.out.println(sdCreator.getPiVectors());
+            //System.out.println(generatorCreator.funcPhi(new BigDecimal(5), new BigDecimal(3)));
+            //System.out.println(gMatrixCreator.create(g0));
     }
 }

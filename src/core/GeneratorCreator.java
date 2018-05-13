@@ -10,9 +10,7 @@ import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
 import static java.math.BigDecimal.valueOf;
 
-/**
- * Created by Lenovo on 05.05.2018.
- */
+
 public class GeneratorCreator {
     private BigDecimal gamma;
     private BigDecimal lambda;
@@ -39,9 +37,9 @@ public class GeneratorCreator {
                 K > 0 &&
                 gamma.compareTo(lambda) > 0;
 
-        if(!ErgodicityCondition.check(gamma, lambda, K, T)) {
+        /*if(!ErgodicityCondition.check(gamma, lambda, K, T)) {
             throw new IllegalArgumentException("Ergodicity condition does not perform.");
-        }
+        }*/
         if (!validness) {
             throw new IllegalArgumentException("Input parameters are not valid.");
         }
@@ -66,6 +64,7 @@ public class GeneratorCreator {
         for (int r = 0; r < K + 1; r++) {
             for (int c = 0; c < K + 1; c++) {
                 matrix[r][c] =  elementCreator.create(i, r, j, c);
+                //System.out.println(matrix[r][c]);
             }
         }
 
@@ -87,7 +86,6 @@ public class GeneratorCreator {
             }
 
             BigDecimalMatrix element;
-
             if (k - bK > 1) {
                 element = new BigDecimalMatrix(2, 2, 10);
             } else if (k == 0) {
@@ -103,6 +101,7 @@ public class GeneratorCreator {
                     element = createNotFirstRowNotLastColumnElement(i, k, j, bK);
                 }
             }
+            //System.out.println(element);
             return element;
         }
         private BigDecimalMatrix createFirstRowNotLastColumnElement(int i, int k, int j, int bK) {
@@ -117,12 +116,12 @@ public class GeneratorCreator {
 
         //Approved
         private BigDecimalMatrix createLastColumnElement(int i, int k, int j, int bK) {
-            return funcPhiWithHat(new BigDecimal(j - 2), new BigDecimal(bK - k));
+            return funcPhiWithHat(new BigDecimal(j), new BigDecimal(bK - k + 1));
         }
 
         //Approved
         private BigDecimalMatrix createNotFirstRowNotLastColumnElement(int i, int k, int j, int bK) {
-            return funcPhi(new BigDecimal(j - 2), new BigDecimal(bK - 2));
+            return funcPhi(new BigDecimal(j), new BigDecimal(bK - k + 1));
         }
     }
 
@@ -179,7 +178,8 @@ public class GeneratorCreator {
         BigDecimalMatrix val;
         int j = 1;
         do {
-            val = funcK(j, n);
+            //val = funcK(j, n);
+            val = funcK(n, j);
             val = val.multiply(new BigDecimal(Math.exp(tetta().multiply(new BigDecimal(-1)).multiply(t).doubleValue())))
                     .multiply((tetta().multiply(t)).pow(j)
                             .divide(factor(new BigDecimal(j)), RoundingMode.HALF_UP));
@@ -196,11 +196,13 @@ public class GeneratorCreator {
     }
 
     public BigDecimal funcSmalPhiKWithHat(BigDecimal t, int k) {
-        BigDecimal result = funcSmalPhiK(t, k);
+        BigDecimal val = funcSmalPhiK(t, k);
+        BigDecimal result = ZERO;
         int i = k;
-        while(result.compareTo(accuracy) == 1 ) {
+        while(val.compareTo(accuracy) == 1 ) {
+            result = result.add(val);
             i++;
-            result = result.add(funcSmalPhiK(t, i));
+            val = funcSmalPhiK(t, i);
         }
         return result;
     }
@@ -237,5 +239,12 @@ public class GeneratorCreator {
             tetta = (d0.getElement(i, i).multiply(new BigDecimal(-1)).compareTo(tetta) == 1) ? d0.getElement(i, i).multiply(new BigDecimal(-1)) : tetta;
         }
         return tetta;
+    }
+
+    public BigDecimal getAccuracy() {
+        return new BigDecimal(accuracy.toString());
+    }
+    public int getK() {
+        return K;
     }
 }
