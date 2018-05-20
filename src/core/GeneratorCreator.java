@@ -4,11 +4,9 @@ import kurs.BigDecimalMatrix;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Objects;
 
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
-import static java.math.BigDecimal.valueOf;
 
 
 public class GeneratorCreator {
@@ -37,9 +35,9 @@ public class GeneratorCreator {
                 K > 0 &&
                 gamma.compareTo(lambda) > 0;
 
-        /*if(!ErgodicityCondition.check(gamma, lambda, K, T)) {
-            throw new IllegalArgumentException("Ergodicity condition does not perform.");
-        }*/
+        if(!ErgodicityCondition.check(gamma, lambda, K, T)) {
+            throw new IllegalArgumentException("Ergodicity condition does not perform. " + T + " " + K);
+        }
         if (!validness) {
             throw new IllegalArgumentException("Input parameters are not valid.");
         }

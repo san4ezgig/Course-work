@@ -67,7 +67,7 @@ public class PhiMatrixCreator {
                 }
                 index++;
                 //System.out.println(Math.sqrt(phiMatrices.get(index - 1).subtract(phiMatrices.get(index - 2)).squaredEuclidianNorm().doubleValue()));
-            } while (Math.sqrt(phiMatrices.get(index - 1).subtract(phiMatrices.get(index - 2)).squaredEuclidianNorm().doubleValue()) >= accuracy.doubleValue());
+            } while (phiMatrices.get(index - 1).subtract(phiMatrices.get(index - 2)).squaredEuclidianNorm().compareTo(accuracy) > 0);
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
         }

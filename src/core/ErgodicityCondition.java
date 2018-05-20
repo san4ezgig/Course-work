@@ -1,6 +1,5 @@
 package core;
 
-import kurs.BigDecimalMatrix;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,7 +15,7 @@ public class ErgodicityCondition {
     public static boolean check(BigDecimal gamma, BigDecimal lambda, Integer K, BigDecimal T) {
         BigDecimal minuend = lambda.multiply(T);
         BigDecimal subtrahend = getY0(gamma, T, K).multiply(lambda.divide(gamma, RoundingMode.HALF_UP));
-        return minuend.add(subtrahend).compareTo(ONE) < 0;
+        return minuend.subtract(subtrahend).compareTo(ONE) < 0;
     }
 
     private static BigDecimal getY0(BigDecimal gamma, BigDecimal T, Integer K) {
@@ -43,22 +42,12 @@ public class ErgodicityCondition {
         return psiVector;
     }
 
-    /*private static BigDecimalMatrix getY0(BigDecimalMatrix d0, BigDecimalMatrix d1, BigDecimal z, int k) {
-        BigDecimalMatrix minusDz = (d1.multiply(z).add(d0)).multiply(new BigDecimal(-1));
-        BigDecimalMatrix gammaI = new BigDecimalMatrix(2, new BigDecimal(1), 10).multiply(z);
-        BigDecimalMatrix sumInverse = minusDz.add(gammaI).inverse();
-        BigDecimalMatrix val = sumInverse;
-        for(int i = 0; i < k; i++) {
-            val = val.multiply(sumInverse);
-        }
-        return val.multiply(z.pow(k));
-    }*/
 
     //Approved
     private static BigDecimal smallPhi(BigDecimal gamma, BigDecimal T, BigDecimal k) {
         return (gamma.multiply(T).pow(k.intValue()))
                 .divide(factor(k), RoundingMode.HALF_UP)
-                .multiply(new BigDecimal(Math.exp(gamma.multiply(T).doubleValue())));
+                .multiply(new BigDecimal(Math.exp(gamma.multiply(T).doubleValue()*-1)));
     }
 
     //Approved

@@ -7,9 +7,6 @@ package core;
 import java.math.BigDecimal;
 import kurs.BigDecimalMatrix;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.HashMap;
 
 public class GMatrixCreator {
 
@@ -22,10 +19,9 @@ public class GMatrixCreator {
     }
 
     public BigDecimalMatrix create(BigDecimalMatrix g0) {
-        int size = this.creator.getK() * 2 + 2;
+        int size = g0.getWidth();
         BigDecimalMatrix gPrev, cur, prev;
         BigDecimalMatrix gCur = new BigDecimalMatrix(size, new BigDecimal(1), 10);
-
         try {
             do {
                 int k = 0;
@@ -43,7 +39,7 @@ public class GMatrixCreator {
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
         }
-        //System.out.println(gCur);
+       // System.out.println(gCur.getWidth());
         return gCur;
     }
     public static BigDecimalMatrix per(BigDecimalMatrix[][] a) {
