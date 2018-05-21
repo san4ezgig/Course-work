@@ -18,7 +18,7 @@ public class Main {
             int scale = 20;
             BigDecimal T = new BigDecimal(1.5);
             BigDecimal accuracy = new BigDecimal(0.001);
-            BigDecimal K = new BigDecimal(4);
+            BigDecimal K = new BigDecimal(200);
 
             BigDecimal[][] d0 = {
                     {new BigDecimal(-0.81156/2), new BigDecimal(0)},
@@ -31,18 +31,18 @@ public class Main {
             BigDecimalMatrix one = new BigDecimalMatrix(d0, scale);
             BigDecimalMatrix two = new BigDecimalMatrix(d1, scale);
             BigDecimal HALF = new BigDecimal("0.5");
-
-           /* BigDecimalMatrix g0 = BigDecimalMatrix.identity(2*K.intValue() + 2);
-            GeneratorCreator generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), one, two, T, accuracy);
-            GMatrixCreator gMatrixCreator = new GMatrixCreator(generatorCreator);
+            ErgodicityCondition.check(gamma, lambda, K.intValue(), T);
+            /*BigDecimalMatrix g0 = BigDecimalMatrix.identity(2*K.intValue() + 2);
+            GeneratorCreator generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), one, two, T, accuracy);*/
+            /*GMatrixCreator gMatrixCreator = new GMatrixCreator(generatorCreator);
             PSlashMatrixCreator pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
             PhiMatrixCreator phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
             StationaryDistributionCreator sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
-            PerformanceParameters pParameters = new PerformanceParameters(sdCreator.getPiVectors());
+            PerformanceParameters pParameters = new PerformanceParameters(sdCreator.getPiVectors());*/
 
-            System.out.println(pParameters.getAverageNumberOfEnergyUnits());
-            MatrixContainer.reInit();*/
-            for(BigDecimal t = HALF; t.compareTo(T) <= 0; t = t.add(HALF)) {
+            //System.out.println(pParameters.getAverageNumberOfEnergyUnits());
+           // MatrixContainer.reInit();
+            /*for(BigDecimal t = HALF; t.compareTo(T) <= 0; t = t.add(HALF)) {
                 System.out.println("T = " + t);
                 for(int k = 1; k < 20; k++) {
                     K = new BigDecimal(k);
@@ -53,9 +53,10 @@ public class Main {
                     PhiMatrixCreator phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
                     StationaryDistributionCreator sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
                     PerformanceParameters pParameters = new PerformanceParameters(sdCreator.getPiVectors());
-                    System.out.println(pParameters.getEnergyUnitLooseProbability().toString().substring(0, 11));
+                    System.out.println(k);
+                    //System.out.println(pParameters.getEnergyUnitLooseProbability().toString().substring(0, 11));
                     MatrixContainer.reInit();
                 }
-            }
+            }*/
     }
 }

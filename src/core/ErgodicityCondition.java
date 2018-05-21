@@ -15,7 +15,8 @@ public class ErgodicityCondition {
     public static boolean check(BigDecimal gamma, BigDecimal lambda, Integer K, BigDecimal T) {
         BigDecimal minuend = lambda.multiply(T);
         BigDecimal subtrahend = getY0(gamma, T, K).multiply(lambda.divide(gamma, RoundingMode.HALF_UP));
-        return minuend.subtract(subtrahend).compareTo(ONE) < 0;
+        System.out.println(minuend.add(subtrahend));
+        return minuend.add(subtrahend).compareTo(new BigDecimal(1.05)) == -1;
     }
 
     private static BigDecimal getY0(BigDecimal gamma, BigDecimal T, Integer K) {
@@ -37,7 +38,7 @@ public class ErgodicityCondition {
             for (int s = 1; s <= k; s++) {
                 sum = sum.add(psiVector[s].multiply(smallPhi(gamma, T, valueOf(k + 1 - s))));
             }
-            psiVector[k + 1] = psiVector[k].subtract(smallPhi(gamma, T,valueOf(k))).subtract(sum);
+            psiVector[k + 1] = psiVector[k].subtract(smallPhi(gamma, T,valueOf(k))).subtract(sum).multiply(smallPhi(gamma, T, valueOf(0)));
         }
         return psiVector;
     }
