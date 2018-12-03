@@ -11,6 +11,7 @@ public class MatrixContainer {
     private static HashMap<Integer, BigDecimalMatrix>   pSlashMatrices;
     private static HashMap<Integer, BigDecimalMatrix>   phiMatrices;
     private static HashMap<Integer, BigDecimalMatrix>   piVectors;
+    private static HashMap<Integer, BigDecimalMatrix>   kMatrix;
 
     static {
         generators      = new HashMap<>();
@@ -47,11 +48,16 @@ public class MatrixContainer {
         return piVectors;
     }
 
+    public static HashMap<Integer, BigDecimalMatrix> getKMatrix() {
+        return kMatrix;
+    }
+
     public static void reInit() {
         g               = null;
         generators      = new HashMap<>();
         pSlashMatrices  = new HashMap<>();
         phiMatrices     = new HashMap<>();
         piVectors       = new HashMap<>();
+        kMatrix         = new HashMap<>();
     }
 }

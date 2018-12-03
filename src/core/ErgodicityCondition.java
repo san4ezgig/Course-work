@@ -12,11 +12,13 @@ import static java.math.BigDecimal.valueOf;
 public class ErgodicityCondition {
 
     //Approved
-    public static boolean check(BigDecimal gamma, BigDecimal lambda, Integer K, BigDecimal T) {
+    public static boolean check(double gamma, BigDecimal lambda, Integer K, BigDecimal T) {
         BigDecimal minuend = lambda.multiply(T);
-        BigDecimal subtrahend = getY0(gamma, T, K).multiply(lambda.divide(gamma, RoundingMode.HALF_UP));
-        System.out.println(minuend.add(subtrahend));
-        return minuend.add(subtrahend).compareTo(new BigDecimal(1.05)) == -1;
+        if (K == 1) {
+            K++;
+        }
+        BigDecimal subtrahend = getY0(new BigDecimal(gamma), T, K).multiply(new BigDecimal(lambda.doubleValue() / gamma));
+        return minuend.add(subtrahend).compareTo(new BigDecimal(1)) == -1;
     }
 
     private static BigDecimal getY0(BigDecimal gamma, BigDecimal T, Integer K) {
@@ -25,7 +27,7 @@ public class ErgodicityCondition {
         for (BigDecimal element : psiVector) {
             sum = sum.add(element);
         }
-        return ONE.divide(sum, RoundingMode.HALF_UP);
+        return new BigDecimal(1 / sum.doubleValue());
     }
 
     //Approved
@@ -36,23 +38,23 @@ public class ErgodicityCondition {
         for (int k = 0; k < K - 1; k++) {
             BigDecimal sum = ZERO;
             for (int s = 1; s <= k; s++) {
-                sum = sum.add(psiVector[s].multiply(smallPhi(gamma, T, valueOf(k + 1 - s))));
+                sum = sum.add(psiVector[s].multiply(smallPhi(gamma, T, valueOf(k + 1 - s).intValue())));
             }
-            psiVector[k + 1] = psiVector[k].subtract(smallPhi(gamma, T,valueOf(k))).subtract(sum).multiply(smallPhi(gamma, T, valueOf(0)));
+            psiVector[k + 1] = new BigDecimal(psiVector[k]
+                    .subtract(smallPhi(gamma, T, valueOf(k).intValue()))
+                    .subtract(sum).doubleValue()
+                    / smallPhi(gamma, T, valueOf(0).intValue()).doubleValue());
         }
         return psiVector;
     }
 
-
-    //Approved
-    private static BigDecimal smallPhi(BigDecimal gamma, BigDecimal T, BigDecimal k) {
-        return (gamma.multiply(T).pow(k.intValue()))
-                .divide(factor(k), RoundingMode.HALF_UP)
-                .multiply(new BigDecimal(Math.exp(gamma.multiply(T).doubleValue()*-1)));
+    private static BigDecimal smallPhi(BigDecimal gamma, BigDecimal t, int k) {
+        return new BigDecimal(gamma.multiply(t).pow(k).doubleValue() / factor(k)
+                * Math.exp(gamma.multiply(t).doubleValue() * -1));
     }
 
     //Approved
-    private static BigDecimal factor(BigDecimal n) {
+    public static BigDecimal factor(BigDecimal n) {
         if(n.signum() < 0) {
             throw new IllegalArgumentException("Negative value in factorial function.");
         }
@@ -63,5 +65,13 @@ public class ErgodicityCondition {
             return ONE;
         }
         return n.multiply(factor(n.subtract(ONE)));
+    }
+
+    private static int factor(int n) {
+        int result = 1;
+        for (int i = 1; i <= n; i++) {
+            result = result * i;
+        }
+        return result;
     }
 }

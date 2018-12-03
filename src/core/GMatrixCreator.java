@@ -42,6 +42,7 @@ public class GMatrixCreator {
        // System.out.println(gCur.getWidth());
         return gCur;
     }
+
     public static BigDecimalMatrix per(BigDecimalMatrix[][] a) {
         int size = a.length * 2;
         BigDecimalMatrix cur = BigDecimalMatrix.zeroMatrix(size);

@@ -55,9 +55,8 @@ public class PSlashMatrixCreator {
         return accuracy;
     }
 
-
     //Approved
-    private BigDecimalMatrix powMatrix(BigDecimalMatrix a, int b) {
+    public static BigDecimalMatrix powMatrix(BigDecimalMatrix a, int b) {
         if (b < 0) {
             throw new IllegalArgumentException("Negative argument in factorial function.");
         }

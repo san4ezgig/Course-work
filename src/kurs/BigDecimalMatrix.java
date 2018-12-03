@@ -23,6 +23,7 @@ public class BigDecimalMatrix extends AbstractMatrix<BigDecimal> implements Clon
         matrix = new ArrayMatrix<BigDecimal>(matr);
         this.scale = scale;
     }
+
     public BigDecimalMatrix(int height, int width, int scale)
     {
         matrix = new ArrayMatrix<BigDecimal>(height, width);
@@ -114,7 +115,7 @@ public class BigDecimalMatrix extends AbstractMatrix<BigDecimal> implements Clon
         this.scale = scale;
         for (int i = 0; i < getHeight(); i++)
             for (int j = 0; j < getWidth(); j++)
-                setElement(i, j, getElement(i, j).setScale(scale));
+                setElement(i, j, getElement(i, j).setScale(scale, RoundingMode.HALF_UP));
     }
 
     public int getScale()
@@ -157,7 +158,9 @@ public class BigDecimalMatrix extends AbstractMatrix<BigDecimal> implements Clon
         BigDecimalMatrix res = new BigDecimalMatrix(getHeight(), getWidth(), scale);
         for (int i = 0; i < getHeight(); i++)
             for (int j = 0; j < getWidth(); j++)
+            {
                 res.setElement(i, j, getElement(i, j).subtract(matrix.getElement(i, j)).setScale(scale, RoundingMode.HALF_UP));
+            }
         return res;
     }
 
