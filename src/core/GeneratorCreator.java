@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.valueOf;
 
 
 public class GeneratorCreator {
@@ -59,11 +60,17 @@ public class GeneratorCreator {
             return matrix;
         }
 
-        for (int k = 0; k < K + 1; k++) {
-            for (int bK = 0; bK < K + 1; bK++) {
-                matrix[k][bK] = elementCreator.create(i, k, j, bK);
-                //System.out.println(matrix[r][c]);
+        int hash = i > 1 ? Objects.hash(1, j - i + 1) : Objects.hash(0, j);
+
+        if (MatrixContainer.getGenerators().containsKey(hash)) {
+            matrix = MatrixContainer.getGenerators().get(hash).clone();
+        } else {
+            for (int k = 0; k < K + 1; k++) {
+                for (int bK = 0; bK < K + 1; bK++) {
+                    matrix[k][bK] = elementCreator.create(i, k, j, bK);
+                }
             }
+            MatrixContainer.getGenerators().put(hash, matrix.clone());
         }
 
         return matrix;
@@ -71,7 +78,6 @@ public class GeneratorCreator {
 
     private class MatrixElementCreator {
 
-        //Approved
         private BigDecimalMatrix create(int i, int k, int j, int bK) {
             boolean validness = i >= 0 &&
                     j >= 0 &&
@@ -85,8 +91,10 @@ public class GeneratorCreator {
 
             BigDecimalMatrix element;
 
+            Boolean isVMatrix = (i == 0 && j >=0);
+
             if (bK == K) {
-                element = createLastColumnElement(k, j);
+                element = isVMatrix ? createLastColumnElementV(k, j) : createLastColumnElement(k, j);
                 return element;
             }
 
@@ -96,14 +104,15 @@ public class GeneratorCreator {
             }
 
             if (k == 0) {
-                element = createFirstRowNotLastColumnElement(j, bK);
+                element = isVMatrix ? createFirstRowNotLastColumnElementV(j, bK) : createFirstRowNotLastColumnElement(j, bK);
                 return element;
             }
 
-            element = createNotFirstRowNotLastColumnElement(k, j, bK);
+            element = isVMatrix ? createNotFirstRowNotLastColumnElementV(k, j, bK) : createNotFirstRowNotLastColumnElement(k, j, bK);
             return element;
         }
 
+        // YMatrix region
         private BigDecimalMatrix createFirstRowNotLastColumnElement(int j, int bK) {
             BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 10);
             for (int n = 0; n <= j - 2; n++) {
@@ -114,15 +123,57 @@ public class GeneratorCreator {
             return result;
         }
 
-        //Approved
         private BigDecimalMatrix createLastColumnElement(int k, int j) {
-            return funcPhiWithHat(new BigDecimal(j), new BigDecimal(K - k + 1));
+            return funcPhiWithHat(j, K - k + 1);
         }
 
-        //Approved
         private BigDecimalMatrix createNotFirstRowNotLastColumnElement(int k, int j, int bK) {
             return funcPhi(j, bK - k + 1);
         }
+        // end Region
+
+        //VMatrix region
+
+        private BigDecimalMatrix createFirstRowNotLastColumnElementV(int j, int bK) {
+            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 6);
+
+            for (int n = 0; n <= j; n++) {
+                result = result.add(funcN(n).multiply(funcPhi(j - n, bK)));
+            }
+
+            result = funcM(0).multiply(result);
+
+            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
+
+            for (int m = 0; m <= bK; m++) {
+                sum = sum.add(funcM(m).multiply(funcPhi(j, bK - m)));
+            }
+
+            sum = funcN(0).multiply(sum);
+
+            result = result.add(sum);
+
+            return result;
+        }
+
+        private BigDecimalMatrix createLastColumnElementV(int k, int j) {
+            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
+            for (int m = 0; m <= K - k + 1; m++) {
+                sum = sum.add(funcM(m)).multiply(funcPhiWithHat(j, K - k + 1 - m));
+            }
+            sum = sum.add(funcMWithHat(K - k + 1).multiply(funcPhiWithHat(j, 1)));
+            return sum;
+        }
+
+        private BigDecimalMatrix createNotFirstRowNotLastColumnElementV(int k, int j, int bK) {
+            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
+            for (int m = 0; m <= bK - k + 1; m++) {
+                sum = sum.add(funcM(m)).multiply(funcPhi(j, bK - k + 1 - m));
+            }
+            sum = sum.add(funcMWithHat(K - k + 1).multiply(funcPhiWithHat(j, 1)));
+            return sum;
+        }
+        // End region
     }
 
     public BigDecimalMatrix funcMWithHat(int m) {
@@ -235,8 +286,8 @@ public class GeneratorCreator {
         return funcP(i, T).multiply(funcSmallPhiK(T, k));
     }
 
-    public BigDecimalMatrix funcPhiWithHat(BigDecimal i, BigDecimal k) {
-        return funcP(i.intValue(), T).multiply(funcSmalPhiKWithHat(T, k.intValue()));
+    public BigDecimalMatrix funcPhiWithHat(int i, int k) {
+        return funcP(i, T).multiply(funcSmalPhiKWithHat(T, k));
     }
 
     public BigDecimalMatrix funcN(int n) {

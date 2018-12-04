@@ -82,13 +82,15 @@ public class Main {
                 pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
                 phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
                 sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
-                pParameters = new PerformanceParameters(sdCreator.getPiVectors(), lambda);
-                System.out.println(pParameters.getAverageNumberOfRequests().toString().substring(0, 11));
+                pParameters = new PerformanceParameters(sdCreator.getPiVectors(), lambda, d1);
+                System.out.println(pParameters.getAverageNumberOfEnergyUnits().toString().substring(0, 11));
                 MatrixContainer.reInit();
             }
             System.out.println();
         }
         MatrixContainer.reInit();
+        //Eps grapher
+        //GNU Plot
 
         /*System.out.println();
         System.out.println(d0.add(d1).multiply(T));
