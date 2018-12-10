@@ -25,7 +25,6 @@ public class PSlashMatrixCreator {
 
         int l = j + 1;
         int size = g.getWidth();
-        //System.out.println(size);
         int hash = i > 1 ? Objects.hash(1, j - i + 1) : Objects.hash(0, j);
 
         BigDecimalMatrix result = BigDecimalMatrix.zeroMatrix(size);
@@ -38,10 +37,10 @@ public class PSlashMatrixCreator {
                 BigDecimalMatrix cur = BigDecimalMatrix.zeroMatrix(size);
                 do {
                     prev = cur.clone();
-                    cur = cur.add(GMatrixCreator.per(creator.create(i, l)).multiply(powMatrix(g, l - j)));
+                    cur = cur.add(creator.create(i, l).multiply(powMatrix(g, l - j)));
                     l++;
                 } while (cur.subtract(prev).squaredEuclidianNorm().compareTo(accuracy) > 0);
-                result = GMatrixCreator.per(creator.create(i, j)).add(cur);
+                result = creator.create(i, j).add(cur);
                 MatrixContainer.getPSlashMatrices().put(hash, result.clone());
             }
         } catch (CloneNotSupportedException e) {

@@ -7,11 +7,12 @@ import kurs.BigDecimalMatrix;
  */
 public class MatrixContainer {
     private static BigDecimalMatrix                     g;
-    private static HashMap<Integer, BigDecimalMatrix[][]> generators;
+    private static HashMap<Integer, BigDecimalMatrix> generators;
     private static HashMap<Integer, BigDecimalMatrix>   pSlashMatrices;
     private static HashMap<Integer, BigDecimalMatrix>   phiMatrices;
     private static HashMap<Integer, BigDecimalMatrix>   piVectors;
     private static HashMap<Integer, BigDecimalMatrix>   kMatrix;
+    private static HashMap<Integer, BigDecimalMatrix>   pMatrix;
 
     static {
         generators      = new HashMap<>();
@@ -32,7 +33,7 @@ public class MatrixContainer {
         MatrixContainer.g = g;
     }
 
-    public static HashMap<Integer, BigDecimalMatrix[][]> getGenerators() {
+    public static HashMap<Integer, BigDecimalMatrix> getGenerators() {
         return generators;
     }
 
@@ -52,6 +53,11 @@ public class MatrixContainer {
         return kMatrix;
     }
 
+    public static HashMap<Integer, BigDecimalMatrix> getPMatrix() {
+        return pMatrix;
+    }
+
+
     public static void reInit() {
         g               = null;
         generators      = new HashMap<>();
@@ -59,5 +65,6 @@ public class MatrixContainer {
         phiMatrices     = new HashMap<>();
         piVectors       = new HashMap<>();
         kMatrix         = new HashMap<>();
+        pMatrix         = new HashMap<>();
     }
 }

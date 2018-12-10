@@ -32,7 +32,7 @@ public class PhiMatrixCreator {
 
     //Approved
     private void initPsiMatrices() {
-        final BigDecimalMatrix I = BigDecimalMatrix.identity(2*K + 2);
+        final BigDecimalMatrix I = BigDecimalMatrix.identity(2*(K + 1));
         phiMatrices.add(0, I);
         int hash = Objects.hash(0);
         try {
@@ -48,25 +48,22 @@ public class PhiMatrixCreator {
                 if (MatrixContainer.getPhiMatrices().containsKey(hash)) {
                     phiMatrices.add(index, MatrixContainer.getPhiMatrices().get(hash).clone());
                 } else {
-                    //.inverse()
                     rightTerm = I.subtract(pSlashCreator.create(index, index)).inverse();
 
+                    leftTerm = BigDecimalMatrix.zeroMatrix(2 *(K + 1));
 
-                    int i = 1;
-                    leftTerm = BigDecimalMatrix.zeroMatrix(K*2 + 2);
-                    //System.out.println(1);
-                    while (i < index) {
+                    for(int i = 1; i <= index - 1; i++) {
                         leftTerm = leftTerm.add(phiMatrices.get(i).multiply(pSlashCreator.create(i, index)));
-                        i++;
                     }
+
                     leftTerm = leftTerm.add(pSlashCreator.create(0, index));
                     result = leftTerm.multiply(rightTerm);
-                    //System.out.println(result.squaredEuclidianNorm());
                     phiMatrices.add(index, result);
                     MatrixContainer.getPhiMatrices().put(hash, result.clone());
                 }
                 index++;
-            } while (phiMatrices.get(index - 1).subtract(phiMatrices.get(index - 2)).squaredEuclidianNorm().compareTo(accuracy) > 0);
+            } while (phiMatrices.get(index - 1).subtract(phiMatrices.get(index - 2)).squaredEuclidianNorm().doubleValue()
+            > accuracy.doubleValue());
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
         }

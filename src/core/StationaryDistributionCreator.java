@@ -19,15 +19,16 @@ public class StationaryDistributionCreator {
     }
 
     public ArrayList<BigDecimalMatrix> getPiVectors() {
-        BigDecimalMatrix A = BigDecimalMatrix.identity(2*K + 2).subtract(pSlashCreator.create(0, 0));
-        BigDecimalMatrix IWaved = BigDecimalMatrix.identity(2*K + 2);
+        int size = 2 * (K + 1);
+        BigDecimalMatrix A = BigDecimalMatrix.identity(size).subtract(pSlashCreator.create(0, 0));
+        BigDecimalMatrix IWaved = BigDecimalMatrix.identity(size);
         IWaved.setElement(0, 0, BigDecimal.ZERO);
 
-        BigDecimalMatrix eWaved = BigDecimalMatrix.eRow(2*K + 2, BigDecimal.ZERO);
+        BigDecimalMatrix eWaved = BigDecimalMatrix.eRow(size, BigDecimal.ZERO);
         eWaved.setElement(0, 0, BigDecimal.ONE);
 
-        BigDecimalMatrix e = BigDecimalMatrix.eCol(2*K + 2, BigDecimal.ONE);
-        BigDecimalMatrix sum = BigDecimalMatrix.zeroMatrix(2*K + 2);
+        BigDecimalMatrix e = BigDecimalMatrix.eCol(size, BigDecimal.ONE);
+        BigDecimalMatrix sum = BigDecimalMatrix.zeroMatrix(size);
 
         for (BigDecimalMatrix phi : phiMatrices) {
             sum = sum.add(phi.multiply(e).multiply(eWaved));

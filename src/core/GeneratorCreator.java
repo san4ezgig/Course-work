@@ -53,8 +53,8 @@ public class GeneratorCreator {
         this.elementCreator = new MatrixElementCreator();
     }
 
-    public BigDecimalMatrix[][] create(int i, int j) {
-        BigDecimalMatrix[][] matrix = new BigDecimalMatrix[K + 1][K + 1];
+    public BigDecimalMatrix create(int i, int j) {
+        BigDecimalMatrix tempMatrix, matrix = new BigDecimalMatrix(2*K + 2, 2 * K + 2, 6);
 
         if (i - j > 1) {
             return matrix;
@@ -62,15 +62,25 @@ public class GeneratorCreator {
 
         int hash = i > 1 ? Objects.hash(1, j - i + 1) : Objects.hash(0, j);
 
-        if (MatrixContainer.getGenerators().containsKey(hash)) {
-            matrix = MatrixContainer.getGenerators().get(hash).clone();
-        } else {
-            for (int k = 0; k < K + 1; k++) {
-                for (int bK = 0; bK < K + 1; bK++) {
-                    matrix[k][bK] = elementCreator.create(i, k, j, bK);
+       // int hash = Objects.hash(i, j);
+
+        try {
+            if (MatrixContainer.getGenerators().containsKey(hash)) {
+                matrix = MatrixContainer.getGenerators().get(hash).clone();
+            } else {
+                for (int k = 0; k < K + 1; k++) {
+                    for (int bK = 0; bK < K + 1; bK++) {
+                        tempMatrix = elementCreator.create(i, k, j, bK);
+                        matrix.setElement(k * 2, bK * 2, tempMatrix.getElement(0, 0));
+                        matrix.setElement(k * 2, 1 + bK * 2, tempMatrix.getElement(0, 1));
+                        matrix.setElement(1 + k * 2, bK * 2, tempMatrix.getElement(1, 0));
+                        matrix.setElement(1 + k * 2, 1 + bK * 2, tempMatrix.getElement(1, 1));
+                    }
                 }
+                MatrixContainer.getGenerators().put(hash, matrix.clone());
             }
-            MatrixContainer.getGenerators().put(hash, matrix.clone());
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.getMessage());
         }
 
         return matrix;
@@ -239,29 +249,46 @@ public class GeneratorCreator {
         BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
         BigDecimalMatrix val;
         int j = 0;
-        do {
-            if (i == 0) {
-                val = new BigDecimalMatrix(2, new BigDecimal(1), 6)
-                        .add(d0.multiply(new BigDecimal(1 / tetta().doubleValue())));
-                BigDecimalMatrix newVal = val;
-                if (j == 0) {
-                    val = new BigDecimalMatrix(2, new BigDecimal(1), 6);
-                }
-
-                for (int k = 0; k < j; k++) {
-                    val = val.multiply(newVal);
-                }
-            } else {
-                val = funcK(i, j);
+        int hash = Objects.hash(i, t);
+        boolean vallidness;
+        try {
+            if (MatrixContainer.getPMatrix().containsKey(hash)) {
+                return MatrixContainer.getPMatrix().get(hash).clone();
             }
+            do {
+                if (i == 0) {
+                    val = new BigDecimalMatrix(2, new BigDecimal(1), 6)
+                            .add(d0.multiply(new BigDecimal(1 / tetta().doubleValue())));
+                    BigDecimalMatrix newVal = val;
+                    if (j == 0) {
+                        val = new BigDecimalMatrix(2, new BigDecimal(1), 6);
+                    }
 
-            double valueUnderSum = Math.exp(tetta().multiply(t).doubleValue() * -1)
-                    * Math.pow(tetta().multiply(t).doubleValue(), j)
-                    / this.factor(j);
-            val = val.multiply(new BigDecimal(valueUnderSum));
-            sum = sum.add(val);
-            j++;
-        } while (j <= 10/*val.cubicNorm().doubleValue() >= accuracy*/);
+                    for (int k = 0; k < j; k++) {
+                        val = val.multiply(newVal);
+                    }
+                } else {
+                    val = funcK(i, j);
+                }
+
+
+                double valueUnderSum = Math.exp(tetta().multiply(t).doubleValue() * -1)
+                        * Math.pow(tetta().multiply(t).doubleValue(), j)
+                        / this.factor(j);
+                val = val.multiply(new BigDecimal(valueUnderSum));
+                sum = sum.add(val);
+                j++;
+
+               // System.out.println(val);
+                vallidness = (val.cubicNorm().doubleValue() == 0 && valueUnderSum >= accuracy.doubleValue())
+                        || val.cubicNorm().doubleValue() >= accuracy.doubleValue();
+                //    } while (j <= 15/*val.cubicNorm().doubleValue() >= accuracy.doubleValue()*/);
+            } while (vallidness);
+            MatrixContainer.getPMatrix().put(hash, sum.clone());
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.getMessage());
+        }
+
         return sum;
     }
 
@@ -318,7 +345,7 @@ public class GeneratorCreator {
             val = BigDecimalMatrix.eCol(2, ZERO);
             for (int k = 0; k <= K; k++) {
                 val = val.add(funcPhi(i, k).multiply(e));
-                System.out.println(val);
+              //  System.out.println(val);
             }
             sum = sum.add(val);
             i++;

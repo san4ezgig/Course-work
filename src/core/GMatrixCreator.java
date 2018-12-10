@@ -5,6 +5,7 @@ package core;
  */
 
 import java.math.BigDecimal;
+
 import kurs.BigDecimalMatrix;
 
 
@@ -24,42 +25,23 @@ public class GMatrixCreator {
         BigDecimalMatrix gCur = new BigDecimalMatrix(size, new BigDecimal(1), 10);
         try {
             do {
-                int k = 0;
+                int j = 0;
                 gPrev = gCur.clone();
                 cur = BigDecimalMatrix.zeroMatrix(size);
                 do {
                     prev = cur.clone();
-                    cur = cur.add(per(creator.create(1, k)).multiply(powMatrix(gPrev, k)));
-                    //System.out.println(per(creator.create(1, k)));
-                    k++;
-                } while (cur.subtract(prev).squaredEuclidianNorm().compareTo(accuracy) > 0);
+                    cur = cur.add(creator.create(1, j).multiply(powMatrix(gPrev, j)));
+                    j++;
+                } while (cur.subtract(prev).squaredEuclidianNorm().doubleValue() < accuracy.doubleValue());
                 gCur = cur.clone();
-            } while (gCur.subtract(gPrev).squaredEuclidianNorm().compareTo(accuracy) > 0);
+            } while (gCur.subtract(gPrev).squaredEuclidianNorm().doubleValue() < accuracy.doubleValue());
             MatrixContainer.setG(gCur.clone());
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
         }
-       // System.out.println(gCur.getWidth());
         return gCur;
     }
 
-    public static BigDecimalMatrix per(BigDecimalMatrix[][] a) {
-        int size = a.length * 2;
-        BigDecimalMatrix cur = BigDecimalMatrix.zeroMatrix(size);
-        for (int i = 0; i < a.length; i++) {
-            for(int j = 0; j < a[i].length; j++) {
-                BigDecimalMatrix val = a[i][j];
-                //System.out.println(a[i][j]);
-                for (int k = 0; k <= 1; k++) {
-                    for (int r = 0; r <= 1; r++) {
-                        cur.setElement(k + i*2, r + j*2, val.getElement(k, r));
-                    }
-                }
-            }
-        }
-        //System.out.println(cur);
-        return cur;
-    }
     //Approved
     private BigDecimalMatrix powMatrix(BigDecimalMatrix a, int b) {
         if (b < 0) {

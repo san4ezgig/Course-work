@@ -1,11 +1,24 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[14pt, a4paper]{article}
 \usepackage{graphicx}
+\usepackage[12pt]{extsizes}
 \graphicspath{{pictures/}}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\definecolor{linkcolor}{rgb}{0, 0, 0} % цвет ссылок
+\definecolor{urlcolor}{rgb}{0, 0, 0} % цвет гиперссылок
+\renewcommand
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+\linespread{1}
+\usepackage{geometry}  %поля
+\geometry{left=2.5cm}
+\geometry{right=1cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
 
 \begin{document}
 	\begin{titlepage}
@@ -16,7 +29,7 @@
 			\textbf{БЕЛОРУССКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ}
 		\end{center}
 		\begin{center}
-			\textbf{Фaкультет приклaдной мaтемaтики и информaтики}
+			\textbf{ФАКУЛЬТЕТ ПРИКЛАДНОЙ МАТЕМАТИКИ И ИНФОРМАТИКИ}
 		\end{center}
 		\begin{center}
 			Кaфедрa теории вероятностей и мaтемaтической стaтистики
@@ -35,7 +48,7 @@
 			&
 			Джига Александра Олеговича\newline
 			
-			студента 3 курса 7 группы\newline
+			студента 4 курса 7 группы\newline
 			
 			специальность "прикладная математика"\newline
 			
@@ -49,7 +62,7 @@
 		\end{tabular}
 		\vfill
 		\vfill
-		\begin{center}Минск 2017\end{center}
+		\begin{center}Минск 2018\end{center}
 	\end{titlepage}
 \setcounter{page}{2}
 \begin{center}
@@ -92,7 +105,10 @@
 
 \newpage
 	\large
-	\textbf{ВВЕДЕНИЕ}\\
+	\begin{center}
+		\textbf{ВВЕДЕНИЕ}\\
+	\end{center}
+
 	Математические модели систем массового обслуживания (СМО) широко применяются для исследования и оптимизации процессов в различных физических, экономических, производственных, административных, медицинских, военных и других системах. Объектом исследования в теории СМО являются ситуации, когда имеется некоторый ограниченный ресурс и множество запросов на удовлетворения потребности в этом ресурсе. Примерами могут служить кассы в магазинах, аэропортах, вокзалах и т.д.; терминалы в транспортных системах; банкоматы, инфокиоски и точки оплаты с использованием пластиковых карт; таблицы и индексы реляционных баз данных; ресурсы медицинских, экстренных и аварийных служб; средства радиолокации и противовоздушной обороны; авторизационные серверы в банках, контактные, справочные и информационные центры и т.д. Ограниченность ресурса и случайный характер потока запросов приводят к отказу или задержке в удовлетворении запросов. Стремление уменьшить вероятность этих отказов и длительность задержек и явилось побуждающим мотивом развития теории СМО. С точки зрения используемого математического аппарата, теория СМО может быть классифицирована как прикладная ветвь теории вероятностей, а более точно, теории случайных процессов. Классическая теория СМО основана на использовании известных результатов из теории цепей Маркова с непрерывным временем (и, в частности, теории процессов гибели и размножения) и дискретным временем, теории марковских, полумарковских, линейчатых и близких к ним процессов. Все эти процессы являются одномерными или двумерными (где вторая компонента является непрерывной, носит вспомогательных характер и предназначена для получения марковского процесса).
 	
 	\section{МАТЕМАТИЧЕСКАЯ МОДЕЛЬ СИСТЕМЫ MAP|G|1 С ГЕНЕРАЦИЕЙ ЭНЕРГИИ}
@@ -172,8 +188,8 @@ $\ \hat M(m) = \sum\limits_{n=m}^{\infty} M(n)$.\\
 рассматривать поведение СМО $(i_{t}, k_{t})$, в моменты $t_{n}, \; n\geq1$ окончания  обслуживания запросов, а именно, рассмотрим процесс
 $\epsilon_{n} = \left\{i_{n}, k_{n}, \nu_{n}\right\}$ - трехмерный процесс, где $i_{n} = i_{t_{n+0}},\; k_{n} = k_{t_{n-0}},\; \nu_{n} = \nu_{t_{n}}.$
 Данный процесс является трехмерной цепью Маркова. Введем матрицу $$P\left\{(i,k) \rightarrow (j, k')\right\},$$ ($\nu\nu'$)-й элемент которой есть вероятность одношагового перехода: $$P\left\{ (i ,k, \nu) \rightarrow (j, k', \nu') )\right\} =$$  $$=P\left\{i_{n+1} = j, k_{n+1} = k', \nu_{n+1} = \nu' |i_{n} = i, k_{n} = k, \nu_{n} = \nu \right\}$$
-Введем матрицу стационарных вероятностей $$ \pi(i, k, \nu') = \lim_{n -> \infty}P\left\{i_{n} = i, k_{n} = k, \nu_{n} = \nu\right\},$$ $$ i \geq 0, k \in [0, K], \nu \in [0, W],$$ элементами которой являются матрицы $$\pi(i, k) = (\pi(i, k, 0),..., \pi(i, k, w), k \in [0, K]$$
-Вектор стационарных вероятностей $$\boldsymbol{\pi}_{i} = (\boldsymbol{\pi}(i, 0),..., \boldsymbol{\pi}(i, k))$$
+Введем стационарные вероятности $$ \pi(i, k, \nu') = \lim_{n -> \infty}P\left\{i_{n} = i, k_{n} = k, \nu_{n} = \nu\right\},$$ $$ i \geq 0, k \in [0, K], \nu \in [0, W],$$ которые объединим в вектора $$\boldsymbol{\pi}(i, k) = (\pi(i, k, 0),..., \pi(i, k, W), k \in [0, K],$$ которые, в свою очередь, образуют вектор стационарных вероятностей:
+$$\boldsymbol{\pi}_{i} = (\boldsymbol{\pi}(i, 1),..., \boldsymbol{\pi}(i, K)), i \geq 0.$$
 Нахождение переходных вероятностей в частных случаях проводится путем анализа поведения цепи Маркова между моментами $t_{n}$ и $t_{n+1}$ и использования формулы полной вероятности.$\\$ 
 \textbf{Лемма}\\
 Матрицы $P\left\{(i,k) \rightarrow (j, k')\right\}$ вычисляются следующим образом:
@@ -202,7 +218,7 @@ $ =\Phi(j - i + 1, k' - k),\; i, j\geq 0,\;j\geq i-1,\; k' \geq k + 1$.
 $P\left\{(i, k) \rightarrow (j, K)\right\}=$\\
 $= \hat \Phi(j - i + 1, K - k),\; i, j\geq 0,\;j\geq i-1,\; 0 \leq k \leq K $.
 
-\section{Построение матрицы переходных вероятностей}
+\section{ПОСТРОЕНИЕ МАТРИЦЫ ПЕРЕХОДНЫХ ВЕРОЯТНОСТЕЙ}
 
 \subsection{Матрица вероятностей переходов}
 Матрица $P$ вероятностей одношаговых переходов рассматриваемого
@@ -260,7 +276,7 @@ $
 Проанализировав вид $y^{j}_{kk'}$ сделаем вывод, что, начиная со второй строки,
 элементы не зависят от $k$ и $k'$, а зависят только $k' - k$.
 \section{СТАЦИОНАРНОЕ РАСПРЕДЕЛЕНИЕ ВЕРОЯТНОСТЕЙ}
-\subsection{КРИТЕРИЙ ЭРГОДИЧНОСТИ СИСТЕМЫ}
+\subsection{Критерий эргодичности системы}
 Условие эргодичности можно трактовать следующим образом - 
 условие, при котором система способна уменьшать число заявок в системе,
 когда она перегружена, т.е. среднее число заявок, поступающих за время
@@ -296,14 +312,14 @@ $
 $
 \begin{cases}
 	u_{k} = u_{0}\psi_{k}\\
-	u_{K} = (\sum\limits_{k=0}^{K}\psi_{k})^{-1},
+	u_{0} = (\sum\limits_{k=0}^{K}\psi_{k})^{-1},
 \end{cases}\\
 $
 Где $\psi_{k + 1}$:\\
-$\psi_{k+1}\; =\;(\psi_{k} - \phi_{k} - \sum\limits_{s=1}^{k}\psi_{s}\phi_{k + 1 - s})\phi_{0}^{-1}, k = \overline{1, K-1}, $\\
+$\psi_{k+1}\; =\;(\psi_{k} - \phi_{k} - \sum\limits_{s=1}^{k}\psi_{s}\phi_{k + 1 - s})\phi_{0}^{-1}, k = \overline{0, K-1}, \psi_{0} = 1 $\\
 После подстановки $u$ и $y$ получаем условие эргодичности:\\
-$\lambda b_{1} + u_{0}  \frac{\lambda}{\gamma}\; <\; 1$,\\
-где $b_{1}$ это время обслуживания одной заявки.\\
+$\lambda T + u_{0}  \frac{\lambda}{\gamma}\; <\; 1$,\\
+где $T$ это время обслуживания одной заявки.\\
 Условие существования стационарного режима в системе совпадает с условием
 эргодичности вложенной цепи Маркова. 
 \begin{flushleft}\subsection{Матрично-аналитический метод для нахождения стационарного распределения вероятностей цепи Маркова (метод М. Ньютса)}\end{flushleft}
@@ -398,17 +414,39 @@ G = \sum\limits_{j = 0}^{\infty} Y_j G^j.
 \setcounter{figure}{0}
 \setcounter{table}{0}
 
+\subsection{Необходимые обозначения}
+$n$ - количество векторов $\pi_{i}$. \\
+$\pi_i = (\pi(i, 0), \pi(i, 1), \ldots, \pi(i, K)).$
+\\
+Среднее количество запросов в системе:
+$$L = \sum\limits_{i = 0}^{n} i \pi_i e,$$
+Среднее количество единиц энергии в буфере:
+$$N =\sum\limits_{i = 0}^{n} \sum\limits_{k = 1}^{K} k \pi_{i}(k)e,$$
+Вероятность отсутствия запросов в системе:
+$$P_0^{custom} = \pi_0 e.$$
+Вероятность отсутствия единиц энергии в буфере:
+$$P_0^{energy} = \sum\limits_{i = 0}^{n} \pi_{i}(0)e.$$
+Вероятность простоя системы по причине отсутствия единиц энергии в буфере:
+$$P_{idle} = \sum\limits_{i = 1}^{n} \pi_{i}(0)e,$$.
+
+\subsection{Численные характеристики системы}
+Рассмотрим $MAP$-поток, который определяется матрицами $D_{0}$ и $D_{1}$, имеет среднюю интенсивность $\lambda = 0.4$ и $\gamma = 0.3$. Коэффициент корреляции $c_{cor} = 0.1724$, ${c_{var}=14.33}$.
+\\
+
+$D_{0} = \begin{pmatrix}
+-0.405780& 0\\
+0& -0.013173
+\end{pmatrix}$,
+$D_{1} = \begin{pmatrix}
+0.403080& 0.002700\\
+0.007338& 0.005835 
+\end{pmatrix}$
+
 \subsection{Среднее количество запросов в системе}
-
-
-Обозначим среднее количество запросов в системе как $L$. Найдем $L$ по следующей формуле:
-
-$$L = \sum\limits_{i = 0}^{\infty} i \pi_i e.$$
-
-Построим график $L$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $1.5$  с шагом $0.5)$.
+График $L$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
 
 \begin{figure}[h]
-	\center{\includegraphics[scale=1.0]{11.png}}
+	\center{\includegraphics[width=1\linewidth]{11.png}}
 	\caption{Среднее количество запросов в системе}
 	\label{ris2}
 \end{figure}
@@ -418,30 +456,23 @@ $$L = \sum\limits_{i = 0}^{\infty} i \pi_i e.$$
 
 \textbf{Входные данные:}
 
-$\lambda: 0.4$
-
-$\gamma: 0.3$
 
 $K: 1, 2, 3, \ldots, 20$
 
-$T: 0.5, 1.0, $
+$T: 0.5, 1.0, 1.5, 2$
 
 $Accuracy: 0.001$
-
+\\
 \begin{figure}[h]
 	\center{\includegraphics[scale=1.0]{1.png}}
 \end{figure}
+\pagebreak
 
 \begin{flushleft}\subsection{Среднее количество единиц энергии в буфере}\end{flushleft}
+График $N$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
 
-Обозначим среднее количество единиц энергии в буфере как $N$. Найдем $N$ по следующей формуле:
-
-$$N =\sum\limits_{i = 0}^{\infty} \sum\limits_{k = 1}^{K} k \pi(i, k)e,$$ где $\pi_i = (\pi(i, 0), \pi(i, 1), \ldots, \pi(i, K)).$
-
-Построим график $N$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $1$  с шагом $0.5)$.
-
-\begin{figure}[h]
-	\center{\includegraphics[scale=1]{12.png}}
+\begin{figure}[h!]
+	\center{\includegraphics[width=1\linewidth]{12.png}}
 	\caption{Среднее количество единиц энергии в буфере}
 	\label{ris3}
 \end{figure}
@@ -451,9 +482,6 @@ $$N =\sum\limits_{i = 0}^{\infty} \sum\limits_{k = 1}^{K} k \pi(i, k)e,$$ где
 
 \textbf{Входные данные:}
 
-$\lambda: 0.4$
-
-$\gamma: 0.3$
 
 $K: 1, 2, 3, \ldots, 20$
 
@@ -468,21 +496,15 @@ $Accuracy: 0.001$
 \pagebreak
 
 \subsection{Вероятность отсутствия запросов в системе}
-
-
-Обозначим вероятность того, что заявок в системе нет как $P_0^{custom}$. Найдем $P_0^{custom}$ по следующей формуле:
-
-$$P_0^{custom} = \pi_0 e.$$
-
-Построим график $P_0^{custom}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $1$  с шагом $0.5)$.
-\begin{figure}[h]
-	\center{\includegraphics[scale=1]{13.png}}
+График $P_0^{custom}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
+\begin{figure}[h!]
+	\center{\includegraphics[width=1\linewidth]{13.png}}
 	\caption{Вероятность отсутствия запросов в системе}
 	\label{ris4}
 \end{figure}
 
 
-Вероятность отсутствия запросов в системе увеличивается по мере уменьшения времени обслуживания запросов.
+Вероятность отсутствия запросов в системе ведет себя довольно непредсказуемо, по графику видно, что она меньше всего при наименьшем времени обслуживания, возможно не хватает энергии.
 
 \pagebreak
 \textbf{Входные данные:}
@@ -500,19 +522,13 @@ $Accuracy: 0.001$
 \begin{figure}[h]
 	\center{\includegraphics[scale=1]{3.png}}
 \end{figure}
+\pagebreak
 
+\subsection{Вероятность отсутствия единиц энергии в буфере}
+График $P_0^{energy}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
 
-	\subsection{Вероятность отсутствия единиц энергии в буфере}
-
-
-Обозначим вероятность отсутствия единиц энергии в буфере как $P_0^{energy}$. Найдем $P_0^{energy}$ по следующей формуле:
-
-$$P_0^{energy} = \sum\limits_{i = 0}^{\infty} \pi(i, 0)e,$$ где $\pi_i = (\pi(i, 0), \pi(i, 1), \ldots, \pi(i, K))$
-
-Построим график $P_0^{energy}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $1$  с шагом $0.5)$.
-
-\begin{figure}[h]
-	\center{\includegraphics[scale=1]{14.png}}
+\begin{figure}[h!]
+	\center{\includegraphics[width=1\linewidth]{14.png}}
 	\caption{Вероятность отсутствия единиц энергии в буфере}
 	\label{ris5}
 \end{figure}
@@ -538,14 +554,9 @@ $Accuracy: 0.001$
 
 \pagebreak
 \begin{flushleft}\subsection{Вероятность простоя системы по причине отсутствия единиц энергии в буфере}\end{flushleft}
-
-Обозначим вероятность простоя системы по причине отсутствия единиц энергии в буфере как $P_{idle}$. Найдем $P_{idle}$ по следующей формуле:
-
-$$P_{idle} = \sum\limits_{i = 1}^{\infty} \pi(i, 0)e,$$ где $\pi_i = (\pi(i, 0), \pi(i, 1), \ldots, \pi(i, K)).$
-
-Построим график $P_{idle}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $1.5$  с шагом $0.5)$.
-\begin{figure}[h]
-	\center{\includegraphics[scale=1]{16.png}}
+График $P_{idle}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
+\begin{figure}[h!]
+	\center{\includegraphics[width=1\linewidth]{15.png}}
 	\caption{Вероятность простоя системы по причине отсутствия единиц энергии в буфере}
 	\label{ris6}
 \end{figure}
@@ -553,6 +564,7 @@ $$P_{idle} = \sum\limits_{i = 1}^{\infty} \pi(i, 0)e,$$ где $\pi_i = (\pi(i, 
 Вероятность простоя системы по причине отсутствия единиц энергии в буфере возрастает с уменьшением времени обслуживания. Другими словами - единицы энергии потребляются быстрее, что приводит к увеличению шанса простоя системы.
 
 \pagebreak
+
 \textbf{Входные данные:}
 
 $\lambda: 0.4$
@@ -565,25 +577,27 @@ $T: 0.5, 1.0$
 
 $Accuracy: 0.001$
 
+
+
 \begin{figure}[h]
-	\center{\includegraphics[scale=1]{6.png}}
+	\center{\includegraphics[scale=1]{5.png}}
 \end{figure}
 \pagebreak
-\begin{flushleft}\subsection{Вывод по итогам анализа характеристик производительности}\end{flushleft}
+
+\subsection{Вывод по итогам анализа характеристик производительности}
 
 Путем сравнения характеристик производительности и выявления особенностей поведения системы можно повысить ее эффективность, повлияв на определенные параметры. Стоит отметить, что увеличение объема буфера энергии далеко не всегда способствует улучшению значения соответствующей характеристики т.к., начиная с определенного значения $K$, изменения достаточно малы и это экономически нецелесобразно, т.к не оказывает существенного влияния на работу системы.
 
-Стоит добавить, что при исследовании системы при значениях $T > 1$ условие эргодичности начинает выполняться только для достаточно больших значений $K$.
+Стоит добавить, что при исследовании системы при значениях $T > 2$ условие эргодичности начинает выполняться только для достаточно больших значений $K$.
 
 \pagebreak
 
-	\section*{ЗАКЛЮЧЕНИЕ}
+	\center{\section*{ЗАКЛЮЧЕНИЕ}}
 
 \addcontentsline{toc}{section}{ЗАКЛЮЧЕНИЕ}
 
-В процессе выполнения курсовой работы:
-
 \begin{flushleft}
+	В процессе выполнения курсовой работы:
 	\begin{enumerate}
 		\item Исследована система массового обслуживания типа $MAP|G|1$. Найдены вероятности одношаговых переходов, а так же построена матрица переходных вероятностей. Проверено выполнение условия эргодичности и на основе этого найдено стационарное распределение вероятностей.
 		\item Разработана программная реализация предложенного метода нахождения стационарного распределения вероятностей на языке программирования Java.
@@ -597,784 +611,4 @@ $Accuracy: 0.001$
 	Markov chains and their application in queueing theory // Queueing
 	Systems. 2006. V. 54. P. 245-259.
 \end{thebibliography}
-\pagebreak
-\begin{center}\section*{ПРИЛОЖЕНИЕ А}\end{center}
-\addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ А}
-\begin{enumerate}
-	\item \textbf{Класс для создания матриц $Y_i$, $V_i$}
-	
-	\begin{verbatim}
-	package core;
-	
-	import kurs.BigDecimalMatrix;
-	
-	import java.math.BigDecimal;
-	import java.math.RoundingMode;
-	
-	import static java.math.BigDecimal.ONE;
-	import static java.math.BigDecimal.ZERO;
-	
-	
-	public class GeneratorCreator {
-	private BigDecimal gamma;
-	private BigDecimal lambda;
-	private Integer K;
-	private BigDecimal accuracy;
-	private BigDecimalMatrix d0;
-	private BigDecimalMatrix d1;
-	private BigDecimal T;
-	private MatrixElementCreator elementCreator;
-	
-	public GeneratorCreator(
-	BigDecimal gamma,
-	BigDecimal lambda,
-	int K,
-	BigDecimalMatrix d0,
-	BigDecimalMatrix d1,
-	BigDecimal T,
-	BigDecimal accuracy
-	) {
-	boolean validness = gamma.compareTo(ONE) < 0 &&
-	gamma.compareTo(ZERO) > 0 &&
-	lambda.compareTo(ONE) < 0 &&
-	lambda.compareTo(ZERO) > 0 &&
-	K > 0 &&
-	gamma.compareTo(lambda) > 0;
-	
-	if(!ErgodicityCondition.check(gamma, lambda, K, T)) {
-	throw new IllegalArgumentException("Ergodicity condition does not perform. " + T + " " + K);
-	}
-	if (!validness) {
-	throw new IllegalArgumentException("Input parameters are not valid.");
-	}
-	
-	this.gamma = gamma;
-	this.lambda = lambda;
-	this.K = K;
-	this.accuracy = accuracy;
-	this.d0 = d0;
-	this.T = T;
-	this.d1 = d1;
-	this.elementCreator = new MatrixElementCreator();
-	}
-	
-	public BigDecimalMatrix[][] create(int i, int j) {
-	BigDecimalMatrix[][] matrix = new BigDecimalMatrix[K + 1][K + 1];
-	
-	if (i - j > 1) {
-	return matrix;
-	}
-	
-	for (int r = 0; r < K + 1; r++) {
-	for (int c = 0; c < K + 1; c++) {
-	matrix[r][c] =  elementCreator.create(i, r, j, c);
-	//System.out.println(matrix[r][c]);
-	}
-	}
-	
-	return matrix;
-	}
-	
-	private class MatrixElementCreator {
-	
-	//Approved
-	private BigDecimalMatrix create(int i, int k, int j, int bK) {
-	boolean validness = i >= 0 &&
-	j >= 0 &&
-	k >= 0 &&
-	k <= K &&
-	bK >= 0 &&
-	bK <= K;
-	if (!validness) {
-	throw new IllegalArgumentException("Indexes out of bounds.");
-	}
-	
-	BigDecimalMatrix element;
-	if (k - bK > 1) {
-	element = new BigDecimalMatrix(2, 2, 10);
-	} else if (k == 0) {
-	if (bK == K) {
-	element = createLastColumnElement(i, k, j, bK);
-	} else {
-	element = createFirstRowNotLastColumnElement(i, k, j, bK);
-	}
-	} else {
-	if (bK == K) {
-	element = createLastColumnElement(i, k, j, bK);
-	} else {
-	element = createNotFirstRowNotLastColumnElement(i, k, j, bK);
-	}
-	}
-	//System.out.println(element);
-	return element;
-	}
-	private BigDecimalMatrix createFirstRowNotLastColumnElement(int i, int k, int j, int bK) {
-	BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 10);
-	for(int n = 0; n <= j - 2; n++) {
-	result = result.add(
-	funcN(n).multiply(funcPhi(new BigDecimal(j - 2 - n), new BigDecimal(bK)))
-	);
-	}
-	return result;
-	}
-	
-	//Approved
-	private BigDecimalMatrix createLastColumnElement(int i, int k, int j, int bK) {
-	return funcPhiWithHat(new BigDecimal(j), new BigDecimal(bK - k + 1));
-	}
-	
-	//Approved
-	private BigDecimalMatrix createNotFirstRowNotLastColumnElement(int i, int k, int j, int bK) {
-	return funcPhi(new BigDecimal(j), new BigDecimal(bK - k + 1));
-	}
-	}
-	
-	public BigDecimalMatrix funcMWithHat(int m) {
-	int n = m;
-	BigDecimalMatrix mWithHat = new BigDecimalMatrix(2, 2, 10);
-	BigDecimalMatrix mn = funcM(n);
-	while(Math.sqrt(mn.squaredEuclidianNorm().doubleValue()) >= accuracy.doubleValue()) {
-	mWithHat = mWithHat.add(mn);
-	n++;
-	mn = funcM(n);
-	}
-	return mWithHat;
-	}
-	
-	public BigDecimalMatrix funcM(int n) {
-	BigDecimalMatrix minusD0 = d0.multiply(new BigDecimal(-1));
-	BigDecimalMatrix gammaI = new BigDecimalMatrix(2, new BigDecimal(1), 10).multiply(gamma);
-	BigDecimalMatrix sumInverse = minusD0.add(gammaI).inverse();
-	BigDecimalMatrix val = sumInverse;
-	for(int i = 0; i < n; i++) {
-	val = val.multiply(sumInverse);
-	}
-	return val.multiply(gamma.pow(n)).multiply(d1);
-	}
-	
-	public BigDecimalMatrix funcK(int n, int j) {
-	if (j == 0) {
-	return n == 0 ? new BigDecimalMatrix(2, new BigDecimal(1), 10) : new BigDecimalMatrix(2, 2, 10);
-	} else {
-	if (n == 0) {
-	BigDecimalMatrix sum = new BigDecimalMatrix(2, new BigDecimal(1), 10)
-	.add(d0.multiply(new BigDecimal(1)
-	.divide(tetta(), RoundingMode.HALF_UP)));
-	sum = funcK(0, j - 1).multiply(sum);
-	return sum;
-	} else {
-	BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 10);
-	for (int i = 0; i <= n - 1; i++) {
-	if( n - i == 1) {
-	sum = sum.add(funcK(i, j - 1).multiply(d1));
-	}
-	sum = sum.add(funcK(n, j - 1)
-	.multiply(new BigDecimalMatrix(2, new BigDecimal(1), 10)
-	.add(d0.multiply(new BigDecimal(1).divide(tetta(), RoundingMode.HALF_UP)))));
-	}
-	return sum.multiply(new BigDecimal(1).divide(tetta(), RoundingMode.HALF_UP));
-	}
-	}
-	}
-	
-	public BigDecimalMatrix funcP(int n, BigDecimal t) {
-	BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 10);
-	BigDecimalMatrix val;
-	int j = 1;
-	do {
-	//val = funcK(j, n);
-	val = funcK(n, j);
-	val = val.multiply(new BigDecimal(Math.exp(tetta().multiply(new BigDecimal(-1)).multiply(t).doubleValue())))
-	.multiply((tetta().multiply(t)).pow(j)
-	.divide(factor(new BigDecimal(j)), RoundingMode.HALF_UP));
-	sum = sum.add(val);
-	j++;
-	} while (Math.sqrt(val.squaredEuclidianNorm().doubleValue()) >= accuracy.doubleValue());
-	return sum;
-	}
-	
-	public BigDecimal funcSmalPhiK(BigDecimal t, int k) {
-	return (gamma.multiply(t).pow(k))
-	.divide(factor(new BigDecimal(k)), RoundingMode.HALF_UP)
-	.multiply(new BigDecimal(Math.exp(gamma.multiply(t).doubleValue())));
-	}
-	
-	public BigDecimal funcSmalPhiKWithHat(BigDecimal t, int k) {
-	BigDecimal val = funcSmalPhiK(t, k);
-	BigDecimal result = ZERO;
-	int i = k;
-	while(val.compareTo(accuracy) == 1 ) {
-	result = result.add(val);
-	i++;
-	val = funcSmalPhiK(t, i);
-	}
-	return result;
-	}
-	
-	public BigDecimalMatrix funcPhi(BigDecimal i, BigDecimal k) {
-	return funcP(i.intValue(), T).multiply(funcSmalPhiK(T, k.intValue()));
-	}
-	
-	public BigDecimalMatrix funcPhiWithHat(BigDecimal i, BigDecimal k) {
-	return funcP(i.intValue(), T).multiply(funcSmalPhiKWithHat(T, k.intValue()));
-	}
-	
-	public BigDecimalMatrix funcN(int n) {
-	return funcP(n, T).multiply(gamma
-	.multiply(new BigDecimal(Math.exp(gamma.multiply(new BigDecimal(-1)).multiply(T).doubleValue()))));
-	}
-	
-	private BigDecimal factor(BigDecimal n) {
-	if (n.signum() < 0) {
-	throw new IllegalArgumentException("Negative value in factorial function.");
-	}
-	if (n.scale() < 0) {
-	throw new IllegalArgumentException("Real value in factorial function.");
-	}
-	if (n.equals(ZERO)) {
-	return ONE;
-	}
-	return n.multiply(factor(n.subtract(ONE)));
-	}
-	
-	private BigDecimal tetta() {
-	BigDecimal tetta = ZERO;
-	for (int i = 0; i < d0.getHeight(); i++) {
-	tetta = (d0.getElement(i, i).multiply(new BigDecimal(-1)).compareTo(tetta) == 1) ? d0.getElement(i, i).multiply(new BigDecimal(-1)) : tetta;
-	}
-	return tetta;
-	}
-	
-	public BigDecimal getAccuracy() {
-	return new BigDecimal(accuracy.toString());
-	}
-	public int getK() {
-	return K;
-	}
-	}
-	
-	\end{verbatim}
-	\pagebreak
-	\item \textbf{Класс для проверки условия эргодичности}
-	
-	\begin{verbatim}
-	
-	package core;
-	
-	
-	import java.math.BigDecimal;
-	import java.math.RoundingMode;
-	
-	import static java.math.BigDecimal.ONE;
-	import static java.math.BigDecimal.ZERO;
-	import static java.math.BigDecimal.valueOf;
-	
-	
-	public class ErgodicityCondition {
-	
-	//Approved
-	public static boolean check(BigDecimal gamma, BigDecimal lambda, Integer K, BigDecimal T) {
-	BigDecimal minuend = lambda.multiply(T);
-	BigDecimal subtrahend = getY0(gamma, T, K).multiply(lambda.divide(gamma, RoundingMode.HALF_UP));
-	return minuend.subtract(subtrahend).compareTo(ONE) < 0;
-	}
-	
-	private static BigDecimal getY0(BigDecimal gamma, BigDecimal T, Integer K) {
-	BigDecimal[] psiVector = getPsiVector(gamma, T, K);
-	BigDecimal sum = ZERO;
-	for (BigDecimal element : psiVector) {
-	sum = sum.add(element);
-	}
-	return ONE.divide(sum, RoundingMode.HALF_UP);
-	}
-	
-	//Approved
-	private static BigDecimal[] getPsiVector(BigDecimal gamma, BigDecimal T, Integer K) {
-	BigDecimal[] psiVector = new BigDecimal[K];
-	psiVector[0] = ONE;
-	
-	for (int k = 0; k < K - 1; k++) {
-	BigDecimal sum = ZERO;
-	for (int s = 1; s <= k; s++) {
-	sum = sum.add(psiVector[s].multiply(smallPhi(gamma, T, valueOf(k + 1 - s))));
-	}
-	psiVector[k + 1] = psiVector[k].subtract(smallPhi(gamma, T,valueOf(k))).subtract(sum);
-	}
-	return psiVector;
-	}
-	
-	
-	//Approved
-	private static BigDecimal smallPhi(BigDecimal gamma, BigDecimal T, BigDecimal k) {
-	return (gamma.multiply(T).pow(k.intValue()))
-	.divide(factor(k), RoundingMode.HALF_UP)
-	.multiply(new BigDecimal(Math.exp(gamma.multiply(T).doubleValue()*-1)));
-	}
-	
-	//Approved
-	private static BigDecimal factor(BigDecimal n) {
-	if(n.signum() < 0) {
-	throw new IllegalArgumentException("Negative value in factorial function.");
-	}
-	if(n.scale() < 0) {
-	throw new IllegalArgumentException("Real value in factorial function.");
-	}
-	if(n.equals(ZERO)) {
-	return ONE;
-	}
-	return n.multiply(factor(n.subtract(ONE)));
-	}
-	}
-	\end{verbatim}
-	\pagebreak
-	\item \textbf{Класс для нахождения матриц $G$}
-	
-	\begin{verbatim}
-	package core;
-	
-	/**
-	* Created by Lenovo on 12.05.2018.
-	*/
-	
-	import java.math.BigDecimal;
-	import kurs.BigDecimalMatrix;
-	
-	
-	public class GMatrixCreator {
-	
-	private GeneratorCreator creator;
-	private BigDecimal accuracy;
-	
-	public GMatrixCreator(GeneratorCreator creator) {
-	this.creator = creator;
-	this.accuracy = creator.getAccuracy();
-	}
-	
-	public BigDecimalMatrix create(BigDecimalMatrix g0) {
-	int size = g0.getWidth();
-	BigDecimalMatrix gPrev, cur, prev;
-	BigDecimalMatrix gCur = new BigDecimalMatrix(size, new BigDecimal(1), 10);
-	try {
-	do {
-	int k = 0;
-	gPrev = gCur.clone();
-	cur = BigDecimalMatrix.zeroMatrix(size);
-	do {
-	prev = cur.clone();
-	cur = cur.add(per(creator.create(1, k)).multiply(powMatrix(gPrev, k)));
-	//System.out.println(per(creator.create(1, k)));
-	k++;
-	} while (cur.subtract(prev).squaredEuclidianNorm().compareTo(accuracy) > 0);
-	gCur = cur.clone();
-	} while (gCur.subtract(gPrev).squaredEuclidianNorm().compareTo(accuracy) > 0);
-	MatrixContainer.setG(gCur.clone());
-	} catch (CloneNotSupportedException e) {
-	System.out.println(e.getMessage());
-	}
-	// System.out.println(gCur.getWidth());
-	return gCur;
-	}
-	public static BigDecimalMatrix per(BigDecimalMatrix[][] a) {
-	int size = a.length * 2;
-	BigDecimalMatrix cur = BigDecimalMatrix.zeroMatrix(size);
-	for (int i = 0; i < a.length; i++) {
-	for(int j = 0; j < a[i].length; j++) {
-	BigDecimalMatrix val = a[i][j];
-	//System.out.println(a[i][j]);
-	for (int k = 0; k <= 1; k++) {
-	for (int r = 0; r <= 1; r++) {
-	cur.setElement(k + i*2, r + j*2, val.getElement(k, r));
-	}
-	}
-	}
-	}
-	//System.out.println(cur);
-	return cur;
-	}
-	//Approved
-	private BigDecimalMatrix powMatrix(BigDecimalMatrix a, int b) {
-	if (b < 0) {
-	throw new IllegalArgumentException("Negative argument in factorial function.");
-	}
-	if (b == 0) {
-	return BigDecimalMatrix.identity(a.getWidth());
-	}
-	return a.multiply(powMatrix(a, b - 1));
-	}
-	}
-	
-	\end{verbatim}
-	\pagebreak
-	\item \textbf{Класс для нахождения матриц $\Phi_i$}
-	
-	\begin{verbatim}
-	package core;
-	
-	import java.math.BigDecimal;
-	import java.util.ArrayList;
-	import java.util.Objects;
-	
-	import core.MatrixContainer;
-	import kurs.BigDecimalMatrix;
-	import java.math.BigDecimal;
-	import java.util.ArrayList;
-	import java.util.Objects;
-	
-	public class PhiMatrixCreator {
-	private ArrayList<BigDecimalMatrix> phiMatrices;
-	private PSlashMatrixCreator pSlashCreator;
-	private BigDecimal accuracy;
-	private Integer K;
-	
-	//Approved
-	public PhiMatrixCreator(PSlashMatrixCreator pSlashCreator, Integer K) {
-	phiMatrices = new ArrayList<>();
-	this.pSlashCreator = pSlashCreator;
-	this.K = K;
-	this.accuracy = pSlashCreator.getAccuracy();
-	}
-	
-	//Approved
-	public ArrayList<BigDecimalMatrix> getPhiMatrices() {
-	initPsiMatrices();
-	return phiMatrices;
-	}
-	
-	//Approved
-	private void initPsiMatrices() {
-	final BigDecimalMatrix I = BigDecimalMatrix.identity(2*K + 2);
-	phiMatrices.add(0, I);
-	int hash = Objects.hash(0);
-	try {
-	if (!MatrixContainer.getPhiMatrices().containsKey(hash)) {
-	MatrixContainer.getPhiMatrices().put(hash, I.clone());
-	}
-	int index = 1;
-	BigDecimalMatrix leftTerm;
-	BigDecimalMatrix rightTerm;
-	BigDecimalMatrix result;
-	do {
-	hash = Objects.hash(index);
-	if (MatrixContainer.getPhiMatrices().containsKey(hash)) {
-	phiMatrices.add(index, MatrixContainer.getPhiMatrices().get(hash).clone());
-	} else {
-	//.inverse()
-	rightTerm = I.subtract(pSlashCreator.create(index, index)).inverse();
-	
-	
-	int i = 1;
-	leftTerm = BigDecimalMatrix.zeroMatrix(K*2 + 2);
-	//System.out.println(1);
-	while (i < index) {
-	leftTerm = leftTerm.add(phiMatrices.get(i).multiply(pSlashCreator.create(i, index)));
-	i++;
-	}
-	leftTerm = leftTerm.add(pSlashCreator.create(0, index));
-	result = leftTerm.multiply(rightTerm);
-	//System.out.println(result.squaredEuclidianNorm());
-	phiMatrices.add(index, result);
-	MatrixContainer.getPhiMatrices().put(hash, result.clone());
-	}
-	index++;
-	//System.out.println(Math.sqrt(phiMatrices.get(index - 1).subtract(phiMatrices.get(index - 2)).squaredEuclidianNorm().doubleValue()));
-	} while (phiMatrices.get(index - 1).subtract(phiMatrices.get(index - 2)).squaredEuclidianNorm().compareTo(accuracy) > 0);
-	} catch (CloneNotSupportedException e) {
-	System.out.println(e.getMessage());
-	}
-	}
-	}
-	\end{verbatim}
-	\pagebreak
-	\item \textbf{Класс для нахождения матриц $\overline{P}_{i, j}$}
-	
-	\begin{verbatim}
-	package core;
-	
-	import kurs.BigDecimalMatrix;
-	
-	import java.math.BigDecimal;
-	import java.util.Objects;
-	
-	
-	public class PSlashMatrixCreator {
-	private GeneratorCreator creator;
-	private BigDecimalMatrix g;
-	private BigDecimal accuracy;
-	
-	//Approved
-	public PSlashMatrixCreator(GeneratorCreator creator, BigDecimalMatrix g) {
-	this.g = g;
-	this.creator = creator;
-	this.accuracy = creator.getAccuracy();
-	}
-	
-	public BigDecimalMatrix create(Integer i, Integer j) {
-	if(j < i) {
-	throw new IllegalArgumentException("Index i is bigger than index j in PSlashMatrixCreator.");
-	}
-	
-	int l = j + 1;
-	int size = g.getWidth();
-	//System.out.println(size);
-	int hash = i > 1 ? Objects.hash(1, j - i + 1) : Objects.hash(0, j);
-	
-	BigDecimalMatrix result = BigDecimalMatrix.zeroMatrix(size);
-	
-	try {
-	if(MatrixContainer.getPSlashMatrices().containsKey(hash)) {
-	result = MatrixContainer.getPSlashMatrices().get(hash).clone();
-	} else {
-	BigDecimalMatrix prev;
-	BigDecimalMatrix cur = BigDecimalMatrix.zeroMatrix(size);
-	do {
-	prev = cur.clone();
-	cur = cur.add(GMatrixCreator.per(creator.create(i, l)).multiply(powMatrix(g, l - j)));
-	l++;
-	} while (cur.subtract(prev).squaredEuclidianNorm().compareTo(accuracy) > 0);
-	result = GMatrixCreator.per(creator.create(i, j)).add(cur);
-	MatrixContainer.getPSlashMatrices().put(hash, result.clone());
-	}
-	} catch (CloneNotSupportedException e) {
-	System.out.println(e.getMessage());
-	}
-	return result;
-	}
-	
-	//Approved
-	public BigDecimal getAccuracy() {
-	return accuracy;
-	}
-	
-	
-	//Approved
-	private BigDecimalMatrix powMatrix(BigDecimalMatrix a, int b) {
-	if (b < 0) {
-	throw new IllegalArgumentException("Negative argument in factorial function.");
-	}
-	if (b == 0) {
-	return BigDecimalMatrix.identity(a.getWidth());
-	}
-	return a.multiply(powMatrix(a, b - 1));
-	}
-	}
-	
-	
-	\end{verbatim}
-	\pagebreak
-	\item \textbf{Класс для нахождения векторов $\pi_i$}
-	
-	\begin{verbatim}
-	package core;
-	
-	import java.math.BigDecimal;
-	import java.util.ArrayList;
-	import java.util.Objects;
-	import kurs.BigDecimalMatrix;
-	
-	public class StationaryDistributionCreator {
-	private PSlashMatrixCreator pSlashCreator;
-	private ArrayList<BigDecimalMatrix> phiMatrices;
-	private Integer K;
-	private ArrayList<BigDecimalMatrix> piVectors;
-	
-	public StationaryDistributionCreator(PSlashMatrixCreator pSlashCreator, ArrayList<BigDecimalMatrix> phiMatrices, Integer K) {
-	this.pSlashCreator = pSlashCreator;
-	this.phiMatrices = phiMatrices;
-	this.K = K;
-	this.piVectors = new ArrayList<>(phiMatrices.size());
-	}
-	
-	public ArrayList<BigDecimalMatrix> getPiVectors() {
-	//System.out.println(pSlashCreator.create(0, 0).getWidth());
-	BigDecimalMatrix A = BigDecimalMatrix.identity(2*K + 2).subtract(pSlashCreator.create(0, 0));
-	BigDecimalMatrix IWaved = BigDecimalMatrix.identity(2*K + 2);
-	IWaved.setElement(0, 0, BigDecimal.ZERO);
-	
-	BigDecimalMatrix eWaved = BigDecimalMatrix.eRow(2*K + 2, BigDecimal.ZERO);
-	eWaved.setElement(0, 0, BigDecimal.ONE);
-	
-	BigDecimalMatrix e = BigDecimalMatrix.eCol(2*K + 2, BigDecimal.ONE);
-	BigDecimalMatrix sum = BigDecimalMatrix.zeroMatrix(2*K + 2);
-	
-	for (BigDecimalMatrix phi : phiMatrices) {
-	sum = sum.add(phi.multiply(e).multiply(eWaved));
-	}
-	
-	BigDecimalMatrix AWaved = A.multiply(IWaved).add(sum);
-	
-	BigDecimalMatrix pi0 = eWaved.multiply(AWaved.inverse());
-	BigDecimalMatrix a = new BigDecimalMatrix(2, K + 1, 30);
-	for(int j = 0; j < pi0.getWidth(); j += 2) {
-	a.setElement(0, j/2, pi0.getElement(0, j));
-	a.setElement(1, j/2, pi0.getElement(0, j + 1));
-	}
-	piVectors.add(0, a);
-	MatrixContainer.getPiVectors().put(Objects.hash(0), pi0);
-	
-	for (int i = 1; i < phiMatrices.size(); i++) {
-	MatrixContainer.getPiVectors().put(Objects.hash(i), pi0.multiply(phiMatrices.get(i)));
-	BigDecimalMatrix b = pi0.multiply(phiMatrices.get(i));
-	BigDecimalMatrix val = new BigDecimalMatrix(2, K + 1, 30);
-	for(int j = 0; j < b.getWidth(); j += 2) {
-	val.setElement(0, j/2, b.getElement(0, j));
-	val.setElement(1, j/2, b.getElement(0, j + 1));
-	}
-	
-	piVectors.add(i, val);
-	}
-	return piVectors;
-	}
-	}
-	
-	\end{verbatim}
-	\pagebreak
-	\item \textbf{Класс для хранения промежуточных результатов вычислений}
-	
-	\begin{verbatim}
-	import com.aparovich.diploma.matrix.BigDecimalMatrix;
-	
-	import java.util.HashMap;
-	
-	public class MatrixContainer {
-	private static BigDecimalMatrix 
-	g;
-	private static HashMap<Integer, 
-	BigDecimalMatrix>   generators;
-	private static HashMap<Integer,
-	BigDecimalMatrix>   pSlashMatrices;
-	private static HashMap<Integer, 
-	BigDecimalMatrix>   phiMatrices;
-	private static HashMap<Integer, 
-	BigDecimalMatrix>   piVectors;
-	
-	static {
-	generators      = new HashMap<>();
-	pSlashMatrices  = new HashMap<>();
-	phiMatrices     = new HashMap<>();
-	piVectors       = new HashMap<>();
-	
-	}
-	
-	private MatrixContainer() {
-	}
-	
-	public static BigDecimalMatrix getG() {
-	return g;
-	}
-	
-	public static void setG(BigDecimalMatrix g) {
-	MatrixContainer.g = g;
-	}
-	
-	public static HashMap<Integer, 
-	BigDecimalMatrix> getGenerators() {
-	return generators;
-	}
-	
-	public static HashMap<Integer, 
-	BigDecimalMatrix> getPSlashMatrices() {
-	return pSlashMatrices;
-	}
-	
-	public static HashMap<Integer, 
-	BigDecimalMatrix> getPhiMatrices() {
-	return phiMatrices;
-	}
-	
-	public static HashMap<Integer, 
-	BigDecimalMatrix> getPiVectors() {
-	return piVectors;
-	}
-	
-	public static void reInit() {
-	g               = null;
-	generators      = new HashMap<>();
-	pSlashMatrices  = new HashMap<>();
-	phiMatrices     = new HashMap<>();
-	piVectors       = new HashMap<>();
-	}
-	}
-	\end{verbatim}
-	\pagebreak
-	\item \textbf{Класс для нахождения характеристик производительности}
-	
-	\begin{verbatim}
-	
-	import java.math.BigDecimal;
-	import java.util.ArrayList;
-	
-	import static java.math.BigDecimal.ONE;
-	import static java.math.BigDecimal.ZERO;
-	import static java.math.BigDecimal.valueOf;
-	
-	public class PerformanceParameters {
-	private ArrayList<BigDecimalMatrix> piVector;
-	private int piVectorSize;
-	private int piSize;
-	
-	public PerformanceParameters(
-	ArrayList<BigDecimalMatrix> piVector) {
-	this.piVector = piVector;
-	this.piVectorSize = piVector.size();
-	this.piSize = piVector.get(0).getWidth();
-	}
-	
-	public BigDecimal getAverageNumberOfRequests() {
-	BigDecimal sum = ZERO;
-	BigDecimalMatrix e = BigDecimalMatrix
-	.eCol(this.piSize, ONE);
-	for (int i = 0; i < this.piVectorSize; i++) {
-	sum = sum.add(valueOf(i).multiply(piVector
-	.get(i).multiply(e).getElement(0, 0)));
-	}
-	return sum;
-	}
-	
-	public BigDecimal getAverageNumberOfEnergyUnits() {
-	BigDecimal sum = ZERO;
-	for(int i = 0; i < this.piVectorSize; i++) {
-	for (int k = 0; k < this.piSize; k++) {
-	sum = sum.add(valueOf(k).multiply(piVector
-	.get(i).getElement(0, k)));
-	}
-	}
-	return sum;
-	}
-	
-	public BigDecimal 
-	getEnergyUnitLossProbability() {
-	BigDecimal sum = ZERO;
-	for(int i = 0; i < this.piVectorSize; i++) {
-	sum = sum.add(piVector.get(i).getElement(0
-	, this.piSize - 1));
-	}
-	return sum;
-	}
-	
-	public BigDecimal 
-	getNoRequestsProbability() {
-	return piVector.get(0).multiply(
-	BigDecimalMatrix.eCol(this.piSize, ONE))
-	.getElement(0, 0);
-	}
-	
-	public BigDecimal getNoEnergyUnitsProbability() {
-	BigDecimal sum = ZERO;
-	for(int i = 0; i < this.piVectorSize; i++) {
-	sum = sum.add(piVector.get(i).getElement(0, 0));
-	}
-	return sum;
-	}
-	
-	public BigDecimal 
-	getNoEnergySystemIdleProbability() {
-	BigDecimal sum = ZERO;
-	for(int i = 1; i < this.piVectorSize; i++) {
-	sum = sum.add(piVector.get(i).getElement(0, 0));
-	}
-	return sum;
-	}
-	}
-	\end{verbatim}
-\end{enumerate}
 \end{document}

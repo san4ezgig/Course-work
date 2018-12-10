@@ -19,6 +19,8 @@ public class PerformanceParameters {
     private int piSize;
     private BigDecimal lambda;
     private BigDecimalMatrix d1;
+    private BigDecimalMatrix e;
+    private BigDecimalMatrix eCol;
 
     public PerformanceParameters(ArrayList<BigDecimalMatrix> piVector, BigDecimal lambda, BigDecimalMatrix d1) {
         this.piVector = piVector;
@@ -26,52 +28,63 @@ public class PerformanceParameters {
         this.d1 = d1;
         this.piSize = piVector.get(0).getWidth();
         this.lambda = lambda;
+        this.e = BigDecimalMatrix.eCol(this.piSize, ONE);
+        this.eCol = BigDecimalMatrix.eCol(2, ONE);
     }
 
     public BigDecimal getAverageNumberOfRequests() {
         BigDecimal sum = ZERO;
-        BigDecimalMatrix e = BigDecimalMatrix.eCol(this.piSize, ONE);
         for (int i = 0; i < this.piVectorSize; i++) {
-            sum = sum.add(valueOf(i).multiply(piVector.get(i).multiply(e).getElement(0, 0)));
+            int s = i == 0 ? 1 : i;
+            sum = sum.add(valueOf(s).multiply(piVector.get(i).multiply(e).getElement(0, 0)));
         }
         return sum;
     }
 
     public BigDecimal getAverageNumberOfEnergyUnits() {
         BigDecimal sum = ZERO;
+        BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(2, ZERO);
         for (int i = 0; i < this.piVectorSize; i++) {
-            for (int k = 0; k < this.piSize; k++) {
-                sum = sum.add(valueOf(k).multiply(piVector.get(i).getElement(0, k)));
+            for (int k = 1; k <= this.piSize / 2 - 1; k++) {
+                piMatrix.setElement(0, 0, piVector.get(0).getElement(0, 2 * k));
+                piMatrix.setElement(0, 1, piVector.get(0).getElement(0, 2 * k + 1));
+                sum = sum.add(valueOf(k).multiply(piMatrix.multiply(eCol).getElement(0, 0)));
             }
         }
         return sum;
     }
 
     // It doesnt work
-    /*public BigDecimal getEnergyUnitLossProbability() {
+    public BigDecimal getEnergyUnitLossProbability() {
         BigDecimal sum = ZERO;
-        for(int i = 0; i < this.piVectorSize; i++) {
-            sum = sum.add(piVector.get(i).getElement(0, this.piSize - 1));
+        for (int i = 0; i < this.piVectorSize; i++) {
+            sum = sum.add(piVector.get(i).getElement(0, piSize - 1));
         }
         return sum;
-    }*/
+    }
 
     public BigDecimal getNoRequestsProbability() {
-        return piVector.get(0).multiply(BigDecimalMatrix.eCol(this.piSize, ONE)).getElement(0, 0);
+        return piVector.get(0).multiply(e).getElement(0, 0);
     }
 
     public BigDecimal getNoEnergyUnitsProbability() {
         BigDecimal sum = ZERO;
+        BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(2, ZERO);
         for (int i = 0; i < this.piVectorSize; i++) {
-            sum = sum.add(piVector.get(i).getElement(0, 0));
+            piMatrix.setElement(0, 0, piVector.get(i).getElement(0, 0));
+            piMatrix.setElement(0, 1, piVector.get(i).getElement(0, 1));
+            sum = sum.add(piMatrix.multiply(eCol).getElement(0, 0));
         }
         return sum;
     }
 
     public BigDecimal getNoEnergySystemIdleProbability() {
         BigDecimal sum = ZERO;
+        BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(2, ZERO);
         for (int i = 1; i < this.piVectorSize; i++) {
-            sum = sum.add(piVector.get(i).getElement(0, 0));
+            piMatrix.setElement(0, 0, piVector.get(i).getElement(0, 0));
+            piMatrix.setElement(0, 1, piVector.get(i).getElement(0, 1));
+            sum = sum.add(piMatrix.multiply(eCol).getElement(0, 0));
         }
         return sum;
     }
@@ -79,24 +92,30 @@ public class PerformanceParameters {
     //Запрос начнет обслуживаться в момент прихода
     public BigDecimal getRequestStartWorkedWhenHisWent() {
         BigDecimal sum = ZERO;
-        BigDecimalMatrix eCol = BigDecimalMatrix.eCol(2, ONE);
-        BigDecimalMatrix eRow = BigDecimalMatrix.eRow(2, ONE);
+        BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(2, ZERO);
 
-        for (int k = 0; k < this.piSize; k++) {
-            sum = eRow.multiply(d1).multiply(piVector.get(0).getElement(0, k)).multiply(eCol).getElement(0, 0);
+        for (int k = 0; k <= this.piSize / 2 - 1; k++) {
+            piMatrix.setElement(0, 0, piVector.get(0).getElement(0, 2 * k));
+            piMatrix.setElement(0, 1, piVector.get(0).getElement(0, 2 * k + 1));
+            sum = sum.add(piMatrix.multiply(d1).multiply(eCol).getElement(0, 0));
         }
 
         return new BigDecimal(1 / lambda.doubleValue() * sum.doubleValue());
     }
 
     public void check(BigDecimalMatrix tetta) {
-        BigDecimal sum = ZERO;
+        BigDecimalMatrix sum = BigDecimalMatrix.eRow(2, ZERO);
+        BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(2, ZERO);
+
         for (int i = 0; i < this.piVectorSize; i++) {
-            for (int k = 0; k < this.piSize; k++) {
-                sum = sum.add(valueOf(k).multiply(piVector.get(i).getElement(0, k)));
+            for (int k = 0; k < this.piSize / 2; k++) {
+                piMatrix.setElement(0, 0, piVector.get(0).getElement(0, 2 * k));
+                piMatrix.setElement(0, 1, piVector.get(0).getElement(0, 2 * k + 1));
+                sum = sum.add(piMatrix);
             }
         }
-        System.out.println(tetta);
+
         System.out.println(sum);
+        System.out.println(tetta);
     }
 }
