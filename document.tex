@@ -14,6 +14,7 @@
 \renewcommand
 \hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
 \linespread{1}
+\usepackage{xcolor}
 \usepackage{geometry}  %поля
 \geometry{left=2.5cm}
 \geometry{right=1cm}
@@ -193,30 +194,30 @@ $$\boldsymbol{\pi}_{i} = (\boldsymbol{\pi}(i, 1),..., \boldsymbol{\pi}(i, K)), i
 Нахождение переходных вероятностей в частных случаях проводится путем анализа поведения цепи Маркова между моментами $t_{n}$ и $t_{n+1}$ и использования формулы полной вероятности.$\\$ 
 \textbf{Лемма}\\
 Матрицы $P\left\{(i,k) \rightarrow (j, k')\right\}$ вычисляются следующим образом:
+$$P\left\{(0, 0) \to (j, k' ) \right\}=M(0)\sum\limits_{n = 0}^{j}N(n)\Phi(j-n, k') + N(0)\sum\limits_{m = 0}^{k'}M(m)\Phi(j, k' - m),$$
+$$ j\geq 0,\; k'= \textcolor{blue}{\overline{0,K-2}};$$
 
-$P\left\{(0, 0) \rightarrow (j, k' ) \right\}=$\\
-$=M(0)\sum\limits_{n = 0}^{j}N(n)\Phi(j-n, k') + N(0)\sum\limits_{m = 0}^{k'}M(m)\Phi(j, k' - m),\\ j\geq 0,\; k' \in [0, K-1]$.
+\textcolor{blue}{
+	$$P\left\{(0, 0) \to (j,K-1 ) \right\}=M(0)\sum\limits_{n = 0}^{j}N(n)\Phi(j-n, K-1) + N(0)[\sum\limits_{m = 0}^{K-1}M(m)\Phi(j, K-1 - m)+\hat {M}(K) \Phi(j, 0)],
+	$$
+	$$ j\geq 0;$$}
+$$P\left\{(0, k) \to (j, k') \right\}=\sum\limits_{m = 0}^{k'-k+1}M(m)\Phi(j,k' - k + 1 - m), $$ $$ j\geq 0,\; k=\overline{1,K}, k' =\overline{k-1, {K-2}};$$
 
-$P\left\{(0, 0) \rightarrow (j, K) \right\}=$\\
-$=M(0)\sum\limits_{n = 0}^{j}N(n)\hat\Phi(j-n, K) + N(0)(\sum\limits_{m = 0}^{K}M(m)\hat\Phi(j, K - m) + \hat M(K)\hat \Phi(j, 1)),  j\geq 0.$
+{$$P\left\{(0, k) \to (j, K-1) \right\}=\sum\limits_{m = 0}^{K-k}M(m)\Phi(j,K-k - m)+ $$ $$+
+	\hat{M}(K-k+1)\Phi(j,0), j\geq 0,\; k=\overline{1,K};$$
 
-$P\left\{(0, k) \rightarrow (j, k') \right\}=$\\
-$ =\sum\limits_{m = 0}^{k'-k+1}M(m)\Phi(j,k' - k + 1 - m), j\geq 0,\; k' \geq k-1.$
+$$P\left\{(0, 0) \rightarrow (j, K) \right\}=M(0)\sum\limits_{n = 0}^{j}N(n)\hat\Phi(j-n, K) $$$$+ N(0)(\sum\limits_{m = 0}^{K-1}M(m)\hat\Phi(j, K - m) + \hat M(K)\hat \Phi(j, 1)),\; j\geq 0.$$
 
-$P\left\{(0, k) \rightarrow (j, K)\right\}=$\\
-$= \sum\limits_{m = 0}^{K-k+1}M(m) \hat \Phi(j, K - k + 1 - m) + \hat M(K - k + 1)\hat \Phi(j, 1),\\ j\geq 0,\; k \leq K$.
+$$P\left\{(0, k) \rightarrow (j, K)\right\}=\sum\limits_{m = 0}^{K-k}M(m) \hat \Phi(j, K - k + 1 - m) + $$ $$\hat M(K - k + 1)\hat \Phi(j, 1),\; j\geq 0,\; k =\overline{1,K}.$$
 
-$P\left\{(i, 0) \rightarrow (j, k')  \right\}=$\\
-$= \sum\limits_{n = 0}^{j - i + 1}N(n)\Phi(j - i + 1 - n, k'),\; i, j\geq 0, i \geq j-1, k' \in [0, K-1] $.
+$$P\left\{(i, 0) \rightarrow (j, k') \right\}= \sum\limits_{n = 0}^{j - i + 1}N(n)\Phi(j - i + 1 - n, k'),$$ $$ i\geq 1,\; j \geq i-1,\; k' =\overline{0, K-1}. $$
 
-$P\left\{(i, 0) \rightarrow (j, K) \right\}=$\\
-$ =\sum\limits_{n = 0}^{j - i + 1}N(n)\hat \Phi(j - i + 1 - n, K),\; i \geq 0,0 \leq i-1 \leq j $.
+$$P\left\{(i, 0) \rightarrow (j, K) \right\}=\sum\limits_{n = 0}^{j - i + 1}N(n)\hat \Phi(j - i + 1 - n, K),\; i \geq 1,\; j\geq i-1. $$
 
-$P\left\{(i, k) \rightarrow (j, k') \right\}=$\\
-$ =\Phi(j - i + 1, k' - k),\; i, j\geq 0,\;j\geq i-1,\; k' \geq k + 1$.
 
-$P\left\{(i, k) \rightarrow (j, K)\right\}=$\\
-$= \hat \Phi(j - i + 1, K - k),\; i, j\geq 0,\;j\geq i-1,\; 0 \leq k \leq K $.
+$$P\left\{(i, k) \rightarrow (j, k') \right\} =\Phi(j - i + 1, k' - k+1),$$ $$ i \geq 1,\; j\geq i-1,\; k' =\overline{k-1, K-1}, k=\overline{1,K}.$$
+
+$$P\left\{(i, k) \rightarrow (j, K)\right\}= \hat \Phi(j - i + 1, K - k+1),\; i \geq 1,\; j\geq i-1, $$ $$ k=\overline{1,K}.$$
 
 \section{ПОСТРОЕНИЕ МАТРИЦЫ ПЕРЕХОДНЫХ ВЕРОЯТНОСТЕЙ}
 
@@ -251,9 +252,9 @@ v^{j}_{10} & v^{j}_{11}& v^{j}_{12} & v^{j}_{13}& \ldots& v^{j}_{1K}\\
 0 & 0 & 0 & 0 & \ldots  & v^{j}_{KK}\\
 \end{bmatrix}$\\\\
 Где $v^{j}_{kk'}$ находятся следующим образом:\\
-$a.\;v^{j}_{0k'} = P\left\{(0, 0) \rightarrow (j, k') \right\} = M(0)\sum\limits_{n = 0}^{j}N(n)\Phi(j - n, k') +\\ + N(0)\sum\limits_{m = 0}^{k'}M(m)\Phi(j, k' - m),\\
-b.\;v^{j}_{kk'} = P\left\{(0, k) \rightarrow (j, k') \right\} = \sum\limits_{m = 0}^{k'-k+1}M(m)\Phi(j, k' - k + 1 - m),\\
-c.\;v^{j}_{kK} = P\left\{(0, k) \rightarrow (j, K) \right\} = \sum\limits_{m = 0}^{K-k+1}M(m) \hat \Phi(j, K - k + 1- \\- m) + \hat M(K - k + 1)\hat \Phi(j, 1).\\
+$a.\;v^{j}_{0k'} = P\left\{(0, 0) \rightarrow (j, k') \right\} = M(0)\sum\limits_{n = 0}^{j}N(n)\Phi(j-n, k') +  \\ + N(0)\sum\limits_{m = 0}^{k'}M(m)\Phi(j, k' - m), j\geq 0,\; k'= \overline{0,K-1},\\
+b.\;v^{j}_{kk'} = P\left\{(0, k) \rightarrow (j, k') \right\} = \sum\limits_{m = 0}^{k'-k+1}M(m)\Phi(j,k' - k + 1 - m), \\ j\geq 0,\; k=\overline{1,K}, k' =\overline{k-1,K-1},\\
+c.\;v^{j}_{kK} = P\left\{(0, k) \rightarrow (j, K) \right\} = \sum\limits_{m = 0}^{K-k}M(m) \hat \Phi(j, K - k + 1 - m) + \\ + \hat M(K - k + 1)\hat \Phi(j, 1),\; j\geq 0,\; k =\overline{1,K}.\\
 $
 Проанализировав вид $v^{j}_{kk'}$ сделаем вывод, что, начиная со второй строки,
 элементы не зависят от $k$ и $k'$, а зависят только $k' - k$.
@@ -269,7 +270,7 @@ y^{j}_{10} & y^{j}_{11}& y^{j}_{12}& y^{j}_{13}& \ldots & y^{j}_{1K}\\
 \end{bmatrix}$\\ \\
 Где $y^{j}_{kk'}$ находятся следующим образом:\\
 $
-a.\;y^{j}_{0k'} = P\left\{(1, 0) \rightarrow (j, k') \right\} = \sum\limits_{n = 0}^{j - 2}N(n)\Phi(j - 2 - n, k'),\\
+a.\;y^{j}_{0k'} = P\left\{(1, 0) \rightarrow (j, k') \right\} = \sum\limits_{n = 0}^{j}N(n)\Phi(j - n, k'),\\
 b.\;y^{j}_{kk'} = P\left\{(1, k) \rightarrow (j, k') \right\} = \Phi(j, k' - k + 1) ,\\
 c.\;y^{j}_{kK} = P\left\{(1, k) \rightarrow (j, K) \right\} = \hat \Phi(j, K - k + 1) .\\
 $

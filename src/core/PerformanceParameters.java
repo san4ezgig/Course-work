@@ -35,8 +35,7 @@ public class PerformanceParameters {
     public BigDecimal getAverageNumberOfRequests() {
         BigDecimal sum = ZERO;
         for (int i = 0; i < this.piVectorSize; i++) {
-            int s = i == 0 ? 1 : i;
-            sum = sum.add(valueOf(s).multiply(piVector.get(i).multiply(e).getElement(0, 0)));
+            sum = sum.add(valueOf(i).multiply(piVector.get(i).multiply(e).getElement(0, 0)));
         }
         return sum;
     }

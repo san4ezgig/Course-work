@@ -37,7 +37,7 @@ public class PSlashMatrixCreator {
                 BigDecimalMatrix cur = BigDecimalMatrix.zeroMatrix(size);
                 do {
                     prev = cur.clone();
-                    cur = cur.add(creator.create(i, l).multiply(powMatrix(g, l - j)));
+                    cur = cur.add(creator.create(i, l).multiply(BigDecimalMatrix.powMatrix(g, l - j)));
                     l++;
                 } while (cur.subtract(prev).squaredEuclidianNorm().compareTo(accuracy) > 0);
                 result = creator.create(i, j).add(cur);
@@ -52,17 +52,6 @@ public class PSlashMatrixCreator {
     //Approved
     public BigDecimal getAccuracy() {
         return accuracy;
-    }
-
-    //Approved
-    public static BigDecimalMatrix powMatrix(BigDecimalMatrix a, int b) {
-        if (b < 0) {
-            throw new IllegalArgumentException("Negative argument in factorial function.");
-        }
-        if (b == 0) {
-            return BigDecimalMatrix.identity(a.getWidth());
-        }
-        return a.multiply(powMatrix(a, b - 1));
     }
 }
 

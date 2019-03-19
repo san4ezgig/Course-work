@@ -45,7 +45,7 @@ public class StationaryDistributionCreator {
             piVectors.add(i, pi0.multiply(phiMatrices.get(i)));
         }
 
-       // System.out.println(piVectors);
+        // System.out.println(piVectors.size());
 
         return piVectors;
     }

@@ -132,6 +132,16 @@ public class BigDecimalMatrix extends AbstractMatrix<BigDecimal> implements Clon
         return res;
     }
 
+    public static BigDecimalMatrix powMatrix(BigDecimalMatrix a, int b) {
+        if (b < 0) {
+            throw new IllegalArgumentException("Negative argument in factorial function.");
+        }
+        if (b == 0) {
+            return BigDecimalMatrix.identity(a.getWidth());
+        }
+        return a.multiply(powMatrix(a, b - 1));
+    }
+
     public BigDecimalMatrix multiply(BigDecimalMatrix matrix)
     {
         if (getWidth() != matrix.getHeight())

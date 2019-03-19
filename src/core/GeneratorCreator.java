@@ -54,15 +54,15 @@ public class GeneratorCreator {
     }
 
     public BigDecimalMatrix create(int i, int j) {
-        BigDecimalMatrix tempMatrix, matrix = new BigDecimalMatrix(2*K + 2, 2 * K + 2, 6);
+        BigDecimalMatrix tempMatrix, matrix = new BigDecimalMatrix(2 * K + 2, 2 * K + 2, 6);
 
         if (i - j > 1) {
             return matrix;
         }
 
-        int hash = i > 1 ? Objects.hash(1, j - i + 1) : Objects.hash(0, j);
+        int hash = i >= 1 ? Objects.hash(i, j - i + 1) : Objects.hash(0, j);
 
-       // int hash = Objects.hash(i, j);
+        // int hash = Objects.hash(i, j);
 
         try {
             if (MatrixContainer.getGenerators().containsKey(hash)) {
@@ -82,7 +82,6 @@ public class GeneratorCreator {
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
         }
-
         return matrix;
     }
 
@@ -101,15 +100,26 @@ public class GeneratorCreator {
 
             BigDecimalMatrix element;
 
-            Boolean isVMatrix = (i == 0 && j >=0);
+            boolean isVMatrix = (i == 0);
+
+            if (bK == K - 1) {
+                if (isVMatrix) {
+                    element = createFirstRowPenultimateElementV(j, bK);
+                    return element;
+                }
+            }
 
             if (bK == K) {
-                element = isVMatrix ? createLastColumnElementV(k, j) : createLastColumnElement(k, j);
+                if (isVMatrix) {
+                    element = k == 0 ? createFirstRowLastColumnElementV(j) : createLastColumnElementV(k, j);
+                    return element;
+                }
+                element = createLastColumnElement(k, j);
                 return element;
             }
 
             if (k - bK > 1) {
-                element = new BigDecimalMatrix(2, 2, 10);
+                element = BigDecimalMatrix.zeroMatrix(2);
                 return element;
             }
 
@@ -125,10 +135,8 @@ public class GeneratorCreator {
         // YMatrix region
         private BigDecimalMatrix createFirstRowNotLastColumnElement(int j, int bK) {
             BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 10);
-            for (int n = 0; n <= j - 2; n++) {
-                result = result.add(
-                        funcN(n).multiply(funcPhi(j - 2 - n, bK))
-                );
+            for (int n = 0; n <= j; n++) {
+                result = result.add(funcN(n).multiply(funcPhi(j - n, bK)));
             }
             return result;
         }
@@ -143,6 +151,34 @@ public class GeneratorCreator {
         // end Region
 
         //VMatrix region
+
+        private BigDecimalMatrix createFirstRowLastColumnElementV(int j) {
+            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 6);
+            for (int n = 0; n <= j; n++) {
+                result = result.add(funcN(n).multiply(funcPhiWithHat(j - n, K)));
+            }
+            result = result.multiply(funcM(0));
+
+            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
+            for (int m = 0; m <= K - 1; m++) {
+                sum = sum.add(funcM(m).multiply(funcPhiWithHat(j, K - m)));
+            }
+            sum = sum.add(funcMWithHat(K).multiply(funcPhiWithHat(j, 1)));
+            sum = sum.multiply(funcN(0));
+
+            result = result.add(sum);
+            return result;
+        }
+
+
+        private BigDecimalMatrix createFirstRowPenultimateElementV(int j, int bK) {
+            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 6);
+            for (int m = 0; m <= K - bK; m++) {
+                result = result.add(funcM(m).multiply(funcPhi(j, K - bK - m)));
+            }
+            result = result.add(funcMWithHat(K - bK + 1).multiply(funcPhi(j, 0)));
+            return result;
+        }
 
         private BigDecimalMatrix createFirstRowNotLastColumnElementV(int j, int bK) {
             BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 6);
@@ -169,7 +205,7 @@ public class GeneratorCreator {
         private BigDecimalMatrix createLastColumnElementV(int k, int j) {
             BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
             for (int m = 0; m <= K - k + 1; m++) {
-                sum = sum.add(funcM(m)).multiply(funcPhiWithHat(j, K - k + 1 - m));
+                sum = sum.add(funcM(m).multiply(funcPhiWithHat(j, K - k + 1 - m)));
             }
             sum = sum.add(funcMWithHat(K - k + 1).multiply(funcPhiWithHat(j, 1)));
             return sum;
@@ -178,38 +214,36 @@ public class GeneratorCreator {
         private BigDecimalMatrix createNotFirstRowNotLastColumnElementV(int k, int j, int bK) {
             BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
             for (int m = 0; m <= bK - k + 1; m++) {
-                sum = sum.add(funcM(m)).multiply(funcPhi(j, bK - k + 1 - m));
+                sum = sum.add(funcM(m).multiply(funcPhi(j, bK - k + 1 - m)));
             }
-            sum = sum.add(funcMWithHat(K - k + 1).multiply(funcPhiWithHat(j, 1)));
             return sum;
         }
         // End region
     }
 
-    public BigDecimalMatrix funcMWithHat(int m) {
+    private BigDecimalMatrix funcMWithHat(int m) {
         int n = m;
         BigDecimalMatrix mWithHat = new BigDecimalMatrix(2, 2, 10);
-        BigDecimalMatrix mn = funcM(n);
-        while (Math.sqrt(mn.squaredEuclidianNorm().doubleValue()) >= accuracy.doubleValue()) {
+        BigDecimalMatrix mn;
+        do {
+            mn = funcM(n);
             mWithHat = mWithHat.add(mn);
             n++;
-            mn = funcM(n);
-        }
+        } while (mn.squaredEuclidianNorm().doubleValue() >= accuracy.doubleValue());
         return mWithHat;
     }
 
     public BigDecimalMatrix funcM(int n) {
-        BigDecimalMatrix minusD0 = d0.multiply(new BigDecimal(-1));
-        BigDecimalMatrix gammaI = new BigDecimalMatrix(2, new BigDecimal(1), 10).multiply(gamma);
-        BigDecimalMatrix sumInverse = minusD0.add(gammaI).inverse();
-        BigDecimalMatrix val = sumInverse;
-        for (int i = 0; i < n; i++) {
-            val = val.multiply(sumInverse);
-        }
-        return val.multiply(gamma.pow(n)).multiply(d1);
+        BigDecimalMatrix val;
+        BigDecimalMatrix negativeD0 = d0.multiply(new BigDecimal(-1));
+        BigDecimal gammaN = gamma.pow(n);
+        val = (negativeD0.add(BigDecimalMatrix.identity(2).multiply(gamma))).inverse();
+        val = BigDecimalMatrix.powMatrix(val, n + 1);
+        val = val.multiply(gammaN).multiply(d1);
+        return val;
     }
 
-    public BigDecimalMatrix funcK(int n, int j) {
+    private BigDecimalMatrix funcK(int n, int j) {
         try {
             int hash = Objects.hash(n, j);
 
@@ -245,7 +279,7 @@ public class GeneratorCreator {
         }
     }
 
-    public BigDecimalMatrix funcP(int i, BigDecimal t) {
+    private BigDecimalMatrix funcP(int i, BigDecimal t) {
         BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 6);
         BigDecimalMatrix val;
         int j = 0;
@@ -280,8 +314,9 @@ public class GeneratorCreator {
                 j++;
 
                // System.out.println(val);
-                vallidness = (val.cubicNorm().doubleValue() == 0 && valueUnderSum >= accuracy.doubleValue())
-                        || val.cubicNorm().doubleValue() >= accuracy.doubleValue();
+                vallidness = (j == 0) || (j == 1) || (j == 2) || (j == 3) || val.cubicNorm().doubleValue() >= accuracy.doubleValue();
+                /*vallidness = (val.cubicNorm().doubleValue() == 0 && valueUnderSum >= accuracy.doubleValue())
+                        || val.cubicNorm().doubleValue() >= accuracy.doubleValue();*/
                 //    } while (j <= 15/*val.cubicNorm().doubleValue() >= accuracy.doubleValue()*/);
             } while (vallidness);
             MatrixContainer.getPMatrix().put(hash, sum.clone());
@@ -294,32 +329,42 @@ public class GeneratorCreator {
 
     public BigDecimal funcSmallPhiK(BigDecimal t, int k) {
         return new BigDecimal(gamma.multiply(t).pow(k).doubleValue() / factor(k)
-                * Math.exp(gamma.multiply(t).doubleValue() * -1));
+                * Math.exp(-gamma.multiply(t).doubleValue()));
     }
 
-    public BigDecimal funcSmalPhiKWithHat(BigDecimal t, int k) {
-        BigDecimal val = funcSmallPhiK(t, k);
+    private BigDecimal funcSmallPhiKWithHat(BigDecimal t, int k) {
         BigDecimal result = ZERO;
+        BigDecimal sum;
         int i = k;
-        while (val.compareTo(accuracy) == 1) {
-            result = result.add(val);
+        do {
+            sum = funcSmallPhiK(t, i);
+            result = result.add(sum);
             i++;
-            val = funcSmallPhiK(t, i);
-        }
+        } while (sum.doubleValue() >= accuracy.doubleValue());
         return result;
     }
 
-    public BigDecimalMatrix funcPhi(int i, int k) {
+    private BigDecimalMatrix funcPhi(int i, int k) {
         return funcP(i, T).multiply(funcSmallPhiK(T, k));
     }
 
-    public BigDecimalMatrix funcPhiWithHat(int i, int k) {
-        return funcP(i, T).multiply(funcSmalPhiKWithHat(T, k));
+    private BigDecimalMatrix funcPhiWithHat(int i, int k) {
+        return funcP(i, T).multiply(funcSmallPhiKWithHat(T, k));
     }
 
     public BigDecimalMatrix funcN(int n) {
-        return funcP(n, T).multiply(gamma
-                .multiply(new BigDecimal(Math.exp(gamma.multiply(new BigDecimal(-1)).multiply(T).doubleValue()))));
+        BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 6);
+        BigDecimalMatrix sum;
+        boolean vallidness;
+        int j = 0;
+        do {
+            sum = funcK(n, j).multiply(gamma)
+                    .multiply(new BigDecimal(tetta().pow(j).doubleValue() / (gamma.add(tetta()).pow(j + 1).doubleValue())));
+            result = result.add(sum);
+            vallidness = (j == 0) || (j == 1) || (j == 2) || (j == 3) || sum.cubicNorm().doubleValue() >= accuracy.doubleValue();
+            j++;
+        } while (vallidness);
+        return result;
     }
 
     public BigDecimalMatrix checkP() {
@@ -328,7 +373,6 @@ public class GeneratorCreator {
         int i = 0;
         do {
             val = funcP(i, T);
-            System.out.println(val);
             sum = sum.add(val);
             i++;
         } while (i <= 5);
