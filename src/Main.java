@@ -16,7 +16,7 @@ public class Main {
     static double cKor(BigDecimal lambda, BigDecimalMatrix d0, BigDecimalMatrix d1) {
         BigDecimal lambdaT = new BigDecimal(1 / lambda.doubleValue());
         BigDecimalMatrix tetta = getTetta(d0, d1);
-        BigDecimalMatrix d0TNeg = (d0.multiply(new BigDecimal(-1).setScale(6, RoundingMode.HALF_UP))).inverse();
+        BigDecimalMatrix d0TNeg = (d0.multiply(new BigDecimal(-1).setScale(12, RoundingMode.HALF_UP))).inverse();
         BigDecimalMatrix e = BigDecimalMatrix.eCol(2, ONE);
         BigDecimal v = new BigDecimal(tetta.multiply(lambda.multiply(new BigDecimal(2))).multiply(d0TNeg).multiply(e).getElement(0, 0)
                 .subtract(new BigDecimal(-1)).doubleValue() / lambda.pow(2).doubleValue());
@@ -29,8 +29,8 @@ public class Main {
 
     static BigDecimalMatrix getTetta(BigDecimalMatrix d0, BigDecimalMatrix d1) {
         BigDecimalMatrix D = d0.add(d1);
-        D.setElement(0, 0, new BigDecimal(1).setScale(6, RoundingMode.HALF_UP));
-        D.setElement(1, 0, new BigDecimal(1).setScale(6, RoundingMode.HALF_UP));
+        D.setElement(0, 0, new BigDecimal(1).setScale(12, RoundingMode.HALF_UP));
+        D.setElement(1, 0, new BigDecimal(1).setScale(12, RoundingMode.HALF_UP));
         return new BigDecimalMatrix(new BigDecimal[][]{
                 {new BigDecimal(1), new BigDecimal(0)}
         }, 6).multiply(D.inverse());
@@ -66,19 +66,17 @@ public class Main {
         BigDecimal HALF = new BigDecimal("0.5");
         int scale = 20;
         BigDecimal T = new BigDecimal(2);
-        BigDecimal accuracy = new BigDecimal(0.000001);
+        BigDecimal accuracy = new BigDecimal(0.000000001);
         BigDecimal K = new BigDecimal(2);
 
         BigDecimalMatrix d0 = new BigDecimalMatrix(new BigDecimal[][]{
                 {new BigDecimal(-0.405780), new BigDecimal(0)},
                 {new BigDecimal(0), new BigDecimal(-0.013173)}
-        }, 6);
-        d0.setScale(6);
+        }, 12);
         BigDecimalMatrix d1 = new BigDecimalMatrix(new BigDecimal[][]{
                 {new BigDecimal(0.403080), new BigDecimal(0.002700)},
                 {new BigDecimal(0.007338), new BigDecimal(0.005835)}
-        }, 6);
-        d1.setScale(6);
+        }, 12);
         // Initital value sector
         BigDecimalMatrix tetta = getTetta(d0, d1);
         System.out.println(d0);
@@ -96,14 +94,14 @@ public class Main {
         GeneratorCreator generatorCreator;
 
         //Check sector
-        // ДОПИСАТЬ V(0, 0) -> (j, K)
         MatrixContainer.reInit();
+        BigDecimal tForCheck = HALF;
         BigDecimalMatrix g0;
         System.out.println();
         int j = 0;
         K = new BigDecimal(5);
         BigDecimalMatrix vMatrix;
-        generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, HALF, accuracy);
+        generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, tForCheck, accuracy);
         BigDecimalMatrix result = BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ZERO);
         do {
             vMatrix = generatorCreator.create(0, j).multiply(BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ONE));
@@ -156,14 +154,21 @@ public class Main {
         System.out.println(generatorCreator.checkP());
         System.out.println(generatorCreator.checkPhi());
         MatrixContainer.reInit();
-        // System.out.println(generatorCreator.checkPhi());
+        //Check system
+        g0 = BigDecimalMatrix.identity(2 * K.intValue() + 2);
+        gMatrixCreator = new GMatrixCreator(generatorCreator);
+        pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
+        phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
+        sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
+        sdCreator.checkPIMatrix(tForCheck, gamma, d0, lambda);
+        MatrixContainer.reInit();
 
-        /*ArrayList<String>[] list = new ArrayList[20];
+        ArrayList<String>[] list = new ArrayList[20];
         for (int i = 0; i < 20; i++) {
             list[i] = new ArrayList<String>();
         }
         //PP sector
-        for (BigDecimal t = HALF; t.compareTo(T) <= 0; t = t.add(HALF)) {
+        /*for (BigDecimal t = HALF; t.compareTo(T) <= 0; t = t.add(HALF)) {
             System.out.println();
             for (int k = 1; k <= 20; k++) {
                 K = new BigDecimal(k);
