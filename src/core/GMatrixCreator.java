@@ -22,7 +22,7 @@ public class GMatrixCreator {
     public BigDecimalMatrix create(BigDecimalMatrix g0) {
         int size = g0.getWidth();
         BigDecimalMatrix gPrev, cur, prev;
-        BigDecimalMatrix gCur = new BigDecimalMatrix(size, new BigDecimal(1), 10);
+        BigDecimalMatrix gCur = new BigDecimalMatrix(size, BigDecimal.ONE, 10);
         try {
             do {
                 int j = 0;
@@ -30,6 +30,7 @@ public class GMatrixCreator {
                 cur = BigDecimalMatrix.zeroMatrix(size);
                 do {
                     prev = cur.clone();
+                    cur = BigDecimalMatrix.zeroMatrix(size);
                     cur = cur.add(creator.create(1, j).multiply(powMatrix(gPrev, j)));
                     j++;
                 } while (cur.subtract(prev).squaredEuclidianNorm().doubleValue() < accuracy.doubleValue());

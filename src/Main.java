@@ -7,8 +7,7 @@ import core.GeneratorCreator;
 import kurs.BigDecimalMatrix;
 import core.*;
 
-import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.*;
 
 
 public class Main {
@@ -61,22 +60,24 @@ public class Main {
 
     public static void main(String[] args) {
         //Variable sector
-        BigDecimal gamma = new BigDecimal(0.4);
-        BigDecimal lambda = new BigDecimal(0.3);
+        BigDecimal gamma = new BigDecimal("0.4");
+        BigDecimal lambda = (new BigDecimal("0.3"));
         BigDecimal HALF = new BigDecimal("0.5");
         int scale = 20;
-        BigDecimal T = new BigDecimal(2);
-        BigDecimal accuracy = new BigDecimal(0.000000001);
-        BigDecimal K = new BigDecimal(2);
+        BigDecimal accuracy = new BigDecimal("0.00000001");
 
         BigDecimalMatrix d0 = new BigDecimalMatrix(new BigDecimal[][]{
-                {new BigDecimal(-0.405780), new BigDecimal(0)},
-                {new BigDecimal(0), new BigDecimal(-0.013173)}
-        }, 12);
+                {new BigDecimal("-0.405780"), ZERO},
+                {ZERO, new BigDecimal("-0.013173")}
+        }, 8);
         BigDecimalMatrix d1 = new BigDecimalMatrix(new BigDecimal[][]{
-                {new BigDecimal(0.403080), new BigDecimal(0.002700)},
-                {new BigDecimal(0.007338), new BigDecimal(0.005835)}
-        }, 12);
+                {new BigDecimal("0.403080"), new BigDecimal("0.002700")},
+                {new BigDecimal("0.007338"), new BigDecimal("0.005835")}
+        }, 8);
+        BigDecimalMatrix matrixExponent = new BigDecimalMatrix(new BigDecimal[][]{
+                {new BigDecimal("0.998653"), new BigDecimal("0.00134662")},
+                {new BigDecimal("0.00365981"), new BigDecimal("0.99634")},
+        }, 8);
         // Initital value sector
         BigDecimalMatrix tetta = getTetta(d0, d1);
         System.out.println(d0);
@@ -85,93 +86,21 @@ public class Main {
         System.out.println(tetta);
         System.out.println(cKor(lambda, d0, d1));
         System.out.println();
+        Test.runAllTests(gamma, lambda, d0, d1, accuracy, matrixExponent);
 
+        MatrixContainer.reInit();
         GMatrixCreator gMatrixCreator;
         PSlashMatrixCreator pSlashMatrixCreator;
         PhiMatrixCreator phiMatrixCreator;
         StationaryDistributionCreator sdCreator;
         PerformanceParameters pParameters;
         GeneratorCreator generatorCreator;
-
-        //Check sector
-        MatrixContainer.reInit();
-        BigDecimal tForCheck = HALF;
         BigDecimalMatrix g0;
-        System.out.println();
-        int j = 0;
-        K = new BigDecimal(5);
-        BigDecimalMatrix vMatrix;
-        generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, tForCheck, accuracy);
-        BigDecimalMatrix result = BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ZERO);
-        do {
-            vMatrix = generatorCreator.create(0, j).multiply(BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ONE));
-            result = result.add(vMatrix);
-            j++;
-        } while (vMatrix.cubicNorm().doubleValue() > accuracy.doubleValue());
-        System.out.println(result);
-        System.out.println();
-
-        int l = 0;
-        BigDecimalMatrix yMatrix;
-        result = BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ZERO);
-        do {
-            yMatrix = generatorCreator.create(1, l).multiply(BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ONE));
-            result = result.add(yMatrix);
-            l++;
-        } while (yMatrix.cubicNorm().doubleValue() > accuracy.doubleValue());
-        System.out.println(result);
-
-        result = BigDecimalMatrix.eCol(2, ZERO);
-        BigDecimalMatrix mMatrix;
-        j = 0;
-        do {
-            mMatrix = generatorCreator.funcM(j).multiply(BigDecimalMatrix.eCol(2, ONE));
-            result = result.add(mMatrix);
-            j++;
-        } while (mMatrix.cubicNorm().doubleValue() > accuracy.doubleValue());
-        System.out.println(result);
-
-        result = BigDecimalMatrix.eCol(2, ZERO);
-        BigDecimalMatrix nMatrix;
-        j = 0;
-        do {
-            nMatrix = generatorCreator.funcN(j).multiply(BigDecimalMatrix.eCol(2, ONE));
-            result = result.add(nMatrix);
-            j++;
-        } while (nMatrix.cubicNorm().doubleValue() > accuracy.doubleValue());
-        System.out.println(result);
-
-        BigDecimal notMatrixResult = ZERO;
-        BigDecimal smalPhiK;
-        j = 0;
-        do {
-            smalPhiK = generatorCreator.funcSmallPhiK(HALF, j);
-            notMatrixResult = notMatrixResult.add(smalPhiK);
-            j++;
-        } while (smalPhiK.doubleValue() > accuracy.doubleValue());
-        System.out.println(notMatrixResult);
-
-        System.out.println(generatorCreator.checkP());
-        System.out.println(generatorCreator.checkPhi());
-        MatrixContainer.reInit();
-        //Check system
-        g0 = BigDecimalMatrix.identity(2 * K.intValue() + 2);
-        gMatrixCreator = new GMatrixCreator(generatorCreator);
-        pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
-        phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
-        sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
-        sdCreator.checkPIMatrix(tForCheck, gamma, d0, lambda);
-        MatrixContainer.reInit();
-
-        ArrayList<String>[] list = new ArrayList[20];
-        for (int i = 0; i < 20; i++) {
-            list[i] = new ArrayList<String>();
-        }
         //PP sector
-        /*for (BigDecimal t = HALF; t.compareTo(T) <= 0; t = t.add(HALF)) {
+        for (BigDecimal t = HALF; t.compareTo(valueOf(2)) <= 0; t = t.add(HALF)) {
             System.out.println();
             for (int k = 1; k <= 20; k++) {
-                K = new BigDecimal(k);
+                BigDecimal K = new BigDecimal(k);
                 g0 = BigDecimalMatrix.identity(2 * K.intValue() + 2);
                 generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, t, accuracy);
                 gMatrixCreator = new GMatrixCreator(generatorCreator);
@@ -179,20 +108,27 @@ public class Main {
                 phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
                 sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
                 pParameters = new PerformanceParameters(sdCreator.getPiVectors(), lambda, d1);
-                // list[k].add((pParameters.getAverageNumberOfRequests().toString().substring(0, 11)));
-                System.out.println(pParameters.getAverageNumberOfRequests().toString().substring(0, 11));
+                System.out.println(pParameters.getNoEnergySystemIdleProbability().toString().substring(0, 11));
                // pParameters.check(tetta);
                 MatrixContainer.reInit();
             }
             System.out.println(t + " Completed");
-        }*/
-
-        //Extremal condition test
-        /*MatrixContainer.reInit();
-        for (BigDecimal t = new BigDecimal(2.35); t.compareTo(new BigDecimal(2.36)) <= 0; t = t.add(new BigDecimal(0.002))) {
+        }
+        /*for (BigDecimal t = new BigDecimal("2.3610800"); t.compareTo(new BigDecimal("2.3610840")) <= 0; t = t.add(new BigDecimal("0.0000002"))) {
             System.out.println();
             for (int k = 1; k < 21; k++) {
-                K = new BigDecimal(k);
+                System.out.println(t + " " + k);
+                if (!ErgodicityCondition.check(gamma, lambda, k, t)) {
+                    throw new IllegalArgumentException("Ergodicity condition does not perform. " + t + " " + k);
+                }
+            }
+            System.out.println(t + " Completed");
+        }*/
+        //Extremal condition test
+        /*for (BigDecimal t = new BigDecimal("2.3610800"); t.compareTo(new BigDecimal("2.3610840")) <= 0; t = t.add(new BigDecimal("0.000001"))) {
+            System.out.println();
+            for (int k = 1; k < 21; k++) {
+                BigDecimal K = new BigDecimal(k);
                 g0 = BigDecimalMatrix.identity(2 * K.intValue() + 2);
                 generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, t, accuracy);
                 gMatrixCreator = new GMatrixCreator(generatorCreator);
@@ -206,7 +142,6 @@ public class Main {
             }
             System.out.println(t + " Completed");
         }*/
-        // showList(list, false);
         //Eps grapher
         //GNU Plot
 

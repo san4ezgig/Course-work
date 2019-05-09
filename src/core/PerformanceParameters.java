@@ -34,8 +34,9 @@ public class PerformanceParameters {
 
     public BigDecimal getAverageNumberOfRequests() {
         BigDecimal sum = ZERO;
+        // System.out.println(this.piVectorSize);
         for (int i = 0; i < this.piVectorSize; i++) {
-            sum = sum.add(valueOf(i).multiply(piVector.get(i).multiply(e).getElement(0, 0)));
+            sum = sum.add(piVector.get(i).multiply(e).getElement(0, 0).multiply(new BigDecimal(i)));
         }
         return sum;
     }
@@ -45,8 +46,8 @@ public class PerformanceParameters {
         BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(2, ZERO);
         for (int i = 0; i < this.piVectorSize; i++) {
             for (int k = 1; k <= this.piSize / 2 - 1; k++) {
-                piMatrix.setElement(0, 0, piVector.get(0).getElement(0, 2 * k));
-                piMatrix.setElement(0, 1, piVector.get(0).getElement(0, 2 * k + 1));
+                piMatrix.setElement(0, 0, piVector.get(i).getElement(0, 2 * k));
+                piMatrix.setElement(0, 1, piVector.get(i).getElement(0, 2 * k + 1));
                 sum = sum.add(valueOf(k).multiply(piMatrix.multiply(eCol).getElement(0, 0)));
             }
         }

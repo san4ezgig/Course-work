@@ -18,7 +18,7 @@ public class PSlashMatrixCreator {
         this.accuracy = creator.getAccuracy();
     }
 
-    public BigDecimalMatrix create(Integer i, Integer j) {
+    public BigDecimalMatrix create(int i, int j) {
         if(j < i) {
             throw new IllegalArgumentException("Index i is bigger than index j in PSlashMatrixCreator.");
         }
@@ -35,12 +35,15 @@ public class PSlashMatrixCreator {
             } else {
                 BigDecimalMatrix prev;
                 BigDecimalMatrix cur = BigDecimalMatrix.zeroMatrix(size);
+                BigDecimalMatrix sum = BigDecimalMatrix.zeroMatrix(size);
                 do {
                     prev = cur.clone();
+                    sum = sum.add(prev);
+                    cur = BigDecimalMatrix.zeroMatrix(size);
                     cur = cur.add(creator.create(i, l).multiply(BigDecimalMatrix.powMatrix(g, l - j)));
                     l++;
                 } while (cur.subtract(prev).squaredEuclidianNorm().compareTo(accuracy) > 0);
-                result = creator.create(i, j).add(cur);
+                result = creator.create(i, j).add(sum);
                 MatrixContainer.getPSlashMatrices().put(hash, result.clone());
             }
         } catch (CloneNotSupportedException e) {

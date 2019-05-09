@@ -19,7 +19,7 @@ public class MatrixContainer {
         pSlashMatrices  = new HashMap<>();
         phiMatrices     = new HashMap<>();
         piVectors       = new HashMap<>();
-
+        kMatrix         = new HashMap<>();
     }
 
     private MatrixContainer() {
@@ -64,7 +64,6 @@ public class MatrixContainer {
         pSlashMatrices  = new HashMap<>();
         phiMatrices     = new HashMap<>();
         piVectors       = new HashMap<>();
-        kMatrix         = new HashMap<>();
         pMatrix         = new HashMap<>();
     }
 }

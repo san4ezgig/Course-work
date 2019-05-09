@@ -41,8 +41,9 @@ public class StationaryDistributionCreator {
         MatrixContainer.getPiVectors().put(Objects.hash(0), pi0);
 
         for (int i = 1; i < phiMatrices.size(); i++) {
-            MatrixContainer.getPiVectors().put(Objects.hash(i), pi0.multiply(phiMatrices.get(i)));
-            piVectors.add(i, pi0.multiply(phiMatrices.get(i)));
+            BigDecimalMatrix piVector = pi0.multiply(phiMatrices.get(i));
+            MatrixContainer.getPiVectors().put(Objects.hash(i), piVector);
+            piVectors.add(i, piVector);
         }
 
         // System.out.println(piVectors.size());

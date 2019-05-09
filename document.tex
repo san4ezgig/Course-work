@@ -225,7 +225,7 @@ $$ $$
 K_0^{(j+1)}=K_0^{(j)}(I+\tilde \theta^{-1}D_0),
 $$ $$
 K_n^{(j+1)}=\tilde
-\theta^{-1}K_{n - 1}^{(j - 1)}D_{1}+K_n^{(j)}(I+\tilde
+\theta^{-1}K_{n - 1}^{(j)}D_{1}+K_n^{(j)}(I+\tilde
 \theta^{-1}D_0),\; n \ge 1,\; j \ge 0.
 $$ 
 Усечение бесконечной суммы в можно
@@ -317,11 +317,15 @@ y^{j}_{10} & y^{j}_{11}& y^{j}_{12}& y^{j}_{13}& \ldots & y^{j}_{1K}\\
 0 & 0 & 0 & 0 & \ldots & y^{j}_{KK}\\
 \end{bmatrix}$\\ \\
 Где $y^{j}_{kk'}$ находятся следующим образом:\\
-$
-a.\;y^{j}_{0k'} = P\left\{(1, 0) \rightarrow (j, k') \right\} = \sum\limits_{n = 0}^{j}N(n)\Phi(j - n, k'),\\
-b.\;y^{j}_{kk'} = P\left\{(1, k) \rightarrow (j, k') \right\} = \Phi(j, k' - k + 1) ,\\
-c.\;y^{j}_{kK} = P\left\{(1, k) \rightarrow (j, K) \right\} = \hat \Phi(j, K - k + 1) .\\
-$
+
+$a)P\left\{(i, 0) \rightarrow (j, k') \right\}= \sum\limits_{n = 0}^{j - i + 1}N(n)\Phi(j - i + 1 - n, k'),$$ $$ i\geq 1,\; j \geq i-1,\; k' =\overline{0, K-1}. $
+
+$b)P\left\{(i, 0) \rightarrow (j, K) \right\}=\sum\limits_{n = 0}^{j - i + 1}N(n)\hat \Phi(j - i + 1 - n, K),\; i \geq 1,\; j\geq i-1. $
+
+
+$c)P\left\{(i, k) \rightarrow (j, k') \right\} =\Phi(j - i + 1, k' - k+1),$$ $$ i \geq 1,\; j\geq i-1,\; k' =\overline{k-1, K-1}, k=\overline{1,K}.$
+
+$d)P\left\{(i, k) \rightarrow (j, K)\right\}= \hat \Phi(j - i + 1, K - k+1),\; i \geq 1,\; j\geq i-1, $$ $$ k=\overline{1,K}.$\\
 Проанализировав вид $y^{j}_{kk'}$ сделаем вывод, что, начиная со второй строки,
 элементы не зависят от $k$ и $k'$, а зависят только $k' - k$.
 \section{СТАЦИОНАРНОЕ РАСПРЕДЕЛЕНИЕ ВЕРОЯТНОСТЕЙ}
