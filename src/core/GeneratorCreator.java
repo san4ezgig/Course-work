@@ -21,6 +21,7 @@ public class GeneratorCreator {
     private BigDecimal T;
     private MatrixElementCreator elementCreator;
     private BigDecimal tetta;
+    private int systemSize;
 
     public GeneratorCreator(
             BigDecimal gamma,
@@ -29,7 +30,8 @@ public class GeneratorCreator {
             BigDecimalMatrix d0,
             BigDecimalMatrix d1,
             BigDecimal T,
-            BigDecimal accuracy
+            BigDecimal accuracy,
+            int systemSize
     ) {
         boolean validness = gamma.compareTo(ONE) < 0 &&
                 gamma.compareTo(ZERO) > 0 &&
@@ -54,10 +56,11 @@ public class GeneratorCreator {
         this.T = T;
         this.d1 = d1;
         this.elementCreator = new MatrixElementCreator();
+        this.systemSize = systemSize;
     }
 
     public BigDecimalMatrix create(int i, int j) {
-        BigDecimalMatrix tempMatrix, matrix = new BigDecimalMatrix(2 * K + 2, 2 * K + 2, 12);
+        BigDecimalMatrix tempMatrix, matrix = new BigDecimalMatrix(systemSize * (K + 1), systemSize * (K + 1), 12);
 
         if (i - j > 1) {
             return matrix;
@@ -74,10 +77,18 @@ public class GeneratorCreator {
                 for (int k = 0; k < K + 1; k++) {
                     for (int bK = 0; bK < K + 1; bK++) {
                         tempMatrix = elementCreator.create(i, k, j, bK);
-                        matrix.setElement(k * 2, bK * 2, tempMatrix.getElement(0, 0));
-                        matrix.setElement(k * 2, 1 + bK * 2, tempMatrix.getElement(0, 1));
-                        matrix.setElement(1 + k * 2, bK * 2, tempMatrix.getElement(1, 0));
-                        matrix.setElement(1 + k * 2, 1 + bK * 2, tempMatrix.getElement(1, 1));
+                        switch (systemSize) {
+                            case 1: {
+                                matrix.setElement(k, bK, tempMatrix.getElement(0, 0));
+                                break;
+                            }
+                            case 2: {
+                                matrix.setElement(k * systemSize, bK * systemSize, tempMatrix.getElement(0, 0));
+                                matrix.setElement(k * systemSize, 1 + bK * systemSize, tempMatrix.getElement(0, 1));
+                                matrix.setElement(1 + k * systemSize, bK * systemSize, tempMatrix.getElement(1, 0));
+                                matrix.setElement(1 + k * systemSize, 1 + bK * systemSize, tempMatrix.getElement(1, 1));
+                            }
+                        }
                     }
                 }
                 MatrixContainer.getGenerators().put(hash, matrix.clone());
@@ -106,7 +117,7 @@ public class GeneratorCreator {
             boolean isVMatrix = (i == 0);
 
             if (k - bK > 1) {
-                element = BigDecimalMatrix.zeroMatrix(2);
+                element = BigDecimalMatrix.zeroMatrix(systemSize);
                 return element;
             }
 
@@ -150,7 +161,7 @@ public class GeneratorCreator {
 
         // YMatrix region
         private BigDecimalMatrix createFirstRowNotLastColumnElement(int j, int bK, int i) {
-            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 10);
+            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 10);
             for (int n = 0; n <= j - i + 1; n++) {
                 result = result.add(funcN(n).multiply(funcPhi(j - i + 1 - n, bK)));
             }
@@ -158,7 +169,7 @@ public class GeneratorCreator {
         }
 
         private BigDecimalMatrix createFirstRowLastColumnElement(int j, int i) {
-            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 10);
+            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 10);
             for (int n = 0; n <= j - i + 1; n++) {
                 result = result.add(funcN(n).multiply(funcPhiWithHat(j - i + 1 - n, K)));
             }
@@ -177,13 +188,13 @@ public class GeneratorCreator {
         //VMatrix region
 
         private BigDecimalMatrix createFirstRowLastColumnElementV(int j) {
-            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int n = 0; n <= j; n++) {
                 result = result.add(funcN(n).multiply(funcPhiWithHat(j - n, K)));
             }
             result = funcM(0).multiply(result);
 
-            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int m = 0; m <= K - 1; m++) {
                 sum = sum.add(funcM(m).multiply(funcPhiWithHat(j, K - m)));
             }
@@ -195,13 +206,13 @@ public class GeneratorCreator {
         }
 
         private BigDecimalMatrix createFirstRowPenultimateElementV(int j) {
-            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int n = 0; n <= j; n++) {
                 result = result.add(funcN(n).multiply(funcPhi(j - n, K - 1)));
             }
             result = funcM(0).multiply(result);
 
-            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int m = 0; m <= K - 1; m++) {
                 sum = sum.add(funcM(m).multiply(funcPhi(j, K - 1 - m)));
             }
@@ -213,7 +224,7 @@ public class GeneratorCreator {
         }
 
         private BigDecimalMatrix createFirstRowNotLastColumnElementV(int j, int bK) {
-            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
 
             for (int n = 0; n <= j; n++) {
                 result = result.add(funcN(n).multiply(funcPhi(j - n, bK)));
@@ -221,7 +232,7 @@ public class GeneratorCreator {
 
             result = funcM(0).multiply(result);
 
-            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
 
             for (int m = 0; m <= bK; m++) {
                 sum = sum.add(funcM(m).multiply(funcPhi(j, bK - m)));
@@ -235,7 +246,7 @@ public class GeneratorCreator {
         }
 
         private BigDecimalMatrix createNotFirstRowPenultimateElementV(int j, int bK) {
-            BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int m = 0; m <= K - bK; m++) {
                 result = result.add(funcM(m).multiply(funcPhi(j, K - bK - m)));
             }
@@ -244,7 +255,7 @@ public class GeneratorCreator {
         }
 
         private BigDecimalMatrix createNotFirstRowLastColumnElementV(int k, int j) {
-            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int m = 0; m <= K - k; m++) {
                 sum = sum.add(funcM(m).multiply(funcPhiWithHat(j, K - k + 1 - m)));
             }
@@ -253,7 +264,7 @@ public class GeneratorCreator {
         }
 
         private BigDecimalMatrix createNotFirstRowNotLastColumnElementV(int k, int j, int bK) {
-            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int m = 0; m <= bK - k + 1; m++) {
                 sum = sum.add(funcM(m).multiply(funcPhi(j, bK - k + 1 - m)));
             }
@@ -266,7 +277,7 @@ public class GeneratorCreator {
         BigDecimalMatrix val;
         BigDecimalMatrix negativeD0 = d0.multiply(new BigDecimal(-1));
         BigDecimal gammaN = gamma.pow(n);
-        val = (negativeD0.add(BigDecimalMatrix.identity(2).multiply(gamma))).inverse();
+        val = (negativeD0.add(BigDecimalMatrix.identity(systemSize).multiply(gamma))).inverse();
         val = BigDecimalMatrix.powMatrix(val, n);
         val = val.multiply(gammaN).multiply(negativeD0.inverse()).multiply(d1);
         return val;
@@ -276,7 +287,7 @@ public class GeneratorCreator {
         BigDecimalMatrix val;
         BigDecimalMatrix negativeD0 = d0.multiply(new BigDecimal(-1));
         BigDecimal gammaN = gamma.pow(n);
-        val = (negativeD0.add(BigDecimalMatrix.identity(2).multiply(gamma))).inverse();
+        val = (negativeD0.add(BigDecimalMatrix.identity(systemSize).multiply(gamma))).inverse();
         val = BigDecimalMatrix.powMatrix(val, n + 1);
         val = val.multiply(gammaN).multiply(d1);
         return val;
@@ -293,35 +304,35 @@ public class GeneratorCreator {
             BigDecimal negTetta = ONE.divide(tetta, 12, RoundingMode.HALF_DOWN);
             if (j == 0) {
                 return n == 0
-                        ? new BigDecimalMatrix(2, ONE, 12)
-                        : BigDecimalMatrix.zeroMatrix(2);
+                        ? new BigDecimalMatrix(systemSize, ONE, 12)
+                        : BigDecimalMatrix.zeroMatrix(systemSize);
             }
 
             if (n == 0) {
-                BigDecimalMatrix sum = new BigDecimalMatrix(2, ONE, 12).add(d0.multiply(negTetta));
+                BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, ONE, 12).add(d0.multiply(negTetta));
                 sum = funcK(0, j - 1).multiply(sum);
                 MatrixContainer.getKMatrix().put(hash, sum.clone());
                 return sum;
             }
-            BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+            BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
 
             if (n >= 1) {
                 sum = sum.add(funcK(n - 1, j - 1).multiply(d1).multiply(negTetta));
             }
 
             sum = sum.add(funcK(n, j - 1)
-                    .multiply(new BigDecimalMatrix(2, ONE, 12).add(d0.multiply(negTetta))));
+                    .multiply(new BigDecimalMatrix(systemSize, ONE, 12).add(d0.multiply(negTetta))));
             MatrixContainer.getKMatrix().put(hash, sum.clone());
             return sum;
 
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
-            return new BigDecimalMatrix(2, 2, 12);
+            return new BigDecimalMatrix(systemSize, systemSize, 12);
         }
     }
 
     public BigDecimalMatrix funcP(int i, BigDecimal t) {
-        BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+        BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
         BigDecimalMatrix val;
         int j = 0;
         int hash = Objects.hash(i, t);
@@ -376,18 +387,20 @@ public class GeneratorCreator {
     }
 
     public BigDecimalMatrix funcN(int n) {
-        BigDecimalMatrix result = new BigDecimalMatrix(2, 2, 12);
+        BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
         BigDecimalMatrix sum;
         boolean vallidness;
         int j = 0;
         do {
-            sum = funcK(n, j).multiply(tetta.pow(j).divide(gamma.add(tetta).pow(j + 1), 12, RoundingMode.CEILING));
+            sum = funcK(n, j).multiply(tetta.pow(j).divide((gamma.add(tetta)).pow(j + 1), 12, RoundingMode.CEILING));
             result = result.add(sum);
             vallidness = (j == 0) || (j == 1) || (j == 2) || (j == 3) || sum.squaredEuclidianNorm().compareTo(accuracy) > 0;
             j++;
         } while (vallidness);
-        result.multiplyRow(0, new BigDecimal("1.016"));
-        result.multiplyRow(1, new BigDecimal("1.0002"));
+        if (systemSize == 2) {
+            result.multiplyRow(0, new BigDecimal("1.016"));
+            result.multiplyRow(1, new BigDecimal("1.0002"));
+        }
         return result.multiply(gamma);
     }
 
@@ -404,7 +417,7 @@ public class GeneratorCreator {
         return n.multiply(factor(n.subtract(ONE)));
     }
 
-    private static int factor(int n) {
+    public static int factor(int n) {
         int result = 1;
         for (int i = 1; i <= n; i++) {
             result = result * i;

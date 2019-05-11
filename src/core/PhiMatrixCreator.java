@@ -15,13 +15,15 @@ public class PhiMatrixCreator {
     private PSlashMatrixCreator pSlashCreator;
     private BigDecimal accuracy;
     private Integer K;
+    private int systemSize;
 
     //Approved
-    public PhiMatrixCreator(PSlashMatrixCreator pSlashCreator, Integer K) {
+    public PhiMatrixCreator(PSlashMatrixCreator pSlashCreator, Integer K, int systemSize) {
         phiMatrices = new ArrayList<>();
         this.pSlashCreator = pSlashCreator;
         this.K = K;
         this.accuracy = pSlashCreator.getAccuracy();
+        this.systemSize = systemSize;
     }
 
     //Approved
@@ -32,7 +34,7 @@ public class PhiMatrixCreator {
 
     //Approved
     private void initPsiMatrices() {
-        final BigDecimalMatrix I = BigDecimalMatrix.identity(2*(K + 1));
+        final BigDecimalMatrix I = BigDecimalMatrix.identity(systemSize*(K + 1));
         phiMatrices.add(0, I);
         int hash = Objects.hash(0);
         try {
@@ -50,7 +52,7 @@ public class PhiMatrixCreator {
                 } else {
                     rightTerm = I.subtract(pSlashCreator.create(index, index)).inverse();
 
-                    leftTerm = BigDecimalMatrix.zeroMatrix(2 *(K + 1));
+                    leftTerm = BigDecimalMatrix.zeroMatrix(systemSize *(K + 1));
 
                     for(int i = 1; i <= index - 1; i++) {
                         leftTerm = leftTerm.add(phiMatrices.get(i).multiply(pSlashCreator.create(i, index)));

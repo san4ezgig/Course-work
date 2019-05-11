@@ -10,16 +10,18 @@ public class StationaryDistributionCreator {
     private ArrayList<BigDecimalMatrix> phiMatrices;
     private Integer K;
     private ArrayList<BigDecimalMatrix> piVectors;
+    private int systemSize;
 
-    public StationaryDistributionCreator(PSlashMatrixCreator pSlashCreator, ArrayList<BigDecimalMatrix> phiMatrices, Integer K) {
+    public StationaryDistributionCreator(PSlashMatrixCreator pSlashCreator, ArrayList<BigDecimalMatrix> phiMatrices, Integer K, int systemSize) {
         this.pSlashCreator = pSlashCreator;
         this.phiMatrices = phiMatrices;
         this.K = K;
         this.piVectors = new ArrayList<>(phiMatrices.size());
+        this.systemSize = systemSize;
     }
 
     public ArrayList<BigDecimalMatrix> getPiVectors() {
-        int size = 2 * (K + 1);
+        int size = systemSize * (K + 1);
         BigDecimalMatrix A = BigDecimalMatrix.identity(size).subtract(pSlashCreator.create(0, 0));
         BigDecimalMatrix IWaved = BigDecimalMatrix.identity(size);
         IWaved.setElement(0, 0, BigDecimal.ZERO);
@@ -55,14 +57,14 @@ public class StationaryDistributionCreator {
         ArrayList<BigDecimalMatrix> vectors = this.getPiVectors();
         BigDecimal result = BigDecimal.ZERO;
         BigDecimal sum = BigDecimal.ZERO;
-        BigDecimalMatrix eCol = BigDecimalMatrix.eCol(2, BigDecimal.ONE);
+        BigDecimalMatrix eCol = BigDecimalMatrix.eCol(systemSize, BigDecimal.ONE);
         BigDecimalMatrix negativeD0 = d0.multiply(new BigDecimal(-1));
         BigDecimalMatrix piRow;
 
         result = result.add(T);
 
         for(int i = 0; i < phiMatrices.size(); i++) {
-            piRow = BigDecimalMatrix.eRow(2, vectors.get(i).getElement(0, 0));
+            piRow = BigDecimalMatrix.eRow(systemSize, vectors.get(i).getElement(0, 0));
             piRow.setElement(0, 1, vectors.get(i).getElement(0, 1));
             sum = sum.add(piRow.multiply(new BigDecimal(1 / gamma.doubleValue())).multiply(eCol).getElement(0, 0));
         }
@@ -70,18 +72,18 @@ public class StationaryDistributionCreator {
 
         sum = BigDecimal.ZERO;
         for(int k = 0; k <= K; k++) {
-            piRow = BigDecimalMatrix.eRow(2, vectors.get(0).getElement(0, k * 2));
-            piRow.setElement(0, 1, vectors.get(0).getElement(0, 2 * k + 1));
+            piRow = BigDecimalMatrix.eRow(systemSize, vectors.get(0).getElement(0, k * systemSize));
+            piRow.setElement(0, 1, vectors.get(0).getElement(0, systemSize * k + 1));
 
             sum = sum.add(piRow.multiply(negativeD0.inverse().multiply(eCol)).getElement(0, 0));
         }
         result = result.add(sum);
 
-        piRow = BigDecimalMatrix.eRow(2, vectors.get(0).getElement(0, 0));
+        piRow = BigDecimalMatrix.eRow(systemSize, vectors.get(0).getElement(0, 0));
         piRow.setElement(0, 1, vectors.get(0).getElement(0, 1));
         sum = piRow
-                .multiply(new BigDecimal(2))
-                .multiply(negativeD0.add(BigDecimalMatrix.identity(2).multiply(gamma)).inverse())
+                .multiply(new BigDecimal(systemSize))
+                .multiply(negativeD0.add(BigDecimalMatrix.identity(systemSize).multiply(gamma)).inverse())
                 .multiply(eCol)
                 .getElement(0 ,0);
         result = result.subtract(sum);

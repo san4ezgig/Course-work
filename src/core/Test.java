@@ -13,7 +13,8 @@ public class Test {
                                    BigDecimalMatrix d0,
                                    BigDecimalMatrix d1,
                                    BigDecimal accuracy,
-                                   BigDecimalMatrix matrixExponent
+                                   BigDecimalMatrix matrixExponent,
+                                   int systemSize
     ) {
         BigDecimal HALF = new BigDecimal("0.5");
         GMatrixCreator gMatrixCreator;
@@ -24,52 +25,51 @@ public class Test {
         GeneratorCreator generatorCreator;
         BigDecimalMatrix g0;
 
-        //Check sector
         MatrixContainer.reInit();
         BigDecimal tForCheck = HALF;
         System.out.println();
         int j = 0;
         BigDecimal K = new BigDecimal("10");
         BigDecimalMatrix vMatrix;
-        generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, tForCheck, accuracy);
-        BigDecimalMatrix result = BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ZERO);
+        generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, tForCheck, accuracy, systemSize);
+        BigDecimalMatrix result = BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ZERO);
         do {
-            vMatrix = generatorCreator.create(0, j).multiply(BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ONE));
+            vMatrix = generatorCreator.create(0, j).multiply(BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ONE));
             result = result.add(vMatrix);
             j++;
         } while (vMatrix.squaredEuclidianNorm().doubleValue() > accuracy.doubleValue());
         System.out.println("Vmatrix:");
         System.out.println(result);
-        System.out.println(BigDecimalMatrix.eRow(2 * (K.intValue() + 1), ONE).multiply(BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ONE).subtract(result)));
+        System.out.println(BigDecimalMatrix.eRow(systemSize * (K.intValue() + 1), ONE).multiply(BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ONE).subtract(result)));
         System.out.println();
 
         int l = 0;
         BigDecimalMatrix yMatrix;
-        result = BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ZERO);
+        result = BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ZERO);
         do {
-            yMatrix = generatorCreator.create(1, l).multiply(BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ONE));
+            yMatrix = generatorCreator.create(1, l).multiply(BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ONE));
             result = result.add(yMatrix);
             l++;
         } while (yMatrix.squaredEuclidianNorm().doubleValue() > accuracy.doubleValue());
         System.out.println("Ymatrix:");
         System.out.println(result);
-        System.out.println(BigDecimalMatrix.eRow(2 * (K.intValue() + 1), ONE).multiply(BigDecimalMatrix.eCol(2 * (K.intValue() + 1), ONE).subtract(result)));
+        System.out.println(BigDecimalMatrix.eRow(systemSize * (K.intValue() + 1), ONE).multiply(BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ONE).subtract(result)));
 
-        result = BigDecimalMatrix.eCol(2, ZERO);
+        result = BigDecimalMatrix.eCol(systemSize, ZERO);
         BigDecimalMatrix mMatrix;
         j = 0;
         do {
-            mMatrix = generatorCreator.funcM(j).multiply(BigDecimalMatrix.eCol(2, ONE));
+            mMatrix = generatorCreator.funcM(j).multiply(BigDecimalMatrix.eCol(systemSize, ONE));
             result = result.add(mMatrix);
             j++;
         } while (mMatrix.squaredEuclidianNorm().doubleValue() > accuracy.doubleValue());
         System.out.println(result);
 
-        result = BigDecimalMatrix.eCol(2, ZERO);
+        result = BigDecimalMatrix.eCol(systemSize, ZERO);
         BigDecimalMatrix nMatrix;
         j = 0;
         do {
-            nMatrix = generatorCreator.funcN(j).multiply(BigDecimalMatrix.eCol(2, ONE));
+            nMatrix = generatorCreator.funcN(j).multiply(BigDecimalMatrix.eCol(systemSize, ONE));
             result = result.add(nMatrix);
             j++;
         } while (nMatrix.squaredEuclidianNorm().doubleValue() > accuracy.doubleValue());
@@ -79,29 +79,33 @@ public class Test {
         BigDecimal smalPhiK;
         j = 0;
         do {
-            smalPhiK = generatorCreator.funcSmallPhiK(gamma, HALF, j);
+            smalPhiK = GeneratorCreator.funcSmallPhiK(gamma, HALF, j);
             notMatrixResult = notMatrixResult.add(smalPhiK);
             j++;
         } while (smalPhiK.doubleValue() > accuracy.doubleValue());
         System.out.println(notMatrixResult);
 
-        System.out.println(Test.checkP(accuracy, tForCheck, generatorCreator));
+        System.out.println(Test.checkP(accuracy, tForCheck, generatorCreator, systemSize));
         System.out.println(matrixExponent);
-        System.out.println(Test.checkP(accuracy, tForCheck, generatorCreator).subtract(matrixExponent));
-        System.out.println(Test.checkPhi(generatorCreator, K.intValue(), accuracy));
+        if (systemSize == 2) {
+            System.out.println(Test.checkP(accuracy, tForCheck, generatorCreator, systemSize).subtract(matrixExponent));
+        }
+        System.out.println(Test.checkPhi(generatorCreator, K.intValue(), accuracy, systemSize));
         MatrixContainer.reInit();
         //Check system
-        g0 = BigDecimalMatrix.identity(2 * K.intValue() + 2);
+        g0 = BigDecimalMatrix.identity(systemSize * K.intValue() + systemSize);
         gMatrixCreator = new GMatrixCreator(generatorCreator);
         pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
-        phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
-        sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
-        sdCreator.checkPIMatrix(tForCheck, gamma, d0, lambda);
+        phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue(), systemSize);
+        sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue(), systemSize);
+        if (systemSize == 2) {
+            sdCreator.checkPIMatrix(tForCheck, gamma, d0, lambda);
+        }
         MatrixContainer.reInit();
     }
 
-    public static BigDecimalMatrix checkP(BigDecimal accuracy, BigDecimal T, GeneratorCreator generatorCreator) {
-        BigDecimalMatrix sum = new BigDecimalMatrix(2, 2, 12);
+    public static BigDecimalMatrix checkP(BigDecimal accuracy, BigDecimal T, GeneratorCreator generatorCreator, int systemSize) {
+        BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
         BigDecimalMatrix val;
         int i = 0;
         do {
@@ -112,13 +116,13 @@ public class Test {
         return sum;
     }
 
-    public static BigDecimalMatrix checkPhi(GeneratorCreator generatorCreator, int K, BigDecimal accuracy) {
-        BigDecimalMatrix sum = BigDecimalMatrix.eCol(2, ZERO);
-        BigDecimalMatrix e = BigDecimalMatrix.eCol(2, ONE);
+    public static BigDecimalMatrix checkPhi(GeneratorCreator generatorCreator, int K, BigDecimal accuracy, int systemSize) {
+        BigDecimalMatrix sum = BigDecimalMatrix.eCol(systemSize, ZERO);
+        BigDecimalMatrix e = BigDecimalMatrix.eCol(systemSize, ONE);
         BigDecimalMatrix val;
         int i = 0;
         do {
-            val = BigDecimalMatrix.eCol(2, ZERO);
+            val = BigDecimalMatrix.eCol(systemSize, ZERO);
             for (int k = 0; k <= K; k++) {
                 val = val.add(generatorCreator.funcPhi(i, k).multiply(e));
             }

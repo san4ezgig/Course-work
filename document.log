@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.14)  30 APR 2019 01:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.14)  9 MAY 2019 20:39
 entering extended mode
 **./document.tex
 (document.tex
@@ -1064,38 +1064,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
-
-LaTeX Warning: Command \cyrp invalid in math mode on input line 176.
-
-
-LaTeX Warning: Command \cyro invalid in math mode on input line 176.
-
-
-LaTeX Warning: Command \cyrs invalid in math mode on input line 176.
-
-
-LaTeX Warning: Command \cyrt invalid in math mode on input line 176.
-
-
-LaTeX Warning: Command \cyru invalid in math mode on input line 176.
-
-
-LaTeX Warning: Command \cyrp invalid in math mode on input line 176.
-
-
-LaTeX Warning: Command \cyri invalid in math mode on input line 176.
-
-
-LaTeX Warning: Command \cyrt invalid in math mode on input line 176.
-
-Missing character: There is no ï in font cmr17!
-Missing character: There is no î in font cmr17!
-Missing character: There is no ñ in font cmr17!
-Missing character: There is no ò in font cmr17!
-Missing character: There is no ó in font cmr17!
-Missing character: There is no ï in font cmr17!
-Missing character: There is no è in font cmr17!
-Missing character: There is no ò in font cmr17!
 [7]
 
 Package amsmath Warning: Foreign command \over;
@@ -1285,7 +1253,7 @@ rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Lenovo/Ap
 pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Us
 ers/Lenovo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y10.pfb>
-Output written on document.pdf (33 pages, 467443 bytes).
+Output written on document.pdf (33 pages, 467446 bytes).
 PDF statistics:
  789 PDF objects out of 1000 (max. 8388607)
  81 named destinations out of 1000 (max. 500000)

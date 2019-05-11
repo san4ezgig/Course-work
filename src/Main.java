@@ -63,30 +63,43 @@ public class Main {
         BigDecimal gamma = new BigDecimal("0.4");
         BigDecimal lambda = (new BigDecimal("0.3"));
         BigDecimal HALF = new BigDecimal("0.5");
-        int scale = 20;
         BigDecimal accuracy = new BigDecimal("0.00000001");
-
-        BigDecimalMatrix d0 = new BigDecimalMatrix(new BigDecimal[][]{
-                {new BigDecimal("-0.405780"), ZERO},
-                {ZERO, new BigDecimal("-0.013173")}
-        }, 8);
-        BigDecimalMatrix d1 = new BigDecimalMatrix(new BigDecimal[][]{
-                {new BigDecimal("0.403080"), new BigDecimal("0.002700")},
-                {new BigDecimal("0.007338"), new BigDecimal("0.005835")}
-        }, 8);
+        int systemSize = 2;
+        BigDecimalMatrix d0, d1;
+        switch (systemSize) {
+            case 1: {
+                d0 = new BigDecimalMatrix(1, lambda.negate(), 8);
+                d1 = new BigDecimalMatrix(1, lambda, 8);
+                break;
+            }
+            case 2: {
+                d0 = new BigDecimalMatrix(new BigDecimal[][]{
+                        {new BigDecimal("-0.405780"), ZERO},
+                        {ZERO, new BigDecimal("-0.013173")}
+                }, 8);
+                d1 = new BigDecimalMatrix(new BigDecimal[][]{
+                        {new BigDecimal("0.403080"), new BigDecimal("0.002700")},
+                        {new BigDecimal("0.007338"), new BigDecimal("0.005835")}
+                }, 8);
+                break;
+            }
+            default: {
+                d0 = new BigDecimalMatrix(1, lambda.negate(), 8);
+                d1 = new BigDecimalMatrix(1, lambda, 8);
+            }
+        }
         BigDecimalMatrix matrixExponent = new BigDecimalMatrix(new BigDecimal[][]{
                 {new BigDecimal("0.998653"), new BigDecimal("0.00134662")},
                 {new BigDecimal("0.00365981"), new BigDecimal("0.99634")},
         }, 8);
-        // Initital value sector
-        BigDecimalMatrix tetta = getTetta(d0, d1);
         System.out.println(d0);
         System.out.println(d1);
         System.out.println(d0.add(d1).multiply(HALF));
-        System.out.println(tetta);
-        System.out.println(cKor(lambda, d0, d1));
+        // Initital value sector
+        // System.out.println(getTetta(d0, d1));
+        // System.out.println(cKor(lambda, d0, d1));
         System.out.println();
-        Test.runAllTests(gamma, lambda, d0, d1, accuracy, matrixExponent);
+        Test.runAllTests(gamma, lambda, d0, d1, accuracy, matrixExponent, systemSize);
 
         MatrixContainer.reInit();
         GMatrixCreator gMatrixCreator;
@@ -101,13 +114,13 @@ public class Main {
             System.out.println();
             for (int k = 1; k <= 20; k++) {
                 BigDecimal K = new BigDecimal(k);
-                g0 = BigDecimalMatrix.identity(2 * K.intValue() + 2);
-                generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, t, accuracy);
+                g0 = BigDecimalMatrix.identity(systemSize * (K.intValue() + 1));
+                generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, t, accuracy, systemSize);
                 gMatrixCreator = new GMatrixCreator(generatorCreator);
                 pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
-                phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue());
-                sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue());
-                pParameters = new PerformanceParameters(sdCreator.getPiVectors(), lambda, d1);
+                phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue(), systemSize);
+                sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue(), systemSize);
+                pParameters = new PerformanceParameters(sdCreator.getPiVectors(), lambda, d1, systemSize);
                 System.out.println(pParameters.getNoEnergySystemIdleProbability().toString().substring(0, 11));
                // pParameters.check(tetta);
                 MatrixContainer.reInit();
