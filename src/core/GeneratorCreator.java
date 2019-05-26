@@ -12,16 +12,16 @@ import static java.math.BigDecimal.valueOf;
 
 
 public class GeneratorCreator {
-    private BigDecimal gamma;
-    private BigDecimal lambda;
-    private Integer K;
-    private BigDecimal accuracy;
-    private BigDecimalMatrix d0;
-    private BigDecimalMatrix d1;
-    private BigDecimal T;
+    public BigDecimal gamma;
+    public BigDecimal lambda;
+    public Integer K;
+    public BigDecimal accuracy;
+    public BigDecimalMatrix d0;
+    public BigDecimalMatrix d1;
+    public BigDecimal T;
     private MatrixElementCreator elementCreator;
-    private BigDecimal tetta;
-    private int systemSize;
+    public BigDecimal tetta;
+    public int systemSize;
 
     public GeneratorCreator(
             BigDecimal gamma,
@@ -39,6 +39,8 @@ public class GeneratorCreator {
                 lambda.compareTo(ZERO) > 0 &&
                 K > 0 &&
                 gamma.compareTo(lambda) > 0;
+        /*boolean validness = K > 0 &&
+                gamma.compareTo(lambda) > 0;*/
 
         if (!ErgodicityCondition.check(gamma, lambda, K, T)) {
             throw new IllegalArgumentException("Ergodicity condition does not perform. " + T + " " + K);
@@ -245,12 +247,12 @@ public class GeneratorCreator {
             return result;
         }
 
-        private BigDecimalMatrix createNotFirstRowPenultimateElementV(int j, int bK) {
+        private BigDecimalMatrix createNotFirstRowPenultimateElementV(int j, int k) {
             BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
-            for (int m = 0; m <= K - bK; m++) {
-                result = result.add(funcM(m).multiply(funcPhi(j, K - bK - m)));
+            for (int m = 0; m <= K - k; m++) {
+                result = result.add(funcM(m).multiply(funcPhi(j, K - k - m)));
             }
-            result = result.add(funcMWithHat(K - bK + 1).multiply(funcPhi(j, 0)));
+            result = result.add(funcMWithHat(K - k + 1).multiply(funcPhi(j, 0)));
             return result;
         }
 
@@ -273,7 +275,7 @@ public class GeneratorCreator {
         // End region
     }
 
-    private BigDecimalMatrix funcMWithHat(int n) {
+    public BigDecimalMatrix funcMWithHat(int n) {
         BigDecimalMatrix val;
         BigDecimalMatrix negativeD0 = d0.multiply(new BigDecimal(-1));
         BigDecimal gammaN = gamma.pow(n);
@@ -285,7 +287,7 @@ public class GeneratorCreator {
 
     public BigDecimalMatrix funcM(int n) {
         BigDecimalMatrix val;
-        BigDecimalMatrix negativeD0 = d0.multiply(new BigDecimal(-1));
+        BigDecimalMatrix negativeD0 = d0.multiply(ONE.negate());
         BigDecimal gammaN = gamma.pow(n);
         val = (negativeD0.add(BigDecimalMatrix.identity(systemSize).multiply(gamma))).inverse();
         val = BigDecimalMatrix.powMatrix(val, n + 1);
@@ -293,9 +295,9 @@ public class GeneratorCreator {
         return val;
     }
 
-    private BigDecimalMatrix funcK(int n, int j) {
+    public BigDecimalMatrix funcK(int n, int j) {
         try {
-            int hash = Objects.hash(n, j);
+            int hash = Objects.hash(n + 10, j * 20);
 
             if (MatrixContainer.getKMatrix().containsKey(hash)) {
                 return MatrixContainer.getKMatrix().get(hash).clone();
@@ -303,9 +305,16 @@ public class GeneratorCreator {
 
             BigDecimal negTetta = ONE.divide(tetta, 12, RoundingMode.HALF_DOWN);
             if (j == 0) {
-                return n == 0
-                        ? new BigDecimalMatrix(systemSize, ONE, 12)
-                        : BigDecimalMatrix.zeroMatrix(systemSize);
+                BigDecimalMatrix value;
+                if (n == 0) {
+                    value = new BigDecimalMatrix(systemSize, ONE, 12);
+                    MatrixContainer.getKMatrix().put(hash, value.clone());
+                    return value;
+                }
+
+                value = BigDecimalMatrix.zeroMatrix(systemSize);
+                MatrixContainer.getKMatrix().put(hash, value.clone());
+                return value;
             }
 
             if (n == 0) {
@@ -334,7 +343,7 @@ public class GeneratorCreator {
     public BigDecimalMatrix funcP(int i, BigDecimal t) {
         BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
         BigDecimalMatrix val;
-        int j = 0;
+        int j = i;
         int hash = Objects.hash(i, t);
         boolean vallidness;
         try {
@@ -347,11 +356,11 @@ public class GeneratorCreator {
                 double valueUnderSum = Math.exp(tetta.multiply(t).doubleValue() * -1)
                         * Math.pow(tetta.multiply(t).doubleValue(), j)
                         / GeneratorCreator.factor(j);
-                val = val.multiply(new BigDecimal(valueUnderSum));
+                val = val.multiply(valueOf(valueUnderSum));
                 sum = sum.add(val);
                 j++;
 
-                vallidness = (j == 0) || (j == 1) || (j == 2) || (j == 3) || val.squaredEuclidianNorm().doubleValue() >= accuracy.doubleValue();
+                vallidness = val.squaredEuclidianNorm().doubleValue() >= accuracy.doubleValue();
             } while (vallidness);
             MatrixContainer.getPMatrix().put(hash, sum.clone());
         } catch (CloneNotSupportedException e) {
@@ -389,18 +398,12 @@ public class GeneratorCreator {
     public BigDecimalMatrix funcN(int n) {
         BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
         BigDecimalMatrix sum;
-        boolean vallidness;
-        int j = 0;
+        int j = n;
         do {
             sum = funcK(n, j).multiply(tetta.pow(j).divide((gamma.add(tetta)).pow(j + 1), 12, RoundingMode.CEILING));
             result = result.add(sum);
-            vallidness = (j == 0) || (j == 1) || (j == 2) || (j == 3) || sum.squaredEuclidianNorm().compareTo(accuracy) > 0;
             j++;
-        } while (vallidness);
-        if (systemSize == 2) {
-            result.multiplyRow(0, new BigDecimal("1.016"));
-            result.multiplyRow(1, new BigDecimal("1.0002"));
-        }
+        } while (sum.squaredEuclidianNorm().compareTo(accuracy) > 0);
         return result.multiply(gamma);
     }
 

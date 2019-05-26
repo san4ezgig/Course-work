@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.14)  9 MAY 2019 20:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.14)  17 MAY 2019 01:22
 entering extended mode
 **./document.tex
 (document.tex
@@ -1153,73 +1153,75 @@ Underfull \hbox (badness 10000) in paragraph at lines 486--488
 
  []
 
-<11.png, id=240, 525.76425pt x 313.17pt>
+<11.png, id=240, 803.0pt x 803.0pt>
 File: 11.png Graphic file (type png)
 <use 11.png>
 Package pdftex.def Info: 11.png  used on input line 502.
-(pdftex.def)             Requested size: 497.92325pt x 296.5923pt.
-[20] [21 <./11.png>]
-<1.png, id=252, 242.70676pt x 304.13625pt>
+(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
+[20] [21 <./11.png (PNG copy)>]
+<1.png, id=250, 242.70676pt x 304.13625pt>
 File: 1.png Graphic file (type png)
 <use 1.png>
 Package pdftex.def Info: 1.png  used on input line 520.
 (pdftex.def)             Requested size: 242.70615pt x 304.1355pt.
  [22 <./1.png>]
-<12.png, id=258, 364.36125pt x 219.219pt>
+<12.png, id=257, 803.0pt x 803.0pt>
 File: 12.png Graphic file (type png)
 <use 12.png>
 Package pdftex.def Info: 12.png  used on input line 528.
-(pdftex.def)             Requested size: 497.92325pt x 299.58894pt.
- [23 <./12.png>]
-<2.png, id=265, 244.5135pt x 307.1475pt>
+(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
+ [23 <./12.png (PNG copy)>]
+<2.png, id=263, 244.5135pt x 307.1475pt>
 File: 2.png Graphic file (type png)
 <use 2.png>
 Package pdftex.def Info: 2.png  used on input line 546.
 (pdftex.def)             Requested size: 244.5129pt x 307.14674pt.
- [24 <./2.png>]
-<13.png, id=271, 365.56575pt x 218.61674pt>
+
+[24 <./2.png>]
+<13.png, id=269, 803.0pt x 803.0pt>
 File: 13.png Graphic file (type png)
 <use 13.png>
 Package pdftex.def Info: 13.png  used on input line 554.
-(pdftex.def)             Requested size: 497.92325pt x 297.7685pt.
- [25 <./13.png>]
-<3.png, id=279, 243.91125pt x 308.352pt>
+(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
+ [25 <./13.png (PNG copy)>]
+<3.png, id=276, 243.91125pt x 308.352pt>
 File: 3.png Graphic file (type png)
 <use 3.png>
 Package pdftex.def Info: 3.png  used on input line 576.
 (pdftex.def)             Requested size: 243.91064pt x 308.35124pt.
  [26 <./3.png>]
-<14.png, id=285, 361.35pt x 219.219pt>
+<14.png, id=282, 803.0pt x 803.0pt>
 File: 14.png Graphic file (type png)
 <use 14.png>
 Package pdftex.def Info: 14.png  used on input line 584.
-(pdftex.def)             Requested size: 497.92325pt x 302.07764pt.
- [27 <./14.png>]
-<4.png, id=292, 239.6955pt x 304.7385pt>
+(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
+ [27 <./14.png (PNG copy)>]
+<4.png, id=288, 239.6955pt x 304.7385pt>
 File: 4.png Graphic file (type png)
 <use 4.png>
 Package pdftex.def Info: 4.png  used on input line 605.
 (pdftex.def)             Requested size: 239.6949pt x 304.73775pt.
  [28 <./4.png>]
-<15.png, id=298, 363.759pt x 225.2415pt>
+<15.png, id=294, 803.0pt x 803.0pt>
 File: 15.png Graphic file (type png)
 <use 15.png>
 Package pdftex.def Info: 15.png  used on input line 612.
-(pdftex.def)             Requested size: 497.92325pt x 308.32121pt.
- [29 <./15.png>]
-<5.png, id=305, 242.70676pt x 305.34074pt>
+(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
+ [29 <./15.png (PNG copy)>] [30]
+<5.png, id=304, 242.70676pt x 305.34074pt>
 File: 5.png Graphic file (type png)
 <use 5.png>
 Package pdftex.def Info: 5.png  used on input line 636.
 (pdftex.def)             Requested size: 242.70615pt x 305.34pt.
- [30 <./5.png>] [31] [32]
+ [31 <./5.png>] [32]
+[33]
 Underfull \hbox (badness 1226) in paragraph at lines 663--666
 []\T2A/cmr/m/n/17.28 Klimenok V.I., Dudin A.N. Multi-dimensional asymptotically
 
  []
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 667.
-[33]
+[34]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 667.
  (document.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 667.
@@ -1229,8 +1231,8 @@ Package rerunfilecheck Info: File `document.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 667.
  ) 
 Here is how much of TeX's memory you used:
- 11694 strings out of 493312
- 160502 string characters out of 3134143
+ 11695 strings out of 493312
+ 160509 string characters out of 3134143
  252303 words of memory out of 3000000
  15027 multiletter control sequences out of 15000+200000
  17843 words of font info for 53 fonts, out of 3000000 for 9000
@@ -1253,9 +1255,9 @@ rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Lenovo/Ap
 pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Us
 ers/Lenovo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y10.pfb>
-Output written on document.pdf (33 pages, 467446 bytes).
+Output written on document.pdf (34 pages, 626850 bytes).
 PDF statistics:
- 789 PDF objects out of 1000 (max. 8388607)
- 81 named destinations out of 1000 (max. 500000)
+ 788 PDF objects out of 1000 (max. 8388607)
+ 82 named destinations out of 1000 (max. 500000)
  224 words of extra memory for PDF output out of 10000 (max. 10000000)
 

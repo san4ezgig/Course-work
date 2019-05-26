@@ -3,8 +3,7 @@ package core;
 
 import java.math.BigDecimal;
 
-import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.*;
 
 
 public class ErgodicityCondition {
@@ -12,10 +11,13 @@ public class ErgodicityCondition {
     //Approved
     public static boolean check(BigDecimal gamma, BigDecimal lambda, int K, BigDecimal T) {
         BigDecimal minuend = lambda.multiply(T);
-        BigDecimal subtrahend = getY0(gamma, T, K).multiply(new BigDecimal(lambda.doubleValue() / gamma.doubleValue()));
+        BigDecimal subtrahend = getY0(gamma, T, K).multiply(valueOf(lambda.doubleValue() / gamma.doubleValue()));
         return minuend.add(subtrahend).doubleValue() < 1;
     }
 
+    public static double getLambdaRestriction(BigDecimal t, BigDecimal gamma, int K) {
+        return 1 / (t.doubleValue() + getY0(gamma, t, K).doubleValue() / gamma.doubleValue());
+    }
     private static BigDecimal getY0(BigDecimal gamma, BigDecimal T, Integer K) {
         BigDecimal[] psiVector = getPsiVector(gamma, T, K);
         BigDecimal sum = ZERO;

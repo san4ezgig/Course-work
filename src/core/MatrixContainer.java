@@ -13,6 +13,7 @@ public class MatrixContainer {
     private static HashMap<Integer, BigDecimalMatrix>   piVectors;
     private static HashMap<Integer, BigDecimalMatrix>   kMatrix;
     private static HashMap<Integer, BigDecimalMatrix>   pMatrix;
+    private static HashMap<Integer, BigDecimalMatrix>   arbitryTimeGenerators;
 
     static {
         generators      = new HashMap<>();
@@ -20,6 +21,7 @@ public class MatrixContainer {
         phiMatrices     = new HashMap<>();
         piVectors       = new HashMap<>();
         kMatrix         = new HashMap<>();
+        arbitryTimeGenerators = new HashMap<>();
     }
 
     private MatrixContainer() {
@@ -57,6 +59,9 @@ public class MatrixContainer {
         return pMatrix;
     }
 
+    public static HashMap<Integer, BigDecimalMatrix> getArbitryTimeGenerators() {
+        return arbitryTimeGenerators;
+    }
 
     public static void reInit() {
         g               = null;
@@ -64,6 +69,8 @@ public class MatrixContainer {
         pSlashMatrices  = new HashMap<>();
         phiMatrices     = new HashMap<>();
         piVectors       = new HashMap<>();
+        // kMatrix         = new HashMap<>();
         pMatrix         = new HashMap<>();
+        arbitryTimeGenerators = new HashMap<>();
     }
 }

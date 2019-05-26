@@ -22,8 +22,15 @@ public class PerformanceParameters {
     private BigDecimalMatrix e;
     private BigDecimalMatrix eCol;
     private int systemSize;
+    private ArbitararyTimeGenerator generator;
 
-    public PerformanceParameters(ArrayList<BigDecimalMatrix> piVector, BigDecimal lambda, BigDecimalMatrix d1, int systemSize) {
+    public PerformanceParameters(
+            ArrayList<BigDecimalMatrix> piVector,
+            BigDecimal lambda,
+            BigDecimalMatrix d1,
+            int systemSize,
+            ArbitararyTimeGenerator generator
+    ) {
         this.piVector = piVector;
         this.piVectorSize = piVector.size();
         this.d1 = d1;
@@ -32,13 +39,50 @@ public class PerformanceParameters {
         this.e = BigDecimalMatrix.eCol(this.piSize, ONE);
         this.eCol = BigDecimalMatrix.eCol(systemSize, ONE);
         this.systemSize = systemSize;
+        this.generator = generator;
+    }
+
+    public BigDecimal requestCorrectPerfomanceFunction(int number, int K) {
+        switch (number) {
+            case 11: {
+                return getAverageNumberOfRequests();
+            }
+            case 12: {
+                return getAverageNumberOfEnergyUnits();
+            }
+            case 13: {
+                return getNoRequestsProbability();
+            }
+            case 14: {
+                return getNoEnergyUnitsProbability();
+            }
+            case 15: {
+                return getNoEnergySystemIdleProbability();
+            }
+            case 16: {
+                return getAverageNumberOfRequestsInArbitryTime(K);
+            }
+            default: {
+                return ZERO;
+            }
+        }
+    }
+
+    public BigDecimal getAverageNumberOfRequestsInArbitryTime(int K) {
+        BigDecimal sum = ZERO;
+        // System.out.println(this.piVectorSize);
+        BigDecimalMatrix eCol = BigDecimalMatrix.eCol(systemSize * (K + 1), ONE);
+        for (int j = 0; j < this.piVectorSize; j++) {
+            sum = sum.add(generator.calculateP(j).multiply(eCol).multiply(valueOf(j)).getElement(0, 0));
+        }
+        return sum;
     }
 
     public BigDecimal getAverageNumberOfRequests() {
         BigDecimal sum = ZERO;
         // System.out.println(this.piVectorSize);
         for (int i = 0; i < this.piVectorSize; i++) {
-            sum = sum.add(piVector.get(i).multiply(e).getElement(0, 0).multiply(new BigDecimal(i)));
+            sum = sum.add(piVector.get(i).multiply(e).multiply(valueOf(i)).getElement(0, 0));
         }
         return sum;
     }
@@ -95,8 +139,8 @@ public class PerformanceParameters {
         BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(systemSize, ZERO);
         for (int i = 1; i < this.piVectorSize; i++) {
             if (systemSize == 2) {
-                piMatrix.setElement(0, 0, piVector.get(i).getElement(0, 0));
                 piMatrix.setElement(0, 1, piVector.get(i).getElement(0, 1));
+                piMatrix.setElement(0, 0, piVector.get(i).getElement(0, 0));
             }
             else {
                 piMatrix.setElement(0, 0, piVector.get(i).getElement(0, 0));
@@ -118,21 +162,5 @@ public class PerformanceParameters {
         }
 
         return new BigDecimal(1 / lambda.doubleValue() * sum.doubleValue());
-    }
-
-    public void check(BigDecimalMatrix tetta) {
-        BigDecimalMatrix sum = BigDecimalMatrix.eRow(2, ZERO);
-        BigDecimalMatrix piMatrix = BigDecimalMatrix.eRow(2, ZERO);
-
-        for (int i = 0; i < this.piVectorSize; i++) {
-            for (int k = 0; k < this.piSize / 2; k++) {
-                piMatrix.setElement(0, 0, piVector.get(0).getElement(0, 2 * k));
-                piMatrix.setElement(0, 1, piVector.get(0).getElement(0, 2 * k + 1));
-                sum = sum.add(piMatrix);
-            }
-        }
-
-        System.out.println(sum);
-        System.out.println(tetta);
     }
 }
