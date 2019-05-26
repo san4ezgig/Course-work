@@ -1,13 +1,22 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.14)  17 MAY 2019 01:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.14)  26 MAY 2019 21:56
 entering extended mode
 **./document.tex
 (document.tex
 LaTeX2e <2017-04-15>
 Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
-("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
-Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
-("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo"
-File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+(C:\Users\Lenovo\AppData\Roaming\MiKTeX\2.9\tex\latex\extsizes\extarticle.cls
+Document Class: extarticle 1996/10/08 v1.0 Non Standard LaTeX document class
+(C:\Users\Lenovo\AppData\Roaming\MiKTeX\2.9\tex\latex\extsizes\size14.clo
+File: size14.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
+)
+("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\exscale.sty"
+Package: exscale 2018/09/24 v2.1i Standard LaTeX package exscale
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 57.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+\big@size=\dimen102
 )
 \c@part=\count79
 \c@section=\count80
@@ -19,7 +28,7 @@ File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 \c@table=\count86
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
-\bibindent=\dimen102
+\bibindent=\dimen103
 )
 ("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx
 .sty"
@@ -48,8 +57,8 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 ex.def"
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen103
-\Gin@req@width=\dimen104
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
 )
 (C:\Users\Lenovo\AppData\Roaming\MiKTeX\2.9\tex\latex\extsizes\extsizes.sty
 Package: extsizes 1996/10/08 v1.0 Non Standard LaTeX Package
@@ -407,7 +416,7 @@ Language: english 2017/06/06 v3.3r English support from the babel system
 "
 File: babel.def 2019/04/01 3.28 Babel common definitions
 \babel@savecnt=\count87
-\U@D=\dimen105
+\U@D=\dimen106
 
 ("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\txtbabel.
 def")
@@ -655,12 +664,12 @@ Package: amstext 2000/06/29 v2.01 AMS text
 y"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks18
-\ex@=\dimen106
+\ex@=\dimen107
 ))
 ("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsbsy.st
 y"
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen107
+\pmbraise@=\dimen108
 )
 ("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsopn.st
 y"
@@ -678,7 +687,7 @@ LaTeX Info: Redefining \dots on input line 485.
 LaTeX Info: Redefining \cdots on input line 606.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
-\big@size=\dimen108
+\big@size=\dimen109
 LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \macc@depth=\count94
@@ -691,12 +700,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \column@=\count99
 \maxfields@=\count100
 \andhelp@=\toks20
-\eqnshift@=\dimen109
-\alignsep@=\dimen110
-\tagshift@=\dimen111
-\tagwidth@=\dimen112
-\totwidth@=\dimen113
-\lineht@=\dimen114
+\eqnshift@=\dimen110
+\alignsep@=\dimen111
+\tagshift@=\dimen112
+\tagwidth@=\dimen113
+\totwidth@=\dimen114
+\lineht@=\dimen115
 \@envbody=\toks21
 \multlinegap=\skip44
 \multlinetaggap=\skip45
@@ -783,7 +792,7 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 s.sty"
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen115
+\@linkdim=\dimen116
 \Hy@linkcounter=\count101
 \Hy@pagecounter=\count102
 
@@ -819,10 +828,10 @@ Package hyperref Info: Bookmarks ON on input line 4772.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5125.
-\XeTeXLinkMargin=\dimen116
+\XeTeXLinkMargin=\dimen117
 \Fld@menulength=\count105
-\Field@Width=\dimen117
-\Fld@charsize=\dimen118
+\Field@Width=\dimen118
+\Fld@charsize=\dimen119
 Package hyperref Info: Hyper figures OFF on input line 6380.
 Package hyperref Info: Link nesting OFF on input line 6385.
 Package hyperref Info: Hyper index ON on input line 6388.
@@ -858,14 +867,14 @@ Package: geometry 2018/04/16 v5.8 Page Geometry
 \Gm@cnth=\count111
 \Gm@cntv=\count112
 \c@Gm@tempcnt=\count113
-\Gm@bindingoffset=\dimen119
-\Gm@wd@mp=\dimen120
-\Gm@odd@mp=\dimen121
-\Gm@even@mp=\dimen122
-\Gm@layoutwidth=\dimen123
-\Gm@layoutheight=\dimen124
-\Gm@layouthoffset=\dimen125
-\Gm@layoutvoffset=\dimen126
+\Gm@bindingoffset=\dimen120
+\Gm@wd@mp=\dimen121
+\Gm@odd@mp=\dimen122
+\Gm@even@mp=\dimen123
+\Gm@layoutwidth=\dimen124
+\Gm@layoutheight=\dimen125
+\Gm@layouthoffset=\dimen126
+\Gm@layoutvoffset=\dimen127
 \Gm@dimlist=\toks23
 
 ("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry
@@ -878,34 +887,34 @@ File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ))
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
  (C:\Users\Lenovo\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
-\scratchdimen=\dimen127
+\scratchdimen=\dimen128
 \scratchbox=\box28
 \nofMPsegments=\count115
 \nofMParguments=\count116
 \everyMPshowfont=\toks24
 \MPscratchCnt=\count117
-\MPscratchDim=\dimen128
+\MPscratchDim=\dimen129
 \MPnumerator=\count118
 \makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks25
@@ -925,7 +934,7 @@ Package grfext Info: Graphics extension search list:
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 24.
+Package hyperref Info: Link coloring OFF on input line 20.
 
 ("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\nameref.
 sty"
@@ -937,9 +946,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count120
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
-LaTeX Info: Redefining \nameref on input line 24.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
  (document.out) (document.out)
 \@outlinefile=\write3
 \openout3 = `document.out'.
@@ -953,14 +962,14 @@ LaTeX Info: Redefining \nameref on input line 24.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(71.13188pt, 497.92325pt, 28.45274pt)
+* h-part:(L,W,R)=(85.35826pt, 483.69687pt, 28.45274pt)
 * v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=497.92325pt
+* \textwidth=483.69687pt
 * \textheight=731.23584pt
-* \oddsidemargin=-1.1381pt
-* \evensidemargin=-1.1381pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
 * \topmargin=-54.36449pt
 * \headheight=14.0pt
 * \headsep=25.0pt
@@ -979,6 +988,27 @@ LaTeX Info: Redefining \nameref on input line 24.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+
+LaTeX Font Warning: Font shape `T2A/cmr/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 24.
+
+
+LaTeX Font Warning: Font shape `T2A/cmr/bx/n' in size <13> not available
+(Font)              size <12> substituted on input line 25.
+
+
+LaTeX Font Warning: Font shape `T2A/cmr/m/n' in size <18> not available
+(Font)              size <17.28> substituted on input line 34.
+
+
+LaTeX Font Warning: Font shape `T2A/cmr/bx/n' in size <18> not available
+(Font)              size <17.28> substituted on input line 36.
+
+
+LaTeX Font Warning: Font shape `T2A/cmr/m/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 38.
+
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 45.
 LaTeX Font Info:    Try loading font information for U+msa on input line 45.
 ("C:\Users\Lenovo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -988,79 +1018,53 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 45.
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
-
-Underfull \hbox (badness 1406) in paragraph at lines 51--52
-[]\T2A/cmr/m/n/14.4 специальность "при-клад-ная ма-те-ма-ти-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 51--52
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-
- []
-
-
-Overfull \hbox (30.92334pt too wide) in paragraph at lines 45--61
-[][] 
+Overfull \hbox (0.31659pt too wide) in paragraph at lines 43--64
+   []
  []
 
 [1
 
 {C:/Users/Lenovo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 (document.toc
-Overfull \hbox (16.51898pt too wide) in paragraph at lines 6--6
- [] [][]\T2A/cmr/bx/n/14.4 ПОСТРОЕНИЕ МАТ-РИ-ЦЫ ПЕ-РЕ-ХОД-НЫХ ВЕ-РО-ЯТ-НО-СТЕЙ[
-] []  
- []
-
-
-Overfull \hbox (12.7845pt too wide) in paragraph at lines 13--13
- [] [][]\T2A/cmr/bx/n/14.4 АНАЛИЗ ХА-РАК-ТЕ-РИ-СТИК ПРО-ИЗ-ВО-ДИ-ТЕЛЬ-НО-СТИ СИ
-- 
- []
-
-
-Overfull \hbox (0.69319pt too wide) in paragraph at lines 20--20
- [][] [][]\T2A/cmr/m/n/14.4 Вероятность про-стоя си-сте-мы по при-чине от-сут-с
-твия еди-ниц энер- 
+Overfull \hbox (6.43112pt too wide) in paragraph at lines 2--2
+  [][]\T2A/cmr/bx/n/14.4 МАТЕМАТИЧЕСКАЯ МО-ДЕЛЬ СИ-СТЕ-МЫ MAP|G|1 С ГЕ- 
  []
 
 )
 \tf@toc=\write4
 \openout4 = `document.toc'.
 
- [3] [4]
-Overfull \hbox (13.06447pt too wide) in paragraph at lines 126--127
-[]\T2A/cmr/m/n/17.28 Вероятность по-ступ-ле-ния 0 за-про-сов за вре-мя $\OML/cm
-m/m/it/17.28 t$ \T2A/cmr/m/n/17.28 име-ет вид $\OML/cmm/m/it/17.28 P\OT1/cmr/m/
-n/17.28 (0\OML/cmm/m/it/17.28 ; t\OT1/cmr/m/n/17.28 ) =
+ [3]
+Overfull \hbox (12.54411pt too wide) in paragraph at lines 116--117
+[]\T2A/cmr/m/n/17.28 Математические мо-де-ли си-стем мас-со-во-го об-слу-жи-ва-
+ния (СМО)
  []
 
-<img139.jpg, id=141, 314.82pt x 99.99pt>
+
+Overfull \hbox (13.78072pt too wide) in paragraph at lines 118--118
+[]\T2A/cmr/bx/n/20.74 МАТЕМАТИЧЕСКАЯ МО-ДЕЛЬ СИ-СТЕ-МЫ
+ []
+
+
+Overfull \hbox (1.76167pt too wide) in paragraph at lines 120--131
+\T2A/cmr/m/n/17.28 ном пуас-со-нов-ском(как без-услов-ную ве-ро-ят-ность), по-с
+коль-ку чис-
+ []
+
+[4]
+<img139.jpg, id=144, 314.82pt x 99.99pt>
 File: img139.jpg Graphic file (type jpg)
 <use img139.jpg>
-Package pdftex.def Info: img139.jpg  used on input line 138.
+Package pdftex.def Info: img139.jpg  used on input line 144.
 (pdftex.def)             Requested size: 314.81923pt x 99.98975pt.
+
+Overfull \hbox (1.53284pt too wide) in paragraph at lines 139--149
+\T2A/cmr/m/n/17.28 Для об-слу-жи-ва-ния од-но-го за-про-са необ-хо-ди-ма од-на 
+еди-ни-ца энер-
+ []
+
 [5] [6 <./img139.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
@@ -1068,183 +1072,226 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 189.
+(amsmath)                 on input line 195.
 
-[8]
-Overfull \hbox (4.2221pt too wide) in paragraph at lines 234--237
-\T2A/cmr/m/n/17.28 Данный про-цесс яв-ля-ет-ся немар-ков-ским. Для его ис-сле-д
-о-ва-ния при-
+[8] [9] [10]
+Overfull \hbox (6.50537pt too wide) in paragraph at lines 272--272
+[]\T2A/cmr/bx/n/20.74 ПОСТРОЕНИЕ МАТ-РИ-ЦЫ ПЕ-РЕ-ХОД-НЫХ
  []
 
 
-Overfull \hbox (1.06424pt too wide) in paragraph at lines 234--237
-\T2A/cmr/m/n/17.28 ме-ним ме-тод вло-жен-ных ЦМ. Бу-дем рас-смат-ри-вать по-ве-
-де-ние СМО
+Overfull \hbox (37.29877pt too wide) in paragraph at lines 275--293
+\T2A/cmr/m/n/17.28 эле-мен-та-ми ко-то-рых бу-дут пе-ре-ход-ные ве-ро-ят-но-сти
+ $\OML/cmm/m/it/17.28 P []$
  []
 
-[9] [10] [11]
+[11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 288.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 288.
+(hyperref)                removing `math shift' on input line 294.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 288.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 289--309
-
- []
-
-[12]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 309.
+(hyperref)                removing `subscript' on input line 294.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 309.
+(hyperref)                removing `math shift' on input line 294.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 309.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 310--320
+Underfull \hbox (badness 10000) in paragraph at lines 295--315
 
  []
 
+[12] [13]
 
-Underfull \hbox (badness 10000) in paragraph at lines 310--320
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 315.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 315.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 315.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--326
 
  []
 
-[13]
-Overfull \hbox (11.88077pt too wide) in paragraph at lines 331--331
-[]\T2A/cmr/bx/n/20.74 СТАЦИОНАРНОЕ РАС-ПРЕ-ДЕ-ЛЕ-НИЕ ВЕ-РО-
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--326
+
  []
 
 
-LaTeX Warning: Command \cyri invalid in math mode on input line 337.
+LaTeX Warning: Command \cyri invalid in math mode on input line 343.
 
 Missing character: There is no и in font cmr17!
 
-Overfull \hbox (7.60284pt too wide) in paragraph at lines 333--342
-\T2A/cmr/m/n/17.28 Условие эр-го-дич-но-сти мож-но трак-то-вать сле-ду-ю-щим об
--ра-зом - усло-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--342
+Underfull \hbox (badness 10000) in paragraph at lines 339--348
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 342--354
+Underfull \hbox (badness 10000) in paragraph at lines 348--360
 
  []
 
-[15] [16] [17] [18] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 486--488
 
+Overfull \hbox (5.17178pt too wide) in paragraph at lines 360--384
+\T2A/cmr/m/n/17.28 где $\OML/cmm/m/it/17.28 $ \T2A/cmr/m/n/17.28 - век-тор ста
+-ци-о-нар-но-го рас-пре-де-ле-ния про-цес-са $\OML/cmm/m/it/17.28 MAP$ $[];  t
+ \OMS/cmsy/m/n/17.28 
  []
 
-<11.png, id=240, 803.0pt x 803.0pt>
-File: 11.png Graphic file (type png)
-<use 11.png>
-Package pdftex.def Info: 11.png  used on input line 502.
-(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
-[20] [21 <./11.png (PNG copy)>]
-<1.png, id=250, 242.70676pt x 304.13625pt>
+[15] [16]
+Overfull \hbox (0.35825pt too wide) in paragraph at lines 404--405
+[]\T2A/cmr/m/n/17.28 Учитывая ква-зи-теп-ли-це-вость рас-смат-ри-ва-е-мой ЦМ, м
+ож-но за-
+ []
+
+[17] [18] [19]
+Overfull \hbox (3.78714pt too wide) in paragraph at lines 487--489
+\T2A/cmr/m/n/17.28 Вероятность про-стоя си-сте-мы по при-чине от-сут-ствия еди-
+ниц энер-
+ []
+
+[20]
+<11.jpg, id=247, 803.0pt x 803.0pt>
+File: 11.jpg Graphic file (type jpg)
+<use 11.jpg>
+Package pdftex.def Info: 11.jpg  used on input line 508.
+(pdftex.def)             Requested size: 483.69687pt x 483.7029pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[21]
+<1.png, id=252, 242.70676pt x 304.13625pt>
 File: 1.png Graphic file (type png)
 <use 1.png>
-Package pdftex.def Info: 1.png  used on input line 520.
+Package pdftex.def Info: 1.png  used on input line 526.
 (pdftex.def)             Requested size: 242.70615pt x 304.1355pt.
- [22 <./1.png>]
-<12.png, id=257, 803.0pt x 803.0pt>
-File: 12.png Graphic file (type png)
-<use 12.png>
-Package pdftex.def Info: 12.png  used on input line 528.
-(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
- [23 <./12.png (PNG copy)>]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22]
+<12.jpg, id=258, 803.0pt x 803.0pt>
+File: 12.jpg Graphic file (type jpg)
+<use 12.jpg>
+Package pdftex.def Info: 12.jpg  used on input line 534.
+(pdftex.def)             Requested size: 483.69687pt x 483.7029pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[23]
 <2.png, id=263, 244.5135pt x 307.1475pt>
 File: 2.png Graphic file (type png)
 <use 2.png>
-Package pdftex.def Info: 2.png  used on input line 546.
+Package pdftex.def Info: 2.png  used on input line 552.
 (pdftex.def)             Requested size: 244.5129pt x 307.14674pt.
 
-[24 <./2.png>]
-<13.png, id=269, 803.0pt x 803.0pt>
-File: 13.png Graphic file (type png)
-<use 13.png>
-Package pdftex.def Info: 13.png  used on input line 554.
-(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
- [25 <./13.png (PNG copy)>]
-<3.png, id=276, 243.91125pt x 308.352pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[24]
+<13.jpg, id=268, 803.0pt x 803.0pt>
+File: 13.jpg Graphic file (type jpg)
+<use 13.jpg>
+Package pdftex.def Info: 13.jpg  used on input line 560.
+(pdftex.def)             Requested size: 483.69687pt x 483.7029pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[25]
+<3.png, id=274, 243.91125pt x 308.352pt>
 File: 3.png Graphic file (type png)
 <use 3.png>
-Package pdftex.def Info: 3.png  used on input line 576.
+Package pdftex.def Info: 3.png  used on input line 582.
 (pdftex.def)             Requested size: 243.91064pt x 308.35124pt.
- [26 <./3.png>]
-<14.png, id=282, 803.0pt x 803.0pt>
-File: 14.png Graphic file (type png)
-<use 14.png>
-Package pdftex.def Info: 14.png  used on input line 584.
-(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
- [27 <./14.png (PNG copy)>]
-<4.png, id=288, 239.6955pt x 304.7385pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[26]
+<14.jpg, id=279, 803.0pt x 803.0pt>
+File: 14.jpg Graphic file (type jpg)
+<use 14.jpg>
+Package pdftex.def Info: 14.jpg  used on input line 590.
+(pdftex.def)             Requested size: 483.69687pt x 483.7029pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[27]
+<4.png, id=284, 239.6955pt x 304.7385pt>
 File: 4.png Graphic file (type png)
 <use 4.png>
-Package pdftex.def Info: 4.png  used on input line 605.
+Package pdftex.def Info: 4.png  used on input line 611.
 (pdftex.def)             Requested size: 239.6949pt x 304.73775pt.
- [28 <./4.png>]
-<15.png, id=294, 803.0pt x 803.0pt>
-File: 15.png Graphic file (type png)
-<use 15.png>
-Package pdftex.def Info: 15.png  used on input line 612.
-(pdftex.def)             Requested size: 497.92325pt x 497.94063pt.
- [29 <./15.png (PNG copy)>] [30]
-<5.png, id=304, 242.70676pt x 305.34074pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[28]
+<15.jpg, id=289, 803.0pt x 803.0pt>
+File: 15.jpg Graphic file (type jpg)
+<use 15.jpg>
+Package pdftex.def Info: 15.jpg  used on input line 618.
+(pdftex.def)             Requested size: 483.69687pt x 483.7029pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[29]
+<5.png, id=294, 242.70676pt x 305.34074pt>
 File: 5.png Graphic file (type png)
 <use 5.png>
-Package pdftex.def Info: 5.png  used on input line 636.
+Package pdftex.def Info: 5.png  used on input line 642.
 (pdftex.def)             Requested size: 242.70615pt x 305.34pt.
- [31 <./5.png>] [32]
-[33]
-Underfull \hbox (badness 1226) in paragraph at lines 663--666
-[]\T2A/cmr/m/n/17.28 Klimenok V.I., Dudin A.N. Multi-dimensional asymptotically
 
- []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 667.
-[34]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 667.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[30] [31] [32]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 673.
+ [33] [34 <./11.jpg>] [35 <./1.png>] [36 <./12.jpg>] [37 <./2.png>] [38 <./13.j
+pg>] [39 <./3.png>] [40 <./14.jpg>] [41 <./4.png>] [42 <./15.jpg>] [43 <./5.png
+>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 673.
  (document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 667.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 667.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 673.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 673.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 96EA81FA218C57B86B49EDA8FDE2F353;7618.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 667.
+(rerunfilecheck)             Checksum: BF76BD322C88D6B1CBB06ECB67E3AD1F;7618.
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.28pt have occurred.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 673.
  ) 
 Here is how much of TeX's memory you used:
- 11695 strings out of 493312
- 160509 string characters out of 3134143
- 252303 words of memory out of 3000000
- 15027 multiletter control sequences out of 15000+200000
- 17843 words of font info for 53 fonts, out of 3000000 for 9000
+ 11737 strings out of 493312
+ 161223 string characters out of 3134143
+ 252393 words of memory out of 3000000
+ 15054 multiletter control sequences out of 15000+200000
+ 19854 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,10n,35p,3140b,440s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 28i,10n,35p,3140b,442s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Lenovo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\l
-arm1728.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a
+abx1440.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a
 \dpi600\labx2074.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
-lh\lh-t2a\dpi600\lati1440.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\2.9\fonts\p
-k\ljfour\lh\lh-t2a\dpi600\labx1728.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\2.
-9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk> <C:\Users\Lenovo\AppData\Local\
-MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk><C:/Users/Lenovo/AppDat
+lh\lh-t2a\dpi600\larm1440.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\2.9\fonts\p
+k\ljfour\lh\lh-t2a\dpi600\larm1728.pk> <C:\Users\Lenovo\AppData\Local\MiKTeX\2.
+9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1728.pk> <C:\Users\Lenovo\AppData\Local\
+MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1200.pk><C:/Users/Lenovo/AppDat
 a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users
 /Lenovo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10
 .pfb><C:/Users/Lenovo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
@@ -1255,9 +1302,9 @@ rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Lenovo/Ap
 pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Us
 ers/Lenovo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y10.pfb>
-Output written on document.pdf (34 pages, 626850 bytes).
+Output written on document.pdf (43 pages, 738989 bytes).
 PDF statistics:
- 788 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
+ 872 PDF objects out of 1000 (max. 8388607)
+ 93 named destinations out of 1000 (max. 500000)
  224 words of extra memory for PDF output out of 10000 (max. 10000000)
 
