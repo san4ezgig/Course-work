@@ -13,6 +13,7 @@
 \definecolor{urlcolor}{rgb}{0, 0, 0} % цвет гиперссылок
 \renewcommand
 \hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+\selectlanguage{russian}
 \linespread{1}
 \usepackage[left=3cm,right=1cm, top=2cm, bottom=2cm, bindingoffset=0cm]{geometry}
 \usepackage{xcolor}
@@ -464,7 +465,209 @@ G = \sum\limits_{j = 0}^{\infty} Y_j G^j.
 	\item Находим вектор $\pi_0$ как единственное решение системы (\ref{eq12}), (\ref{eq13}).
 	\item Ищем необходимое число векторов $\pi_i$ по формулам (\ref{eq10}).
 \end{enumerate}
-\pagebreak
+
+\subsection{Стационарное распределение в произвольный момент времени}
+Обозначим через $\tilde {V}_j $ матрицу переходных вероятностей марковского процесса $\{i_t, k_t, \nu_t\}, t\geq0,$ с момента начала обслуживания, когда процесс находился в состоянии со значение $ 0 $ счетного компонента в произвольный момент, предшествующий следующему обновлению, когда процесс находится в состоянии со значением $ j $ счетного компонента.
+	
+Пусть также $\tilde {Y}_{i, j}$ будет матрицей переходных вероятностей марковского процесса $\{i_t, k_t, \nu_t\}, t\geq0, $ с момента начала обслуживания, когда процесс находился в состоянии со значением $i > 0 $ счетного компонента до произвольного момента, предшествующего следующему обновлению, когда процесс находится в состоянии со значением $ j $ счетного компонента.
+		
+Обозначим через $ {p}_j, j \geq 0, $ стационарное распределение системы в произвольный момент времени.
+
+{\bf Лемма 2}. Матрицы $\tilde {V}_j, j\geq0,$  считаются следующим образом:
+
+$$
+\tilde {V}_0 =\left(\begin{array}{ccccccc}
+\tilde {V}_{0,0}^{0}     &  \tilde {V}_{0,1}^{0}    &  \tilde {V}_{0,2}^{0}  & \ldots  &  \tilde {V}_{0,K-1}^{0}&   \tilde {V}_{0,K}^{0}  \\
+O    &       \tilde {V}_{1,1}^{0}     &  \tilde {V}_{1,2}^{0}    &  \ldots  &   \tilde {V}_{1,K-1}^{0}&   \tilde {V}_{1,K}^{0} \\
+O& O    &       \tilde {V}_{2,2}^{0}        &  \ldots  &   \tilde {V}_{2,K-1}^{0}&   \tilde {V}_{2,K}^{0}   \\
+\vdots & \vdots &\vdots& \vdots& \vdots& \vdots         \\
+O& O    &      O        &  \ldots  &   O&   \tilde {V}_{K,K}^{0}   \\
+\end{array} \right),
+$$
+
+где
+
+
+$$
+\tilde {V}_{k,k'}^0=\gamma^{k'-k}(\gamma I-D_0)^{-(k'-k+1)}, \,\,0\leq k\leq k'\leq K-1; \eqno(1)
+$$
+
+
+$$
+\tilde {V}_{k,K}^0=(-D_0)^{-1}-\sum\limits_{l=0}^{K-k-1}\gamma^l(\gamma I-D_0)^{-(l+1)}\eqno(2)
+$$
+
+В случае $j>0$ матрицы $\tilde {V}_j$ имеют следуюзую блочную структуру:
+
+$$
+\tilde {V}_j =\left(\begin{array}{ccccccc}
+\tilde {V}_{0,0}^{j}     &  \tilde {V}_{0,1}^{j}    &  \tilde {V}_{0,2}^{j}  & \ldots  &  \tilde {V}_{0,K-2}^{j}&    \tilde {V}_{0,K-1}^{j}&   \tilde {V}_{0,K}^{j}  \\
+\tilde {V}_{1,0}^{j}    &       \tilde {V}_{1,1}^{j}     &  \tilde {V}_{1,2}^{j}    &  \ldots  &   \tilde {V}_{1,K-2}^{j}& \tilde {V}_{1,K-1}^{j}&   \tilde {V}_{1,K}^{j} \\
+O&  \tilde {V}_{2,1}^{j}    &       \tilde {V}_{2,2}^{j}        &  \ldots  &   \tilde {V}_{2,K-2}^{j}& \tilde {V}_{2,K-1}^{j}&   \tilde {V}_{2,K}^{j}   \\
+\vdots & \vdots &\vdots& \vdots& \vdots& \vdots         \\
+O& O    &      O        &  \ldots  &    O& \tilde {V}_{K,K-1}^{j}&   \tilde {V}_{K,K}^{j}   \\
+\end{array} \right),
+$$
+
+где
+
+$$\tilde {V}_{0,k'}^{j}=\delta_{0, k'}\gamma N(j)+
+\biggl[N(0)\sum\limits_{l=0}^{k'}M(l) \tilde{\Phi}(j-1,k'-l)+$$ \\
+$$M(0)\sum\limits_{l=0}^{j-1} N(l) \tilde{\Phi}(j-l-1, k'), \eqno(3)
+$$
+$$
+j\geq1, 0\leq k'\leq K-2,
+$$
+
+
+$$ \tilde {V}_{0,K-1}^{j} = \delta_{0, K-1}\gamma N(j)+
+$$
+$$
++ N(0)[\sum\limits_{l=0}^{K-1}
+M(l)  \tilde{\Phi}(j-1,K-1-l)+\hat{M}(K)\tilde{\Phi}(j-1,0)]+$$
+$$M(0)\sum\limits_{l=0}^{j-1}N(l)\tilde{\Phi}(j-l-1,K-1), \eqno(4)
+$$
+$$
+j\geq1, 0\leq k'\leq K-2,
+$$
+
+
+$$
+\tilde {V}_{0,K}^{j}= N(0)[\sum\limits_{l=0}^{K-1} M(l)\tilde{\hat\Phi}(j-1, K-l))]+
+\hat{M}(K)\tilde{\hat\Phi}(j-1,1)
+$$
+$$
++ M(0)\sum\limits_{l=0}^{j-1}N(l)\tilde{\hat\Phi}(j-l-1, K), \eqno(5)
+$$
+$$
+j\geq 1;
+$$
+
+
+$$
+\tilde {V}_{k,k'}^{j}=
+\sum\limits_{l=0}^{k'-k+1} M(l)\tilde{\Phi}(j-1, k'-k-l+1),\eqno(6)
+$$
+$$
+k=\overline{1,K}, k-1\leq k'\leq K-2, j\geq1.
+$$
+
+$$
+V_{k,K-1}^{j}= \sum\limits_{l=0}^{K-k} M(l)\tilde{\Phi}(j-1,K-k-l)+
+\hat{M}(K-k+1)\tilde{\Phi}(j-1,0),\eqno(7)
+$$
+$$
+k=\overline{1,K},  j\geq1.
+$$
+
+$$
+\tilde {V}_{k,K}^{j}= \sum\limits_{l=0}^{K-k}M(l) \tilde{\hat \Phi}(j-1, K-k-l+1)
++ \hat{M}(K-k+1)\tilde{\hat \Phi}(j-1,1),  \eqno(8)
+$$
+$$
+j\geq0, k=\overline{1, K},
+$$
+где
+
+$$ \tilde{\Phi}(i,k) = \int\limits_{0}^{\infty} P(i,t)\varphi_{k}(t)(1-B(t))dt\; i \geq 0,\; k \geq 0, \eqno(9)$$
+
+$$ \tilde{\hat\Phi}(i, k) = \int\limits_{0}^{\infty}  P(i, t) \hat\varphi_{k}(t)(1-B(t))dt,\; i \geq 0,\; k \geq 0.  \eqno(10)$$
+
+
+
+Теперь перейду в нахождению матриц $\tilde{Y}_{i,j}$. Как это будет видно, матрицы  $\tilde{Y}_{i,j}$ зависят от значений $i, j$ только через разницу $j-i.$ Обозначу $r=j-i$ и $\tilde{Y}_r=(\tilde{Y}_{k,k'}^r)_{k,k'=0,K}. $
+
+Тогда имеет место следующее утверждение.
+
+{\bf Лемма 3.} Матрицы $\tilde{Y}_r$ имееют следующую структуру:
+
+
+$$
+\tilde{Y}_r =\left(\begin{array}{ccccccc}
+\tilde{Y}_{0,0}^r     & \tilde{Y}_{0,1}^r    &  \tilde{Y}_{0,2}^r  & \ldots  &  \tilde{Y}_{0,K-2}^r&    \tilde{Y}_{0,K-1}^r&   \tilde{Y}_{0,K}^r  \\
+\tilde{Y}_{1,0}^r    &       \tilde{Y}_{1,1}^r     &  \tilde{Y}_{1,2}^r    &  \ldots  &   \tilde{Y}_{1,K-2}^r& \tilde{Y}_{1,K-1}^r&   \tilde{Y}_{1,K}^r \\
+O&  \tilde{Y}_{2,1}^r    &       \tilde{Y}_{2,2}^r        &  \ldots  &   \tilde{Y}_{2,K-2}^r& \tilde{Y}_{2,K-1}^r&   \tilde{Y}_{2,K}^r   \\
+\vdots & \vdots &\vdots& \vdots& \vdots& \vdots         \\
+O& O    &      O        &  \ldots  &    O& \tilde{Y}_{K,K-1}^r&   \tilde{Y}_{K,K}^r   \\
+\end{array} \right), r\geq0,
+$$
+
+где
+
+$$
+\tilde{Y}_{0,k'}^{r}= \sum\limits_{l=0}^{r}N(l)\tilde{\Phi}(r-l,k'),
+k'=\overline{0,K-1}, r\geq0,\eqno(11)
+$$
+
+$$
+\tilde{Y}_{0,K}^{r}= \sum\limits_{l=0}^{r}N(l)\tilde{\hat\Phi}(r-l,K),
+r\geq0,\eqno(12)
+$$
+
+$$
+\tilde{Y}_{k,k'}^{r}= \tilde{\Phi}(r,k'-k+1),
+k=\overline{1,K}, k'=\overline{k-1,K-1},  r\geq0,\eqno(13)
+$$
+
+
+$$
+\tilde{Y}_{k,K}^{r}= \tilde{\hat\Phi}(r,K-k+1),
+k=\overline{1,K},  r\geq0.\eqno(14)
+$$
+
+
+
+{\bf Теорема 1.} Вектора ${\bf p}_j, j\geq 0, $ считаются через ${\pi}_i, i\geq 0,$ по формуле
+$$
+{\bf p}_j={\pi}_0 \tilde {V}_j+\sum\limits_{r=0}^{j-1}{ \pi}_{j-r}\tilde{Y}_r, \,  j\geq 0, \eqno(15)
+$$
+
+Таким образом, векторы ${\bf p}_j, j\geq 0,$ вычисляются по формуле (15). Единственный вопрос, как вычислить матрицы $\tilde{\Phi}(n,k)$ заданные интегралами (9). Рассмотрим случай \textbf {детерминированного распределения $B(t),$} i.e.,
+
+
+$$
+B(t)=\left\{
+\begin{array}{cc}
+0, t\leq b_1,
+\\
+1, t>b_1.
+\end{array}
+\right.
+$$
+
+Считая интеграл (9), перепишем формулу (9) как
+$$
+\tilde{\Phi}(n,k) = \int\limits_{0}^{\infty} P(n,t)\varphi_{k}(t)(1-B(t))dt=\int\limits_{0}^{b_1} P(n,t)\varphi_{k}(t)dt,\eqno(16)
+$$
+
+
+Для вычисления интеграла в (16) воспользуемся процедурой униформизации.
+
+Обозначим  $h=\max\limits_{i=\overline{0,W}}(-D_0)_{ii}$.
+
+Матрица  $P(n,t),\; n\ge 1,$ равна:
+$$
+P(n,t)=\sum_{j=0}^{\infty}e^{-h t}{(h
+t)^j\over j!}K_n^{(j)},\; n\ge 0,  \eqno(17)
+$$
+
+Подставляя выражение (17) для $P(n, t $ и выражение для $\varphi_ {k} (t) $ в (16) и упрощая, получаем следующие соотношения:
+$$
+\tilde{\Phi}(n,k)=\sum\limits_{j=0}^\infty K_n^{(j)} \frac{h^j\gamma^k}{j!k!} \int\limits_{0}^{b_1} e^{-(h+\gamma)t}t^{j+k}dt=
+$$
+$$=\sum\limits_{j=0}^\infty K_n^{(j)} \frac{h^j\gamma^k}{j!k!} \biggl[ \frac{(j+k)!}{(h+\gamma)^{j+k+1}}-e^{-b_1(h+\gamma)}\sum\limits_{l=0}^{j+k}\frac{(j+k)!}{l!}
+\frac{b_1^l}{(h+\gamma)^{j+k-l+1}}\biggr]=
+$$
+$$
+=\sum\limits_{j=0}^\infty K_n^{(j)} \frac{h^j\gamma^k}{j!k!}\frac{(j+k)!}{(h+\gamma)^{j+k+1}}\biggl[ 1-e^{-b_1(h+\gamma)}\sum\limits_{l=0}^{j+k}\frac{[b_1(h+\gamma)]^l}{l!}
+\biggr]=
+$$
+$$=\frac{1}{(h+\gamma) k!}
+\biggl(\frac{\gamma}{h+\gamma}\biggr)^k
+\sum\limits_{j=0}^\infty K_n^{(j)}\frac{(j+k)!}{j!}
+\biggl({\frac{h}{h+\gamma}}\biggr)^j = $$ $$=\biggl[ 1-e^{-b_1(h+\gamma)}\sum\limits_{l=0}^{j+k}\frac{[b_1(h+\gamma)]^l}{l!}
+\biggr].
+$$
 
 \begin{flushleft}
 	\section{АНАЛИЗ ХАРАКТЕРИСТИК ПРОИЗВОДИТЕЛЬНОСТИ СИСТЕМЫ}
@@ -487,9 +690,11 @@ $$P_0^{custom} = \pi_0 e.$$
 $$P_0^{energy} = \sum\limits_{i = 0}^{n} \pi_{i}(0)e.$$
 Вероятность простоя системы по причине отсутствия единиц энергии в буфере:
 $$P_{idle} = \sum\limits_{i = 1}^{n} \pi_{i}(0)e,$$.
+Среднее количество запросов в системе в произвольный момент времени: 
+$$\tilde{L} = \sum\limits_{j = 0}^{n} j \pi_j e,$$
 
 \subsection{Численные характеристики системы}
-Рассмотрим $MAP$-поток, который определяется матрицами $D_{0}$ и $D_{1}$, имеет среднюю интенсивность $\lambda = 0.4$ и интенсивностью потока энергии $\gamma = 0.3$.
+Рассмотрим систему $MAP|G|1$, поток заявок которой определяется матрицами $D_{0}$ и $D_{1}$, имеет среднюю интенсивность $\lambda = 0.4$, а интенсивностью потока энергии $\gamma = 0.3$. 
 \\
 $D_{0} = \begin{pmatrix}
 -0.405780& 0\\
@@ -499,150 +704,113 @@ $D_{1} = \begin{pmatrix}
 0.403080& 0.002700\\
 0.007338& 0.005835 
 \end{pmatrix}$ \\
-Вмести с ним рассмотрим стационарный пуассоновский поток, с интенсивностью $\lambda = 0.4$ и интенсивностью потока энергии $\gamma = 0.3$.
+Вмести с ней рассмотрим систему $M|G|1$, с интенсивностью потока запросов $\lambda = 0.4$ и интенсивностью потока энергии $\gamma = 0.3$.
+\newpage
 
 \subsection{Среднее количество запросов в системе}
 График $L$ для значений $k$ $($от $1$ до $20$ с шагом $1)$ и  $T$ (от $0.5$ до $2$ с шагом $0.5$).
 
+
+
 \begin{figure}[h]
-	\center{\includegraphics[width=1\linewidth]{11.jpg}}
-	\caption{Среднее количество запросов в системе}
+	\center{\includegraphics[width=0.9\linewidth]{11.jpg}}
+	\caption{Среднее количество запросов в системе $MAP|G|1$}
 	\label{ris2}
 \end{figure}
-
-
-Среднее количество запросов в системе увеличивается по мере возрастания времени обслуживания. \pagebreak
-
-\textbf{Входные данные:}
-
-
-$K: 1, 2, 3, \ldots, 20$
-
-$T: 0.5, 1.0, 1.5, 2$
-
-$Accuracy: 0.001$
-\\
 \begin{figure}[h]
-	\center{\includegraphics[scale=1.0]{1.png}}
-\end{figure}
-\pagebreak
-
-\begin{flushleft}\subsection{Среднее количество единиц энергии в буфере}\end{flushleft}
-График $N$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
-
-\begin{figure}[h!]
-	\center{\includegraphics[width=1\linewidth]{12.jpg}}
-	\caption{Среднее количество единиц энергии в буфере}
+	\center{\includegraphics[width=0.9\linewidth]{21.jpg}}
+	\caption{Среднее количество запросов в системе $M|G|1$}
 	\label{ris3}
 \end{figure}
-
-Среднее количество единиц энергии в буфере увеличивается с возрастанием времени обслуживания в системе. 
 \pagebreak
+Среднее количество запросов уменьшается с увеличением объема буфера и увеличивается по мере возрастания времени обслуживания.
+\newpage
 
-\textbf{Входные данные:}
 
-
-$K: 1, 2, 3, \ldots, 20$
-
-$T: 0.5, 1.0$
-
-$Accuracy: 0.001$
+\subsection{Среднее количество единиц энергии в буфере}
+График $N$ для значений $k$ $($от $1$ до $20$ с шагом $1)$ и  $T$ $($от $0.5$ до $2$  с шагом $0.5)$.
 
 \begin{figure}[h]
-	\center{\includegraphics[scale=1]{2.png}}
-\end{figure}
-
-\pagebreak
-
-\subsection{Вероятность отсутствия запросов в системе}
-График $P_0^{custom}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
-\begin{figure}[h!]
-	\center{\includegraphics[width=1\linewidth]{13.jpg}}
-	\caption{Вероятность отсутствия запросов в системе}
+	\center{\includegraphics[width=0.9\linewidth]{12.jpg}}
+	\caption{Среднее количество единиц энергии в буфере в системе $MAP|G|1$}
 	\label{ris4}
 \end{figure}
 
-
-Вероятность отсутствия запросов в системе ведет себя довольно непредсказуемо, по графику видно, что она меньше всего при наименьшем времени обслуживания, возможно не хватает энергии.
-
-\pagebreak
-\textbf{Входные данные:}
-
-$\lambda: 0.4$
-
-$\gamma: 0.3$
-
-$K: 1, 2, 3, \ldots, 20$
-
-$T: 0.5, 1.0$
-
-$Accuracy: 0.001$
-
 \begin{figure}[h]
-	\center{\includegraphics[scale=1]{3.png}}
-\end{figure}
-\pagebreak
-
-\subsection{Вероятность отсутствия единиц энергии в буфере}
-График $P_0^{energy}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
-
-\begin{figure}[h!]
-	\center{\includegraphics[width=1\linewidth]{14.jpg}}
-	\caption{Вероятность отсутствия единиц энергии в буфере}
+	\center{\includegraphics[width=0.9\linewidth]{22.jpg}}
+	\caption{Среднее количество единиц энергии в буфере в системе $M|G|1$}
 	\label{ris5}
 \end{figure}
 
-Вероятность отсутствия единиц энергии в буфере увеличивается по мере уменьшения времени обслуживания заявок системой. 
 
 \pagebreak
-\textbf{Входные данные:}
 
-$\lambda: 0.4$
+\newpage
 
-$\gamma: 0.3$
-
-$K: 1, 2, 3, \ldots, 20$
-
-$T: 0.5, 1.0$
-
-$Accuracy: 0.001$
-
+\subsection{Вероятность отсутствия запросов в системе}
+График $P_0^{custom}$ для значений $k$ $($от $1$ до $20$ с шагом $1)$ и  $T$ $($от $0.5$ до $2$  с шагом $0.5)$.
+\pagebreak
 \begin{figure}[h]
-	\center{\includegraphics[scale=1]{4.png}}
-\end{figure}
-
-\pagebreak
-\begin{flushleft}\subsection{Вероятность простоя системы по причине отсутствия единиц энергии в буфере}\end{flushleft}
-График $P_{idle}$ для значений $k$ $($от $1$ до $K$ с шагом $1)$ и  $T$ $($от $0.5$ до $T$  с шагом $0.5)$.
-\begin{figure}[h!]
-	\center{\includegraphics[width=1\linewidth]{15.jpg}}
-	\caption{Вероятность простоя системы по причине отсутствия единиц энергии в буфере}
+	\center{\includegraphics[width=0.9\linewidth]{13.jpg}}
+	\caption{Вероятность отсутствия запросов в системе  $MAP|G|1$}
 	\label{ris6}
 \end{figure}
-
-Вероятность простоя системы по причине отсутствия единиц энергии в буфере возрастает с уменьшением времени обслуживания. Другими словами - единицы энергии потребляются быстрее, что приводит к увеличению шанса простоя системы.
-
 \pagebreak
-
-\textbf{Входные данные:}
-
-$\lambda: 0.4$
-
-$\gamma: 0.3$
-
-$K: 1, 2, 3, \ldots, 20$
-
-$T: 0.5, 1.0$
-
-$Accuracy: 0.001$
-
-
-
 \begin{figure}[h]
-	\center{\includegraphics[scale=1]{5.png}}
+	\center{\includegraphics[width=0.9\linewidth]{23.jpg}}
+	\caption{Вероятность отсутствия запросов в системе $M|G|1$}
+	\label{ris7}
 \end{figure}
 \pagebreak
+\subsection{Вероятность отсутствия единиц энергии в буфере}
+График $P_0^{energy}$ для значений $k$ $($от $1$ до $20$ с шагом $1)$ и  $T$ $($от $0.5$ до $2$  с шагом $0.5)$.
 
+\begin{figure}[h!]
+	\center{\includegraphics[width=0.9\linewidth]{14.jpg}}
+	\caption{Вероятность отсутствия единиц энергии в буфере в системе  $MAP|G|1$}
+	\label{ris8}
+\end{figure}
+\pagebreak
+\begin{figure}[h!]
+	\center{\includegraphics[width=0.9\linewidth]{24.jpg}}
+	\caption{Вероятность отсутствия единиц энергии в буфере в системе $M|G|1$}
+	\label{ris9}
+\end{figure}
+\pagebreak
+\subsection{Вероятность простоя системы по причине отсутствия единиц энергии в буфере}
+График $P_{idle}$ для значений $k$ $($от $1$ до $20$ с шагом $1)$ и  $T$ $($от $0.5$ до $2$  с шагом $0.5)$.
+\begin{figure}[h!]
+	\center{\includegraphics[width=0.9\linewidth]{15.jpg}}
+	\caption{Вероятность простоя системы по причине отсутствия единиц энергии в буфере в системе  $MAP|G|1$}
+	\label{ris10}
+\end{figure}
+\begin{figure}[h!]
+	\center{\includegraphics[width=0.9\linewidth]{25.jpg}}
+	\caption{Вероятность простоя системы по причине отсутствия единиц энергии в буфере в системе $M|G|1$}
+	\label{ris11}
+\end{figure}
+
+\newpage
+
+\subsection{Среднее количество запросов в системе в произвольный момент времени}
+График $\tilde{L}$ для значений $k$ $($от $1$ до $20$ с шагом $1)$ и  $T$ $($от $0.5$ до $2$  с шагом $0.5)$.
+\pagebreak
+\begin{figure}[h!]
+	\center{\includegraphics[width=0.9\linewidth]{16.jpg}}
+	\caption{Среднее количество запросов в системе $MAP|G|1$ в произвольный момент времени}
+	\label{ris12}
+\end{figure}
+\pagebreak
+\begin{figure}[h!]
+	\center{\includegraphics[width=0.9\linewidth]{26.jpg}}
+	\caption{Среднее количество запросов в системе $M|G|1$ в произвольный момент времени}
+	\label{ris13}
+\end{figure}
+
+\pagebreak
+
+
+\newpage
 \subsection{Вывод по итогам анализа характеристик производительности}
 
 Путем сравнения характеристик производительности и выявления особенностей поведения системы можно повысить ее эффективность, повлияв на определенные параметры. Стоит отметить, что увеличение объема буфера энергии далеко не всегда способствует улучшению значения соответствующей характеристики т.к., начиная с определенного значения $K$, изменения достаточно малы и это экономически нецелесобразно, т.к не оказывает существенного влияния на работу системы.
@@ -661,6 +829,7 @@ $Accuracy: 0.001$
 		\item Исследована система массового обслуживания типа $MAP|G|1$. Найдены вероятности одношаговых переходов, а так же построена матрица переходных вероятностей. Проверено выполнение условия эргодичности и на основе этого найдено стационарное распределение вероятностей.
 		\item Разработана программная реализация предложенного метода нахождения стационарного распределения вероятностей на языке программирования Java.
 		\item На основе программной реализации метода нахождения стационарного распределения вероятностей найдены характеристики производительности искомой системы. Произведен их анализ и сделаны выводы. 
+		\item Найдены характеристики системы в произвольный момент времени. 
 	\end{enumerate}
 \end{flushleft}
 \newpage

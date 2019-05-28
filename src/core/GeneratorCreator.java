@@ -356,12 +356,12 @@ public class GeneratorCreator {
                 double valueUnderSum = Math.exp(tetta.multiply(t).doubleValue() * -1)
                         * Math.pow(tetta.multiply(t).doubleValue(), j)
                         / GeneratorCreator.factor(j);
+                valueUnderSum = (valueUnderSum == Double.POSITIVE_INFINITY || Double.isNaN(valueUnderSum) || valueUnderSum == Double.NEGATIVE_INFINITY) ? 0 : valueUnderSum;
                 val = val.multiply(valueOf(valueUnderSum));
                 sum = sum.add(val);
                 j++;
 
-                vallidness = val.squaredEuclidianNorm().doubleValue() >= accuracy.doubleValue();
-            } while (vallidness);
+            } while (val.squaredEuclidianNorm().doubleValue() >= accuracy.doubleValue());
             MatrixContainer.getPMatrix().put(hash, sum.clone());
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
@@ -407,7 +407,7 @@ public class GeneratorCreator {
         return result.multiply(gamma);
     }
 
-    private BigDecimal factor(BigDecimal n) {
+    public static BigDecimal factor(BigDecimal n) {
         if (n.signum() < 0) {
             throw new IllegalArgumentException("Negative value in factorial function.");
         }

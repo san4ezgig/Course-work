@@ -17,9 +17,9 @@ import static java.math.BigDecimal.*;
 
 public class Main {
 
-    private static double cKor(BigDecimal lambda, BigDecimalMatrix d0, BigDecimalMatrix d1) {
+    private static double cKor(BigDecimal lambda, BigDecimalMatrix d0, BigDecimalMatrix d1, int systemSize) {
         BigDecimal lambdaT = new BigDecimal(1 / lambda.doubleValue());
-        BigDecimalMatrix tetta = getTetta(d0, d1);
+        BigDecimalMatrix tetta = getTetta(d0, d1, systemSize);
         BigDecimalMatrix d0TNeg = (d0.multiply(new BigDecimal(-1).setScale(12, RoundingMode.HALF_UP))).inverse();
         BigDecimalMatrix e = BigDecimalMatrix.eCol(2, ONE);
         BigDecimal v = new BigDecimal(tetta.multiply(lambda.multiply(new BigDecimal(2))).multiply(d0TNeg).multiply(e).getElement(0, 0)
@@ -31,13 +31,23 @@ public class Main {
                 .subtract(lambdaT.pow(2))).doubleValue() / v.doubleValue();
     }
 
-    private static BigDecimalMatrix getTetta(BigDecimalMatrix d0, BigDecimalMatrix d1) {
-        BigDecimalMatrix D = d0.add(d1);
-        D.setElement(0, 0, new BigDecimal(1).setScale(12, RoundingMode.HALF_UP));
-        D.setElement(1, 0, new BigDecimal(1).setScale(12, RoundingMode.HALF_UP));
-        return new BigDecimalMatrix(new BigDecimal[][]{
-                {new BigDecimal(1), new BigDecimal(0)}
-        }, 6).multiply(D.inverse());
+    private static BigDecimalMatrix getTetta(BigDecimalMatrix d0, BigDecimalMatrix d1, int systemSize) {
+        switch (systemSize) {
+            case 1: {
+                return new BigDecimalMatrix(1, ONE, 12);
+            }
+            case 2: {
+                BigDecimalMatrix D = d0.add(d1);
+                D.setElement(0, 0, new BigDecimal(1).setScale(12, RoundingMode.HALF_UP));
+                D.setElement(1, 0, new BigDecimal(1).setScale(12, RoundingMode.HALF_UP));
+                return new BigDecimalMatrix(new BigDecimal[][]{
+                        {new BigDecimal(1), new BigDecimal(0)}
+                }, 6).multiply(D.inverse());
+            }
+            default: {
+                return new BigDecimalMatrix(1, ONE, 12);
+            }
+        }
     }
 
     private static BigDecimal sqrt(BigDecimal value) {
@@ -85,6 +95,11 @@ public class Main {
 
             chart.addSeries(iterator.next(), arrayOfPoints);
         }
+        chart.getStyler().setChartTitleFont(new Font(Font.MONOSPACED, Font.BOLD, 29));
+        chart.getStyler().setLegendFont(new Font(Font.SERIF, Font.PLAIN, 24));
+        chart.getStyler().setLegendSeriesLineLength(12);
+        chart.getStyler().setAxisTitleFont(new Font(Font.SANS_SERIF, Font.ITALIC, 30));
+        chart.getStyler().setAxisTickLabelsFont(new Font(Font.SERIF, Font.PLAIN, 26));
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -100,14 +115,12 @@ public class Main {
                 frame.add(chartPanel, BorderLayout.CENTER);
 
                 // label
-                JLabel label = new JLabel("Blah blah blah.", SwingConstants.CENTER);
-                frame.add(label, BorderLayout.SOUTH);
 
                 // Display the window.
                 frame.pack();
-                frame.setVisible(true);
+                //frame.setVisible(true);
                 try {
-                    //BitmapEncoder.saveBitmap(chart, "./" + (numberOfPerfomanceFunction + (systemSize == 1 ? 10 : 0)), BitmapEncoder.BitmapFormat.JPG);
+                    BitmapEncoder.saveBitmap(chart, "./" + (numberOfPerfomanceFunction + (systemSize == 1 ? 10 : 0)), BitmapEncoder.BitmapFormat.JPG);
 
                 } catch (Exception e) {
                     System.out.println(1);
@@ -123,6 +136,7 @@ public class Main {
         BigDecimal lambda = (new BigDecimal("0.3"));
         BigDecimal HALF = new BigDecimal("0.5");
         BigDecimal accuracy = new BigDecimal("0.000001");
+        //BigDecimal accuracy = new BigDecimal("0.0000000000000000000001");
         int systemSize = 2;
         BigDecimalMatrix d0, d1;
         switch (systemSize) {
@@ -156,11 +170,11 @@ public class Main {
         System.out.println(d0.add(d1).multiply(HALF));
         // Initital value sector
         System.out.println("tetta:");
-        System.out.println(getTetta(d0, d1));
+        System.out.println(getTetta(d0, d1, systemSize));
         // System.out.println(cKor(lambda, d0, d1));
         System.out.println();
         Test.runAllTests(gamma, lambda, d0, d1, accuracy, matrixExponent, systemSize);
-        System.out.println(ErgodicityCondition.getLambdaRestriction(ONE, gamma, 10));
+        // System.out.println(ErgodicityCondition.getLambdaRestriction(ONE, gamma, 10));
 
         MatrixContainer.reInit();
         GMatrixCreator gMatrixCreator;
@@ -174,9 +188,9 @@ public class Main {
 
         ArrayList<Double>[] paramsValueList = new ArrayList[4];
         ArrayList<String> nameOfLines = new ArrayList<>();
-        int numberOfPerfomanceFunction = 11;
+        int numberOfPerfomanceFunction = 13;
         //PP sector
-        /*for (int n = 0; n < 6; n++) {
+        for (int n = 0; n < 6; n++) {
             for (BigDecimal t = HALF, i = ZERO; t.compareTo(valueOf(2)) <= 0; t = t.add(HALF), i = i.add(ONE)) {
                 paramsValueList[i.intValue()] = new ArrayList<>();
                 nameOfLines.add(t.toString());
@@ -200,10 +214,11 @@ public class Main {
                 System.out.println(t + " Completed");
             }
             DrawGraphics(paramsValueList, nameOfLines, numberOfPerfomanceFunction, systemSize);
+            System.out.println(numberOfPerfomanceFunction + " Completed");
             numberOfPerfomanceFunction++;
-        }*/
+        }
 
-        for (int n = 0; n < 6; n++) {
+        /*for (int n = 0; n < 6; n++) {
             for (BigDecimal t = HALF, i = ZERO; t.compareTo(valueOf(2)) <= 0; t = t.add(HALF), i = i.add(ONE)) {
                 int k = 10;
                 BigDecimal lambdaRestriction = valueOf(ErgodicityCondition.getLambdaRestriction(t, gamma, k)).subtract(valueOf(0.0001));
@@ -235,7 +250,7 @@ public class Main {
             }
             DrawGraphics(paramsValueList, nameOfLines, numberOfPerfomanceFunction, systemSize);
             numberOfPerfomanceFunction++;
-        }
+        }*/
         //
         /*for (int n = 0; n < 5; n++) {
             for (BigDecimal coeff = valueOf(1), i = ZERO; coeff.compareTo(valueOf(2)) <= 0; coeff = coeff.add(valueOf(0.25)), i = i.add(ONE)) {

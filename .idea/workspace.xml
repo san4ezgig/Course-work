@@ -2,35 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eef21b55-213a-4f0a-bc7a-a376e078d157" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/11.png" beforeDir="false" afterPath="$PROJECT_DIR$/11.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/12.png" beforeDir="false" afterPath="$PROJECT_DIR$/12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/13.png" beforeDir="false" afterPath="$PROJECT_DIR$/13.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/14.png" beforeDir="false" afterPath="$PROJECT_DIR$/14.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/15.png" beforeDir="false" afterPath="$PROJECT_DIR$/15.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Excel_Data/2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Excel_Data/2.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GradWork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GradWork.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/12.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/13.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/14.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/15.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/15.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/16.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/16.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/21.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/21.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/21.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/22.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/22.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/23.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/23.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/23.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/24.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/24.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/25.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/25.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/26.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/26.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.aux" beforeDir="false" afterPath="$PROJECT_DIR$/document.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.log" beforeDir="false" afterPath="$PROJECT_DIR$/document.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document.out" beforeDir="false" afterPath="$PROJECT_DIR$/document.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/document.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/document.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document.tex" beforeDir="false" afterPath="$PROJECT_DIR$/document.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.toc" beforeDir="false" afterPath="$PROJECT_DIR$/document.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GradWork/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GradWork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/GeneratorCreator$MatrixElementCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/GeneratorCreator$MatrixElementCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator$MatrixElementCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator$MatrixElementCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/GeneratorCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/GeneratorCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/MatrixContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/MatrixContainer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/PerformanceParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/PerformanceParameters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/StationaryDistributionCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/StationaryDistributionCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/ErgodicityCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ErgodicityCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/GeneratorCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/GeneratorCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/MatrixContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/MatrixContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/PerformanceParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/PerformanceParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/StationaryDistributionCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/StationaryDistributionCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.log" beforeDir="false" afterPath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Аннотация_ПМ_7_Джига.tex" afterDir="false" />
     </list>
     <ignored path="GradWork.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="344" column="18" lean-forward="true" selection-start-line="344" selection-start-column="18" selection-end-line="344" selection-end-column="18" />
+            <state relative-caret-position="384">
+              <caret line="371" column="24" selection-start-line="371" selection-start-column="24" selection-end-line="371" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,16 +78,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/MatrixContainer.java">
+        <entry file="file://$PROJECT_DIR$/src/core/PerformanceParameters.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="71" column="11" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
-              <folding>
-                <element signature="e#1562#1563#0" expanded="true" />
-                <element signature="e#1594#1595#0" expanded="true" />
-                <element signature="e#1875#1876#0" expanded="true" />
-                <element signature="e#1919#1920#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="388">
+              <caret line="72" column="49" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -80,8 +89,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="180" column="37" lean-forward="true" selection-start-line="180" selection-start-column="37" selection-end-line="180" selection-end-column="37" />
+            <state relative-caret-position="66">
+              <caret line="207" column="79" lean-forward="true" selection-start-line="207" selection-start-column="79" selection-end-line="207" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="34" column="118" selection-start-line="34" selection-start-column="118" selection-end-line="34" selection-end-column="118" />
+            <state relative-caret-position="1292">
+              <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,13 +111,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/ErgodicityCondition.java">
+        <entry file="file://$PROJECT_DIR$/src/kurs/ArrayMatrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="347">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -116,7 +122,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/PSlashMatrixCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
+            <state relative-caret-position="289">
               <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -128,8 +134,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/GeneratorCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="358" column="59" lean-forward="true" selection-start-line="358" selection-start-column="59" selection-end-line="358" selection-end-column="59" />
+            <state relative-caret-position="71">
+              <caret line="410" column="29" selection-start-line="410" selection-start-column="29" selection-end-line="410" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -192,9 +198,13 @@
       <find>put</find>
       <find>j == 0</find>
       <find>funcK</find>
+      <find>kronecker</find>
+      <find>VectorGraphicsEncoder</find>
+      <find>double</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Lenovo\Saved Games\GradWork\src</dir>
+      <dir>C:\Users\Lenovo\Saved Games\GradWork</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -209,20 +219,19 @@
         <option value="$PROJECT_DIR$/src/core/PhiMatrixCreator.java" />
         <option value="$PROJECT_DIR$/src/core/GMatrixCreator.java" />
         <option value="$PROJECT_DIR$/src/core/PSlashMatrixCreator.java" />
-        <option value="$PROJECT_DIR$/src/core/PerformanceParameters.java" />
         <option value="$PROJECT_DIR$/src/core/StationaryDistributionCreator.java" />
+        <option value="$PROJECT_DIR$/src/core/MatrixContainer.java" />
+        <option value="$PROJECT_DIR$/src/core/PerformanceParameters.java" />
         <option value="$PROJECT_DIR$/src/core/ErgodicityCondition.java" />
         <option value="$PROJECT_DIR$/src/core/Test.java" />
-        <option value="$PROJECT_DIR$/src/core/MatrixContainer.java" />
         <option value="$PROJECT_DIR$/src/core/GeneratorCreator.java" />
         <option value="$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="1935" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="width" value="1920" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
@@ -233,6 +242,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -276,13 +286,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558049618075" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558998336711" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/xchart-3.5.4.jar!/" />
@@ -585,18 +594,29 @@
       <workItem from="1557957984846" duration="2741000" />
       <workItem from="1557994687303" duration="590000" />
       <workItem from="1558033501966" duration="14424000" />
-      <workItem from="1558291390857" duration="13915000" />
+      <workItem from="1558291390857" duration="15325000" />
+      <workItem from="1558387775835" duration="1236000" />
+      <workItem from="1558443685585" duration="1840000" />
+      <workItem from="1558445655451" duration="309000" />
+      <workItem from="1558558110740" duration="3024000" />
+      <workItem from="1558646580355" duration="2082000" />
+      <workItem from="1558794003947" duration="5722000" />
+      <workItem from="1558826342240" duration="6545000" />
+      <workItem from="1558884101758" duration="1824000" />
+      <workItem from="1558905275233" duration="4287000" />
+      <workItem from="1558959132868" duration="1930000" />
+      <workItem from="1558983633242" duration="13155000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203243000" />
+    <option name="totallyTimeSpent" value="246607000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31946307" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3738255" />
       <window_info id="Structure" order="1" weight="0.24966443" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -605,11 +625,11 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49785176" visible="true" weight="0.36402267" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49785176" visible="true" weight="0.41926345" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.49150142" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5021482" side_tool="true" weight="0.3295583" />
@@ -722,13 +742,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/PerformanceParameters.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/math/BigDecimal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="49" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="49" />
+        <state relative-caret-position="141">
+          <caret line="1068" selection-start-line="1068" selection-end-line="1068" />
           <folding>
-            <element signature="e#3721#3722#0" expanded="true" />
-            <element signature="e#3788#3789#0" expanded="true" />
+            <element signature="e#31644#35374#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/MatrixContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="71" column="11" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+          <folding>
+            <element signature="e#1562#1563#0" expanded="true" />
+            <element signature="e#1594#1595#0" expanded="true" />
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#1919#1920#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ErgodicityCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -750,16 +792,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/kurs/BigDecimalMatrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="204" column="54" lean-forward="true" selection-start-line="204" selection-start-column="54" selection-end-line="204" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/PSlashMatrixCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
+        <state relative-caret-position="289">
           <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -767,10 +802,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/ErgodicityCondition.java">
+    <entry file="file://$PROJECT_DIR$/src/kurs/ArrayMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="347">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kurs/BigDecimalMatrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="214" column="45" lean-forward="true" selection-start-line="214" selection-start-column="45" selection-end-line="214" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/GeneratorCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="410" column="29" selection-start-line="410" selection-start-column="29" selection-end-line="410" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -779,61 +828,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="34" column="118" selection-start-line="34" selection-start-column="118" selection-end-line="34" selection-end-column="118" />
+        <state relative-caret-position="1292">
+          <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/GeneratorCreator.java">
+    <entry file="jar://$PROJECT_DIR$/xchart-3.5.4.jar!/org/knowm/xchart/VectorGraphicsEncoder.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="358" column="59" lean-forward="true" selection-start-line="358" selection-start-column="59" selection-end-line="358" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/math/BigDecimal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="1068" selection-start-line="1068" selection-end-line="1068" />
-          <folding>
-            <element signature="e#31644#35374#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/MatrixContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="71" column="11" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
-          <folding>
-            <element signature="e#1562#1563#0" expanded="true" />
-            <element signature="e#1594#1595#0" expanded="true" />
-            <element signature="e#1875#1876#0" expanded="true" />
-            <element signature="e#1919#1920#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="62" column="43" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="344" column="18" lean-forward="true" selection-start-line="344" selection-start-column="18" selection-end-line="344" selection-end-column="18" />
+        <state relative-caret-position="384">
+          <caret line="371" column="24" selection-start-line="371" selection-start-column="24" selection-end-line="371" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/PerformanceParameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="72" column="49" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="180" column="37" lean-forward="true" selection-start-line="180" selection-start-column="37" selection-end-line="180" selection-end-column="37" />
+        <state relative-caret-position="66">
+          <caret line="207" column="79" lean-forward="true" selection-start-line="207" selection-start-column="79" selection-end-line="207" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

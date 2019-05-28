@@ -1,0 +1,509 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+
+\usepackage{xcolor}
+
+\newcommand{\bs}{\boldsymbol}
+
+\begin{document}
+%
+\title{Analysis of $MAP/G/1$ queue with inventory and the model of the node of wireless sensor network with energy harvesting\thanks{The publication has been prepared with the support  of the  RUDN University Program 5-100}}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Dudin Alexander\inst{1,2} \and
+Dudin Sergey \inst{1,2} \and
+Dudina Olga\inst{1,2} \and
+Klimenok Valentina\inst{2}}
+%
+\authorrunning{A. Dudin et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Peoples Friendship University of Russia (RUDN University),
+6 Miklukho-Maklaya St, Moscow, 117198, Russia \and
+Belarusian State University, 4, Nezavisimosti Ave.,
+Minsk, 220030, Belarus
+\email{dudin-alexander@mail.ru}, \email{dudin85@mail.ru}, \email{dudina@bsu.by} , \email{vklimenok@yandex.ru} }
+%
+\maketitle              % typeset the header of the contribution
+%
+\begin{abstract}
+Queueing systems where certain inventory items are required to provide service to a customer become popular in the literature. Such systems are similar to analysed in the literature models with paired customers, assembly-like queues, passenger-taxi models, etc. During the last few years they are considered in context of  modelling operations of the node of wireless sensor network with energy harvesting.  Distinguishing feature of the model considered in this paper, besides the suggestion that arrival flow of customers is described by the Markovian Arrival Process,  is the assumption about a general distribution of the service time while only exponential or phase-type distribution was previously assumed in the existing literature. We apply the well-known technique of $M/G/1$ type Markov chains to obtain the ergodicity criterion in a transparent form  and stationary distribution of the system under study. This creates an opportunity to formulated and solve various optimization problems.
+
+
+{Energy harvesting  and queueing and inventory.}
+\end{abstract}
+%
+%
+%
+\section{Introduction}
+
+\section{Mathematical Model}
+We consider the single server queueing system of $MAP/G/1$ type. Arrival flow is described by the Markovian Arrival Process ($MAP$), see \cite{chak},\cite{luk},\cite{vd}. This process assumes that the customers can arrive at the moments of jumps of the underlying Markov chain $\nu_t,\; t \ge 0,$ having a finite state space $\{0,1,\dots,W\}$ and the generator $D(1)=D_0+D_1.$
+The entries of the matrix $D_1$ of size $\bar W=W+1$ define the intensities of transitions of the chain $\nu_t$ that are accompanied by customers arrival. The non-diagonal entries of the matrix $D_0$  define the intensities of transitions of the chain $\nu_t$ that are not accompanied by customer arrival.
+
+
+The vector ${\boldsymbol \theta}$ of the stationary distribution of the Markov chain $\nu_t$ is the unique solution to the system $\boldsymbol{\theta} D(1)={\bf 0},\; \boldsymbol{\theta}{\bf e}=1.$ Here and throughout this
+paper  ${\bf e}$ is a column vector of appropriate size consisting
+of 1's, and ${\bf 0}$ is a row vector of appropriate size consisting
+of zeroes. The average intensity of  customers arrival
+$\lambda$ is defined by the formula $\lambda=\boldsymbol{\theta} D_1 {\bf e}.$
+
+Service of arriving customer is possible only if so-called energy unit is available. Customers arriving when the server is busy or the server is idle but energy units are not available are stored in the buffer of an infinite capacity. Customers are picked up from the buffer according to First-In First-Out discipline. Service time of an arbitrary customer has distribution function $B(t)$ and finite initial moments $b_k=\int\limits_{0}^{\infty} t^k dB(t),\; k \ge 1.$
+
+Energy units arrive according to the stationary Poisson process with the intensity $\gamma$ and are stored in the stock of a finite capacity $K.$ If the stock is full at the energy unit arrival, this unit is lost. One energy unit disappears from the stock at the instant of starting the service of a customer.
+
+Our goal is to analyse the stationary behavior of the described queueing model.
+
+%\end{document}
+
+\section{Distribution of the number of customers and energy units in the system}
+
+We are interested in analysis of the stationary behavior of two-dimensional stochastic process $\zeta_t=\{i_{t}, k_{t}\},\; t \ge 0,$
+where $i_t$ is the number of customers  and $k_t$ is the number of energy units in the system at the moment $t,\; i_t \ge 0,\; k_t=\overline{0,K},$ where the notation $k_t=\overline{0,K}$ means that the variable $k_t$ admits the integer values from the set $\{0,1,\dots,K\}.$ The process $\zeta_t$ is non-Markovian. Therefore, to analyse this process we will first consider the embedded Markov chain.
+
+\subsection{Embedded Markov Chain}
+
+Let $t_n$ be the $n$th service completion moment, $n \ge 1.$ Let $i_n$ be the number of customers in the system at the moment $t_n+0,\; i_n \ge 0,$ and $k_n$ be the number of energy units in the system at the moment $t_n-0,\; k_n=\overline{0,K}.$ Let us consider the three-dimensional process
+$$
+\xi_n=\{i_n,k_n,\nu_n\},\; n \ge1,
+$$
+where $\nu_n$ is the state of the underlying process of the $MAP$ at the moment $t_n,\; \nu_n=\overline{0,W}.$
+
+It is easy to see that the process $\xi_n$ is a discrete-time Markov chain. The prove this formally, we have to present expressions for one-step transition probabilities of this chain. Let us call the set of the states of the process $\xi_n$ having the value $(i,k)$ of the first two components as the level $(i,k).$ Each level consists of $W+1$ states $(i,k,\nu),\; \nu=\overline{0,W}.$
+
+Let $P\{(i,k) \to (j, k')\},$ be the matrix of transitions probabilities from the level $(i,k)$ to the level $(j, k'),$ i.e., the matrix whose ($\nu,\nu'$)the entry is the one-step transition probability  $$P\{ (i ,k, \nu) \to (j, k', \nu')\} =P\left\{i_{n+1} = j, k_{n+1} = k', \nu_{n+1} = \nu' |i_{n} = i, k_{n} = k, \nu_{n} = \nu \right\}.$$
+
+To present the expressions for the probabilities $P\{(i,k) \to (j, k')\},$ we need the following
+ notation:
+\begin{itemize}
+\item[$\bullet$]
+
+The probability of arrival of $k$ energy units during time $t$
+
+$\varphi_{k}(t) = \frac{(\gamma t)^{k} }{k!} e^{-\gamma t},\; k \geq 0$.
+
+\item[$\bullet$]
+The probability of arrival of at least $k$ energy units during time $t$
+
+$ \hat\varphi_{k}(t) = \sum\limits_{i=k}^{\infty} \varphi_{i}(t),\; k \geq 0$.
+
+\item[$\bullet$]
+The probability of arrival of $k$ energy units during service time
+$$ \varphi_{k} =   \int\limits_{0}^{\infty}\varphi_{k}(t)dB(t),\; k \geq 0.$$
+
+\item[$\bullet$]
+The probability of arrival of at least $k$ energy units during service time
+
+$ \hat\varphi_{k} = \sum\limits_{i=k}^{\infty} \varphi_{i},\; k \geq 0$.
+
+\item[$\bullet$]
+The matrix entries of which define the probabilities of arrival of $i$ customers and  $k$ energy units and the corresponding transitions of the underlying process $\nu_t$ of the $MAP$ during service time
+
+$ \Phi(i,k) =  \int\limits_{0}^{\infty} P(i,t)\varphi_{k}(t)dB(t),\; i \geq 0,\; k \geq 0$.
+
+\item[$\bullet$] The matrix whose entries  define the probabilities of arrival of $i$ customers and at least $k$ energy units and transitions of the underlying process $\nu_t$ of the $MAP$ during service time
+
+$ \hat\Phi(i, k) = \int\limits_{0}^{\infty}  P(i, t) \hat\varphi_{k}(t)dB(t),\; i \geq 0,\; k \geq 0$.
+
+\item[$\bullet$]
+The matrix whose entries  define the probabilities of arrival of $m$ customers  and  the corresponding  transitions of the underlying process  of the $MAP$ during  the interval between energy units arrival
+
+$ N(m) = \int\limits_{0}^{\infty} P(m, t)\gamma e^{-\gamma t}dt,\; m \ge 0$.
+
+\item[$\bullet$]
+The matrix whose entries  define the probabilities of arrival of $r$ energy units  and transitions of the underlying process  of the $MAP$ during  the interval between successive customers arrival
+
+$ M(r) = \int\limits_{0}^{\infty} e^{D_{0}t}\varphi_{r}(t)D_{1}dt =
+	\int\limits_{0}^{\infty} e^{D_{0}t}\frac{(\gamma t)^{r} }{r!} e^{-\gamma I t}D_{1}dt = \gamma^{r}(-D_{0} +  \gamma I)^{-(r+1)}D_{1}
+$.
+
+\item[$\bullet$]
+The matrix whose entries  define the probabilities of arrival of at least $r$ energy units  and transitions of the underlying process  of the $MAP$ during  the interval between successive customers arrival
+
+
+$ \hat M(r) = \sum\limits_{l=r}^{\infty} M(l),\; r \ge 0$.
+
+\end{itemize}
+
+%\textbf{Lemma}\\
+\begin{lemma}
+Transition probability matrices  $P\left\{(i,k) \to (j, k')\right\}$ are defined as follows:
+
+$$P\left\{(0, 0) \to (j, k' ) \right\}=M(0)\sum\limits_{n = 0}^{j}N(n)\Phi(j-n, k') + N(0)\sum\limits_{m = 0}^{k'}M(m)\Phi(j, k' - m),$$
+$$ j\geq 0,\; k'= \textcolor{blue}{\overline{0,K-2}};$$
+
+\textcolor{blue}{
+$$P\left\{(0, 0) \to (j,K-1 ) \right\}=M(0)\sum\limits_{n = 0}^{j}N(n)\Phi(j-n, K-1) + N(0)[\sum\limits_{m = 0}^{K-1}M(m)\Phi(j, K-1 - m)+\hat {M}(K) \Phi(j, 0)],
+$$
+$$ j\geq 0;$$
+}
+
+$$P\left\{(0, 0) \to (j, K) \right\}=M(0)\sum\limits_{n = 0}^{j}N(n)\hat\Phi(j-n, K) $$$$+ N(0)(\sum\limits_{m = 0}^{K-1}M(m)\hat\Phi(j, K - m) + \hat M(K)\hat \Phi(j, 1)),\;  j\geq 0;$$
+
+$$P\left\{(0, k) \to (j, k') \right\}=\sum\limits_{m = 0}^{k'-k+1}M(m)\Phi(j,k' - k + 1 - m),\; j\geq 0,\; k=\overline{1,K}, k' =\overline{k-1, \textcolor{red}{K-2}};$$
+
+\textcolor{red}{$$P\left\{(0, k) \to (j, K-1) \right\}=\sum\limits_{m = 0}^{K-k}M(m)\Phi(j,K-k - m)+
+\hat{M}(K-k+1)\Phi(j,0),\; j\geq 0,\; k=\overline{1,K};
+$$
+ }
+
+$$P\left\{(0, k) \to (j, K)\right\}=\sum\limits_{m = 0}^{K-k}M(m) \hat \Phi(j, K - k + 1 - m) + \hat M(K - k + 1)\hat \Phi(j, 1),\; j\geq 0,\; k =\overline{1,K};$$
+
+$$P\left\{(i, 0) \to (j, k')  \right\}= \sum\limits_{m = 0}^{j - i + 1}N(m)\Phi(j - i + 1 - m, k'),\; i\geq 1,\; j \geq i-1,\; k' =\overline{0, K-1}; $$
+
+$$P\left\{(i, 0) \to (j, K) \right\}=\sum\limits_{m = 0}^{j - i + 1}N(m)\hat \Phi(j - i + 1 - m, K),\; i \geq 1,\; j\geq i-1; $$
+
+$$P\left\{(i, k) \to (j, k') \right\} =\Phi(j - i + 1, k' - k+1),\; i \geq 1,\; j\geq i-1,\; k' =\overline{k-1, K-1},\; k=\overline{1,K};$$
+
+$$P\left\{(i, k) \to (j, K)\right\}= \hat \Phi(j - i + 1, K - k+1),\; i \geq 1,\; j\geq i-1,\; k=\overline{1,K}.$$
+\end{lemma}
+\begin{proof} Proof is easily implemented by means of analysis of possible transitions of the components of the Markov chain $\xi_n$ between two successive service completion moments and taking into account the probabilistic meaning of the denotations explained above.
+\end{proof}
+
+
+\subsection{Stationary distribution at an arbitrary time}
+
+
+
+Denote by $\tilde {V}_j$ the matrix of transition probabilities of the Markov renewal process $\{i_t, k_t,\nu_t\}, t\geq0,$ from the moment of  renewal when the process was in a state with the value  $0$ of the denumerable component to an  arbitrary moment preceding the next renewal when the process is  in a state with the value  $j$ of the denumerable component.
+
+Let also  $\tilde{Y}_{i,j}$ be the matrix of transition probabilities of the Markov renewal process $\{i_t, k_t,\nu_t\}, t\geq0,$ from the moment of the renewal when the process was in a state with the value  $i>0$ of the denumerable component to an  arbitrary moment preceding the next renewal when the process is  in a state with the value  $j$ of the denumerable component.
+
+Denote as ${\bf p}_j, j\geq 0, $ the stationary distribution of the system at an arbitrary time.
+
+
+{\bf Lemma 2}. {\it The matrices $\tilde {V}_j, j\geq0,$  are calculated as follows.
+ $$
+     \tilde {V}_0 =\left(\begin{array}{ccccccc}
+       \tilde {V}_{0,0}^{0}     &  \tilde {V}_{0,1}^{0}    &  \tilde {V}_{0,2}^{0}  & \ldots  &  \tilde {V}_{0,K-1}^{0}&   \tilde {V}_{0,K}^{0}  \\
+       O    &       \tilde {V}_{1,1}^{0}     &  \tilde {V}_{1,2}^{0}    &  \ldots  &   \tilde {V}_{1,K-1}^{0}&   \tilde {V}_{1,K}^{0} \\
+       O& O    &       \tilde {V}_{2,2}^{0}        &  \ldots  &   \tilde {V}_{2,K-1}^{0}&   \tilde {V}_{2,K}^{0}   \\
+             \vdots & \vdots &\vdots& \vdots& \vdots& \vdots         \\
+              O& O    &      O        &  \ldots  &   O&   \tilde {V}_{K,K}^{0}   \\
+      \end{array} \right),
+  $$
+
+where
+
+
+$$
+\tilde {V}_{k,k'}^0=\gamma^{k'-k}(\gamma I-D_0)^{-(k'-k+1)}, \,\,0\leq k\leq k'\leq K-1; \eqno(1)
+$$
+
+
+$$
+\tilde {V}_{k,K}^0=(-D_0)^{-1}-\sum\limits_{l=0}^{K-k-1}\gamma^l(\gamma I-D_0)^{-(l+1)}\eqno(2)
+$$
+
+
+
+In the case $j>0$ the matrix $\tilde {V}_j$ has the following block structure:
+
+ $$
+     \tilde {V}_j =\left(\begin{array}{ccccccc}
+       \tilde {V}_{0,0}^{j}     &  \tilde {V}_{0,1}^{j}    &  \tilde {V}_{0,2}^{j}  & \ldots  &  \tilde {V}_{0,K-2}^{j}&    \tilde {V}_{0,K-1}^{j}&   \tilde {V}_{0,K}^{j}  \\
+       \tilde {V}_{1,0}^{j}    &       \tilde {V}_{1,1}^{j}     &  \tilde {V}_{1,2}^{j}    &  \ldots  &   \tilde {V}_{1,K-2}^{j}& \tilde {V}_{1,K-1}^{j}&   \tilde {V}_{1,K}^{j} \\
+       O&  \tilde {V}_{2,1}^{j}    &       \tilde {V}_{2,2}^{j}        &  \ldots  &   \tilde {V}_{2,K-2}^{j}& \tilde {V}_{2,K-1}^{j}&   \tilde {V}_{2,K}^{j}   \\
+             \vdots & \vdots &\vdots& \vdots& \vdots& \vdots         \\
+              O& O    &      O        &  \ldots  &    O& \tilde {V}_{K,K-1}^{j}&   \tilde {V}_{K,K}^{j}   \\
+      \end{array} \right),
+  $$
+
+where
+
+$$\tilde {V}_{0,k'}^{j}=\delta_{0, k'}\gamma N(j)+
+ \biggl[N(0)\sum\limits_{l=0}^{k'}M(l) \tilde{\Phi}(j-1,k'-l)+
+ M(0)\sum\limits_{l=0}^{j-1} N(l) \tilde{\Phi}(j-l-1, k'), \eqno(3)
+$$
+$$
+j\geq1, 0\leq k'\leq K-2,
+$$
+
+
+$$ \tilde {V}_{0,K-1}^{j}\delta_{0, K-1}\gamma N(j)+
+$$
+$$
++ N(0)[\sum\limits_{l=0}^{K-1}
+M(l)  \tilde{\Phi}(j-1,K-1-l)+\hat{M}(K)\tilde{\Phi}(j-1,0)]+
+ M(0)\sum\limits_{l=0}^{j-1}N(l)\tilde{\Phi}(j-l-1,K-1), \eqno(4)
+$$
+$$
+j\geq1, 0\leq k'\leq K-2,
+$$
+
+
+$$
+ \tilde {V}_{0,K}^{j}= N(0)[\sum\limits_{l=0}^{K-1} M(l)\tilde{\hat\Phi}(j-1, K-l))]+
+ \hat{M}(K)\tilde{\hat\Phi}(j-1,1)
+ $$
+$$
++ M(0)\sum\limits_{l=0}^{j-1}N(l)\tilde{\hat\Phi}(j-l-1, K), \eqno(5)
+$$
+$$
+ j\geq 1;
+$$
+
+
+$$
+ \tilde {V}_{k,k'}^{j}=
+ \sum\limits_{l=0}^{k'-k+1} M(l)\tilde{\Phi}(j-1, k'-k-l+1),\eqno(6)
+$$
+$$
+ k=\overline{1,K}, k-1\leq k'\leq K-2, j\geq1.
+$$
+
+$$
+ V_{k,K-1}^{j}= \sum\limits_{l=0}^{K-k} M(l)\tilde{\Phi}(j-1,K-k-l)+
+  \hat{M}(K-k+1)\tilde{\Phi}(j-1,0),\eqno(7)
+$$
+$$
+ k=\overline{1,K},  j\geq1.
+$$
+
+$$
+\tilde {V}_{k,K}^{j}= \sum\limits_{l=0}^{K-k}M(l) \tilde{\hat \Phi}(j-1, K-k-l+1)
++ \hat{M}(K-k+1)\tilde{\hat \Phi}(j-1,1),  \eqno(8)
+$$
+$$
+j\geq0, k=\overline{1, K},
+$$
+where
+
+$$ \tilde{\Phi}(i,k) = \int\limits_{0}^{\infty} P(i,t)\varphi_{k}(t)(1-B(t))dt\; i \geq 0,\; k \geq 0, \eqno(9)$$
+
+$$ \tilde{\hat\Phi}(i, k) = \int\limits_{0}^{\infty}  P(i, t) \hat\varphi_{k}(t)(1-B(t))dt,\; i \geq 0,\; k \geq 0.  \eqno(10)$$
+
+}
+
+
+
+Now we will focus on  finding the matrices $\tilde{Y}_{i,j}$. As it will be  seen, the matrix  $\tilde{Y}_{i,j}$ depends on the values $i, j$ only via the difference $j-i.$ Denote $r=j-i$ and $\tilde{Y}_r=(\tilde{Y}_{k,k'}^r)_{k,k'=0,K}. $
+
+Then the following statement takes place.
+
+{\bf Lemma 3.} {\it The matrices $\tilde{Y}_r$ have the following form:
+
+
+ $$
+     \tilde{Y}_r =\left(\begin{array}{ccccccc}
+       \tilde{Y}_{0,0}^r     & \tilde{Y}_{0,1}^r    &  \tilde{Y}_{0,2}^r  & \ldots  &  \tilde{Y}_{0,K-2}^r&    \tilde{Y}_{0,K-1}^r&   \tilde{Y}_{0,K}^r  \\
+       \tilde{Y}_{1,0}^r    &       \tilde{Y}_{1,1}^r     &  \tilde{Y}_{1,2}^r    &  \ldots  &   \tilde{Y}_{1,K-2}^r& \tilde{Y}_{1,K-1}^r&   \tilde{Y}_{1,K}^r \\
+       O&  \tilde{Y}_{2,1}^r    &       \tilde{Y}_{2,2}^r        &  \ldots  &   \tilde{Y}_{2,K-2}^r& \tilde{Y}_{2,K-1}^r&   \tilde{Y}_{2,K}^r   \\
+             \vdots & \vdots &\vdots& \vdots& \vdots& \vdots         \\
+              O& O    &      O        &  \ldots  &    O& \tilde{Y}_{K,K-1}^r&   \tilde{Y}_{K,K}^r   \\
+      \end{array} \right), r\geq0,
+  $$
+
+where
+
+$$
+\tilde{Y}_{0,k'}^{r}= \sum\limits_{l=0}^{r}N(l)\tilde{\Phi}(r-l,k'),
+k'=\overline{0,K-1}, r\geq0,\eqno(11)
+$$
+
+$$
+\tilde{Y}_{0,K}^{r}= \sum\limits_{l=0}^{r}N(l)\tilde{\hat\Phi}(r-l,K),
+ r\geq0,\eqno(12)
+$$
+
+$$
+\tilde{Y}_{k,k'}^{r}= \tilde{\Phi}(r,k'-k+1),
+ k=\overline{1,K}, k'=\overline{k-1,K-1},  r\geq0,\eqno(13)
+$$
+
+
+$$
+\tilde{Y}_{k,K}^{r}= \tilde{\hat\Phi}(r,K-k+1),
+ k=\overline{1,K},  r\geq0.\eqno(14)
+ $$
+
+}
+
+
+{\bf Theorem 1.} {\it The vectors ${\bf p}_j, j\geq 0, $ are calculated via the vectors ${\bs \pi}_i, i\geq 0,$ by the formula
+$$
+{\bf p}_j={\bs \pi}_0 \tilde {V}_j+\sum\limits_{r=0}^{j-1}{\bs \pi}_{j-r}\tilde{Y}_r, \,  j\geq 0, \eqno(15)
+$$
+}
+
+Thus, the steady state vectors ${\bf p}_j, j\geq 0,$ are calculated by formula (15). The only question that arises is how to calculate the matrices $\tilde{\Phi}(n,k)$ given by integrals (9). Consider the case of \textbf{deterministic distribution $B(t),$} i.e.,
+
+
+$$
+B(t)=\left\{
+\begin{array}{cc}
+0, t\leq b_1,
+\\
+1, t>b_1.
+\end{array}
+\right.
+$$
+
+Calculating the integral in (9), we rewrite formula (9) as
+$$
+\tilde{\Phi}(n,k) = \int\limits_{0}^{\infty} P(n,t)\varphi_{k}(t)(1-B(t))dt=\int\limits_{0}^{b_1} P(n,t)\varphi_{k}(t)dt,\eqno(16)
+$$
+
+
+ To calculate the integral in (16), we use the uniformization procedure. 
+
+Denote  $h=\max\limits_{i=\overline{0,W}}(-D_0)_{ii}$.
+
+Then the matrix  $P(n,t),\; n\ge 1,$ can be represented in the following form:
+$$
+P(n,t)=\sum_{j=0}^{\infty}e^{-h t}{(h
+t)^j\over j!}K_n^{(j)},\; n\ge 0,  \eqno(17)
+$$
+where the matrices  $K_n^{(j)},\; n\ge 1, j\ge 0,$ are calculated by recursion
+
+$$
+K_0^{(0)}=I,\ K_n^{(0)}=O,\ n\ge 1,
+$$ $$
+K_0^{(j+1)}=K_0^{(j)}(I+h^{-1}D_0), \eqno(18)
+$$ $$
+K_n^{(j+1)}=h^{-1}K_{n-1}^{(j)}D_1+K_n^{(j)}(I+h^{-1}D_0),\; n\ge 1,\; j\ge 0.
+$$
+
+Substituting  expression (17) for $P(n,t)$ and expression for $\varphi_{k}(t)$ in (16) and simplifying, we obtain the following relations:
+$$
+\tilde{\Phi}(n,k)=\sum\limits_{j=0}^\infty K_n^{(j)} \frac{h^j\gamma^k}{j!k!} \int\limits_{0}^{b_1} e^{-(h+\gamma)t}t^{j+k}dt=
+$$
+$$=\sum\limits_{j=0}^\infty K_n^{(j)} \frac{h^j\gamma^k}{j!k!} \biggl[ \frac{(j+k)!}{(h+\gamma)^{j+k+1}}-e^{-b_1(h+\gamma)}\sum\limits_{l=0}^{j+k}\frac{(j+k)!}{l!}
+\frac{b_1^l}{(h+\gamma)^{j+k-l+1}}\biggr]=
+$$
+$$
+=\sum\limits_{j=0}^\infty K_n^{(j)} \frac{h^j\gamma^k}{j!k!}\frac{(j+k)!}{(h+\gamma)^{j+k+1}}\biggl[ 1-e^{-b_1(h+\gamma)}\sum\limits_{l=0}^{j+k}\frac{[b_1(h+\gamma)]^l}{l!}
+\biggr]=
+$$
+$$=\frac{1}{(h+\gamma) k!}
+\biggl(\frac{\gamma}{h+\gamma}\biggr)^k
+\sum\limits_{j=0}^\infty K_n^{(j)}\frac{(j+k)!}{j!}
+\biggl({\frac{h}{h+\gamma}}\biggr)^j \biggl[ 1-e^{-b_1(h+\gamma)}\sum\limits_{l=0}^{j+k}\frac{[b_1(h+\gamma)]^l}{l!}
+\biggr].
+$$
+
+
+Thus, the matrix $\tilde{\Phi}(n,k)$ is calculated by the following formula:
+
+
+$$
+\tilde{\Phi}(n,k)=
+$$
+$$=\frac{1}{(h+\gamma) k!}
+\biggl(\frac{\gamma}{h+\gamma}\biggr)^k
+\sum\limits_{j=0}^\infty K_n^{(j)}\frac{(j+k)!}{j!}
+\biggl({\frac{h}{h+\gamma}}\biggr)^j \biggl[ 1-e^{-b_1(h+\gamma)}\sum\limits_{l=0}^{j+k}\frac{[b_1(h+\gamma)]^l}{l!}
+\biggr], \eqno(19)
+$$
+$$n\geq0,\, k=\overline{0,K}.
+$$
+
+
+\subsection{A Subsection Sample}
+Please note that the first paragraph of a section or subsection is
+not indented. The first paragraph that follows a table, figure,
+equation etc. does not need an indent, either.
+
+Subsequent paragraphs, however, are indented.
+
+\subsubsection{Sample Heading (Third Level)} Only two levels of
+headings should be numbered. Lower level headings remain unnumbered;
+they are formatted as run-in headings.
+
+
+\if 0
+
+\begin{figure}
+\includegraphics[width=\textwidth]{fig1.eps}
+\caption{A figure caption is always placed below the illustration.
+Please note that short captions are centered, while long ones are
+justified by the macro package automatically.} \label{fig1}
+\end{figure}
+
+\fi
+
+\begin{theorem}
+This is a sample theorem. The run-in heading is set in bold, while
+the following text appears in italics. Definitions, lemmas,
+propositions, and corollaries are styled the same way.
+\end{theorem}
+%
+% the environments 'definition', 'lemma', 'proposition', 'corollary',
+% 'remark', and 'example' are defined in the LLNCS documentclass as well.
+%
+\begin{proof}
+Proofs, examples, and remarks have the initial word in italics,
+while the following text appears in normal font.
+\end{proof}
+For citations of references, we prefer the use of square brackets
+and consecutive numbers. Citations using labels or the author/year
+convention are also acceptable. The following bibliography provides
+a sample reference list with entries for journal
+articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
+book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
+and a homepage~\cite{ref_url1}. Multiple citations are grouped
+\cite{ref_article1,ref_lncs1,ref_book1},
+\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+%
+% ---- Bibliography ----
+%
+% BibTeX users should specify bibliography style 'splncs04'.
+% References will then be sorted and formatted in the correct style.
+%
+% \bibliographystyle{splncs04}
+% \bibliography{mybibliography}
+%
+\begin{thebibliography}{8}
+
+\bibitem{chak}
+Chakravarthy, S.R. The batch Markovian arrival process: a
+review and future work, in: A. Krishnamoorthy, N. Raju, V. Ramaswami (Eds.), {Advances in Probability Theory and Stochastic
+Processes},   Notable Publications Inc., New Jersey, 2001, pp. 21-29.
+
+\bibitem{luk}
+   Lucantoni, D.M.  New results on the single server queue with a
+batch Markovian arrival process, Communications in
+Statistics-Stochastic Models. 7  (1991) 1-46.
+
+\bibitem{vd}
+ Vishnevskii V. M.,   Dudin A. N. Queueing Systems with Correlated Arrival Flows
+and Their Applications to Modeling Telecommunication Networks, Automation and Remote Control, 2017, Vol. 78, No. 8, pp. 1361–1403.
+
+
+
+\bibitem{ref_article1}
+Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
+
+\bibitem{ref_lncs1}
+Author, F., Author, S.: Title of a proceedings paper. In: Editor,
+F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
+Springer, Heidelberg (2016).
+
+\bibitem{ref_book1}
+Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
+Location (1999)
+
+\bibitem{ref_proc1}
+Author, A.-B.: Contribution title. In: 9th International Proceedings
+on Proceedings, pp. 1--2. Publisher, Location (2010)
+
+
+\end{thebibliography}
+\end{document}

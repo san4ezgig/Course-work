@@ -6,8 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.*;
 
 public class Test {
     public static void runAllTests(BigDecimal gamma,
@@ -93,12 +92,23 @@ public class Test {
 
         System.out.println("P:");
         System.out.println(checkP(accuracy, tForCheck, generatorCreator, systemSize));
-        System.out.println(matrixExponent);
-        if (systemSize == 2) {
-            System.out.println(checkP(accuracy, tForCheck, generatorCreator, systemSize).subtract(matrixExponent));
+        System.out.println("P should be");
+        switch (systemSize) {
+            case 1: {
+                System.out.println(CheckPForStationaryDist(lambda, tForCheck, accuracy));
+                System.out.println(checkP(accuracy, tForCheck, generatorCreator, systemSize).getElement(0, 0).subtract(CheckPForStationaryDist(lambda, tForCheck, accuracy)));
+            }
+            case 2: {
+                System.out.println(matrixExponent);
+                System.out.println(checkP(accuracy, tForCheck, generatorCreator, systemSize).subtract(matrixExponent));
+            }
         }
         System.out.println("Phi");
         System.out.println(checkPhi(generatorCreator, K.intValue(), accuracy, systemSize));
+        System.out.println("aaaaaaa");
+//        System.out.println(PForStationaryDist(lambda, tForCheck, 5));
+//        System.out.println(generatorCreator.funcP(5, tForCheck));
+//        System.out.println(PForStationaryDist(lambda, tForCheck, 5).subtract(generatorCreator.funcP(5, tForCheck).getElement(0, 0)));
         MatrixContainer.reInit();
         //Check system
         g0 = BigDecimalMatrix.identity(systemSize * K.intValue() + systemSize);
@@ -125,27 +135,40 @@ public class Test {
         int n = 0;
         do {
             sum = BigDecimalMatrix.zeroMatrix(systemSize);
-            for (int k = 0; k < K.intValue(); k++) {
+            for (int k = 0; k <= K.intValue(); k++) {
                 sum = sum.add(arbitararyTimeGenerator.funcPhiWithWave(n, k));
             }
             result = result.add(sum);
             n++;
         } while (sum.squaredEuclidianNorm().doubleValue() > accuracy.doubleValue());
 
-        System.out.println(d1.subtract(BigDecimalMatrix.identity(systemSize).multiply(gamma)).multiply(tForCheck));
-        //{{1.00154, 0.00122627}, {0.00333273, 0.821125}}
+        // System.out.println(d1.add(d0).subtract(BigDecimalMatrix.identity(systemSize).multiply(gamma)).multiply(tForCheck));
+        //(0.817628 | 0.00110252
+        //0.0029964 | 0.815734)
         System.out.println("PhiWithWave:");
         System.out.println(result);
-        if (systemSize == 2) {
-            BigDecimalMatrix matrixExp = new BigDecimalMatrix(new BigDecimal[][]{
-                    {new BigDecimal("1.00154"), new BigDecimal("0.00122627")},
-                    {new BigDecimal("0.00333273"), new BigDecimal("0.821125")}
-            }, 8);
-            BigDecimalMatrix phiWithWaveCheck =
-                    (BigDecimalMatrix.identity(systemSize).multiply(gamma.negate()).add(d1)).inverse()
-                    .multiply(matrixExp.subtract(BigDecimalMatrix.identity(systemSize)));
-            System.out.println("PhiWithWaveCheck:");
-            System.out.println(phiWithWaveCheck);
+        switch (systemSize) {
+            case 1: {
+                System.out.println("PhiWithWaveCheck:");
+                BigDecimal phiWithWaveCheck =
+                        valueOf(1 / gamma.negate().doubleValue())
+                                .multiply(valueOf(
+                                        Math.exp(gamma.negate().multiply(tForCheck).doubleValue()) - 1)
+                                );
+                System.out.println(phiWithWaveCheck);
+                break;
+            }
+            case 2: {
+                BigDecimalMatrix matrixExp = new BigDecimalMatrix(new BigDecimal[][]{
+                        {new BigDecimal("0.817628"), new BigDecimal("0.00110252")},
+                        {new BigDecimal("0.0029964"), new BigDecimal("0.815734")}
+                }, 8);
+                BigDecimalMatrix phiWithWaveCheck =
+                        (BigDecimalMatrix.identity(systemSize).multiply(gamma.negate()).add(d1).add(d0)).inverse()
+                                .multiply(matrixExp.subtract(BigDecimalMatrix.identity(systemSize)));
+                System.out.println("PhiWithWaveCheck:");
+                System.out.println(phiWithWaveCheck);
+            }
         }
 
         MatrixContainer.reInit();
@@ -171,6 +194,22 @@ public class Test {
         return result;
     }
 
+    private static BigDecimal PForStationaryDist(BigDecimal lambda, BigDecimal T, int k) {
+        return new BigDecimal(lambda.multiply(T).pow(k).doubleValue() / GeneratorCreator.factor(k)
+                * Math.exp(-lambda.multiply(T).doubleValue()));
+    }
+
+    private static BigDecimal CheckPForStationaryDist(BigDecimal lambda, BigDecimal T, BigDecimal accuracy) {
+        BigDecimal sum = ZERO;
+        BigDecimal val;
+        int i = 0;
+        do {
+            val = PForStationaryDist(lambda, T, i);
+            sum = sum.add(val);
+            i++;
+        } while (val.doubleValue() >= accuracy.doubleValue());
+        return sum;
+    }
 
     public static BigDecimalMatrix checkP(BigDecimal accuracy, BigDecimal T, GeneratorCreator generatorCreator, int systemSize) {
         BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
@@ -183,6 +222,7 @@ public class Test {
         } while (val.squaredEuclidianNorm().doubleValue() >= accuracy.doubleValue());
         return sum;
     }
+
 
     public static BigDecimalMatrix checkPhi(GeneratorCreator generatorCreator, int K, BigDecimal accuracy, int systemSize) {
         BigDecimalMatrix sum = BigDecimalMatrix.eCol(systemSize, ZERO);
