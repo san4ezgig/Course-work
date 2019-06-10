@@ -30,7 +30,7 @@ public class Test {
         BigDecimal tForCheck = HALF;
         System.out.println();
         int j = 0;
-        BigDecimal K = new BigDecimal("10");
+        BigDecimal K = new BigDecimal("4");
         BigDecimalMatrix vMatrix;
         generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, tForCheck, accuracy, systemSize);
 
@@ -116,18 +116,40 @@ public class Test {
         pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
         phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue(), systemSize);
         sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue(), systemSize);
-        if (systemSize == 2) {
-            sdCreator.checkPIMatrix(tForCheck, gamma, d0, lambda);
-        }
+        sdCreator.checkPIMatrix(tForCheck, gamma, d0, lambda);
 
-        MatrixContainer.reInit();
+        //MatrixContainer.reInit();
+        System.out.println("test arbitry time");
         ArrayList<BigDecimalMatrix> piVector = sdCreator.getPiVectors();
         ArbitararyTimeGenerator arbitararyTimeGenerator = new ArbitararyTimeGenerator(generatorCreator, piVector);
         result = BigDecimalMatrix.eRow(systemSize, ZERO);
         for (j = 0; j < piVector.size(); j++) {
             result = result.add(arbitararyTimeGenerator.calculateP(j).multiply(calculateKronekerMatrix(K.intValue(), systemSize)));
         }
-        System.out.println("test arbitry time");
+        System.out.println(result);
+
+        System.out.println("test arbitry time vector");
+        result = BigDecimalMatrix.eRow(1, ZERO);
+        for (j = 0; j < piVector.size(); j++) {
+            result = result.add(arbitararyTimeGenerator.calculateP(j).multiply(BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ONE)));
+        }
+        System.out.println(result);
+//        if (systemSize == 2) {
+//            System.out.println(result.multiply(d0.add(d1)));
+//        }
+
+        MatrixContainer.reInit();
+        System.out.println("test Y matrix in arbitry time");
+        arbitararyTimeGenerator = new ArbitararyTimeGenerator(generatorCreator, piVector);
+        result = BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ZERO);
+        j = 0;
+        BigDecimalMatrix eCol = BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ONE);
+        BigDecimalMatrix value;
+        do {
+            value = arbitararyTimeGenerator.create(1, j + 1).multiply(eCol);
+            result = result.add(value);
+            j++;
+        } while (value.squaredEuclidianNorm().doubleValue() > accuracy.doubleValue());
         System.out.println(result);
 
         result = BigDecimalMatrix.zeroMatrix(systemSize);
@@ -142,34 +164,22 @@ public class Test {
             n++;
         } while (sum.squaredEuclidianNorm().doubleValue() > accuracy.doubleValue());
 
-        // System.out.println(d1.add(d0).subtract(BigDecimalMatrix.identity(systemSize).multiply(gamma)).multiply(tForCheck));
-        //(0.817628 | 0.00110252
-        //0.0029964 | 0.815734)
         System.out.println("PhiWithWave:");
-        System.out.println(result);
+        System.out.println(result.multiply(BigDecimalMatrix.eCol(systemSize, ONE)));
         switch (systemSize) {
             case 1: {
                 System.out.println("PhiWithWaveCheck:");
-                BigDecimal phiWithWaveCheck =
-                        valueOf(1 / gamma.negate().doubleValue())
-                                .multiply(valueOf(
-                                        Math.exp(gamma.negate().multiply(tForCheck).doubleValue()) - 1)
-                                );
+                BigDecimal phiWithWaveCheck = tForCheck;
                 System.out.println(phiWithWaveCheck);
                 break;
             }
             case 2: {
-                BigDecimalMatrix matrixExp = new BigDecimalMatrix(new BigDecimal[][]{
-                        {new BigDecimal("0.817628"), new BigDecimal("0.00110252")},
-                        {new BigDecimal("0.0029964"), new BigDecimal("0.815734")}
-                }, 8);
-                BigDecimalMatrix phiWithWaveCheck =
-                        (BigDecimalMatrix.identity(systemSize).multiply(gamma.negate()).add(d1).add(d0)).inverse()
-                                .multiply(matrixExp.subtract(BigDecimalMatrix.identity(systemSize)));
+                BigDecimal phiWithWaveCheck = tForCheck;
                 System.out.println("PhiWithWaveCheck:");
                 System.out.println(phiWithWaveCheck);
             }
         }
+        System.out.println(arbitararyTimeGenerator.calculateP(0).multiply(BigDecimalMatrix.eCol(systemSize * (K.intValue() + 1), ONE)));
 
         MatrixContainer.reInit();
     }

@@ -40,13 +40,9 @@ public class ArbitararyTimeGenerator {
     public BigDecimalMatrix create(int i, int j) {
         BigDecimalMatrix tempMatrix, resultMatrix = new BigDecimalMatrix(systemSize * (K + 1), systemSize * (K + 1), 12);
 
-        if (i - j > 1) {
-            return resultMatrix;
-        }
+        int hash = i > 0 ? Objects.hash(i, j - i) : Objects.hash(0, j);
 
-        int hash = i >= 1 ? Objects.hash(i, j - i) : Objects.hash(0, j);
-
-        //int hash = Objects.hash(i, j);
+//        int hash = Objects.hash(i, j);
 
         try {
             if (MatrixContainer.getArbitryTimeGenerators().containsKey(hash)) {
@@ -80,28 +76,20 @@ public class ArbitararyTimeGenerator {
     private class MatrixElementCreator {
 
         private BigDecimalMatrix create(int i, int k, int j, int bK) {
-            boolean validness = i >= 0 &&
-                    j >= 0 &&
-                    k >= 0 &&
-                    k <= K &&
-                    bK >= 0 &&
-                    bK <= K;
-            if (!validness) {
-                throw new IllegalArgumentException("Indexes out of bounds.");
-            }
-            BigDecimalMatrix zeroMatrix = new BigDecimalMatrix(systemSize, ZERO, 10);
+            BigDecimalMatrix zeroMatrix = new BigDecimalMatrix(systemSize, ZERO, 15);
 
             boolean isVMatrix = (i == 0);
 
             if (isVMatrix) {
                 if (j == 0) {
+
                     if (bK == K) {
-                        return createLastColumnElemenentZeroV(k);
+                        return createLastColumnElementZeroV(k);
                     }
                     if (k > bK) {
                         return zeroMatrix;
                     }
-                    return createNotLastColumnElemenentZeroV(k, bK);
+                    return createNotLastColumnElementZeroV(k, bK);
                 }
                 else {
                     if (k - bK > 1) {
@@ -148,20 +136,20 @@ public class ArbitararyTimeGenerator {
 
         // VMatrix region
         // VMatrix j == 0
-        private BigDecimalMatrix createNotLastColumnElemenentZeroV(int k, int bK) {
+        private BigDecimalMatrix createNotLastColumnElementZeroV(int k, int bK) {
             BigDecimalMatrix result = BigDecimalMatrix.identity(systemSize).multiply(gamma).subtract(d0).inverse();
             result = BigDecimalMatrix.powMatrix(result, bK - k + 1);
             result = result.multiply(valueOf(Math.pow(gamma.doubleValue(), bK - k)));
             return result;
         }
 
-        private BigDecimalMatrix createLastColumnElemenentZeroV(int k) {
-            BigDecimalMatrix result = d0.inverse().multiply(ONE.negate());
+        private BigDecimalMatrix createLastColumnElementZeroV(int k) {
+            BigDecimalMatrix result = d0.multiply(ONE.negate()).inverse();
             BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, ZERO, 10);
             BigDecimalMatrix val;
             for (int l = 0; l <= K - k -1; l++) {
-                val = BigDecimalMatrix.identity(systemSize).multiply(gamma).subtract(d0).inverse();
-                val = BigDecimalMatrix.powMatrix(val, l + 1).multiply(valueOf(Math.pow(gamma.doubleValue(), l)));
+                val = BigDecimalMatrix.powMatrix(BigDecimalMatrix.identity(systemSize).multiply(gamma).subtract(d0).inverse(), l + 1);
+                val = val.multiply(valueOf(Math.pow(gamma.doubleValue(), l)));
                 sum = sum.add(val);
             }
             result = result.subtract(sum);
@@ -176,9 +164,10 @@ public class ArbitararyTimeGenerator {
             for (int l = 0; l <= K - 1; l++) {
                 sum = sum.add(creator.funcM(l).multiply(funcPhiWithWaveWithHat(j - 1, K - l)));
             }
+            sum = sum.add(creator.funcMWithHat(K).multiply(funcPhiWithWaveWithHat(j - 1, 1)));
+
             result = creator.funcN(0).multiply(sum);
 
-            result = result.add(creator.funcMWithHat(K).multiply(funcPhiWithWaveWithHat(j - 1, 1)));
 
             sum = BigDecimalMatrix.zeroMatrix(systemSize);
             for (int l = 0; l <= j - 1; l++) {
@@ -193,33 +182,38 @@ public class ArbitararyTimeGenerator {
         }
 
         private BigDecimalMatrix createFirstRowPenultimateElementV(int j) {
-            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, systemSize, 12);
+            BigDecimalMatrix result = new BigDecimalMatrix(systemSize, ZERO, 10);
             BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, ZERO, 10);
             int cronecer = (K == 1) ? 1 : 0;
-            result = result.add(creator.funcN(j).multiply(gamma).multiply(valueOf(cronecer)));
+            result = creator.funcN(j).multiply(valueOf(1 / gamma.doubleValue())).multiply(valueOf(cronecer));
+
+            for (int l = 0; l <= j - 1; l++) {
+                sum = sum.add(
+                        creator.funcN(l).multiply(funcPhiWithWave( j - l - 1, K - 1))
+                );
+            }
+            sum = creator.funcM(0).multiply(sum);
+            result = result.add(sum);
+
+            sum = new BigDecimalMatrix(systemSize, systemSize, 12);
 
             for (int l = 0; l <= K - 1; l++) {
-                sum = sum.add(creator.funcM(l).multiply(funcPhiWithWave(j - 1, K - 1 - l)));
+                sum = sum.add(
+                        creator.funcM(l).multiply(funcPhiWithWave(j - 1, K - 1 - l))
+                );
             }
             sum = sum.add(creator.funcMWithHat(K).multiply(funcPhiWithWave(j - 1, 0)));
             sum = creator.funcN(0).multiply(sum);
             result = result.add(sum);
 
-            sum = new BigDecimalMatrix(systemSize, systemSize, 12);
-            for (int l = 0; l <= j - 1; l++) {
-                sum = sum.add(creator.funcN(l).multiply(funcPhiWithWave( j - l - 1, K - 1)));
-            }
-            sum = creator.funcM(0).multiply(sum);
-
-            result = result.add(sum);
             return result;
         }
 
         private BigDecimalMatrix createFirstRowNotLastColumnElementV(int j, int bK) {
             BigDecimalMatrix result;
             BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, ZERO, 10);
-            int cronecer = (bK == 1) ? 1 : 0;
-            result = creator.funcN(j).multiply(gamma).multiply(valueOf(cronecer));
+            int cronecer = (bK == 0) ? 1 : 0;
+            result = creator.funcN(j).multiply(valueOf(1 / gamma.doubleValue())).multiply(valueOf(cronecer));
 
             for (int l = 0; l <= bK; l++) {
                 sum = sum.add(
@@ -266,7 +260,9 @@ public class ArbitararyTimeGenerator {
                 result = result.add(creator.funcM(l).multiply(funcPhiWithWaveWithHat(j - 1, K - k - l + 1)));
             }
 
-            result = result.add(creator.funcMWithHat(K - k + 1).multiply(funcPhiWithWaveWithHat(j - 1, 1)));
+            result = result.add(
+                    creator.funcMWithHat(K - k + 1).multiply(funcPhiWithWaveWithHat(j - 1, 1))
+            );
 
             return result;
         }
@@ -274,7 +270,7 @@ public class ArbitararyTimeGenerator {
         private BigDecimalMatrix createNotFirstRowNotLastColumnElementV(int k, int j, int bK) {
             BigDecimalMatrix sum = new BigDecimalMatrix(systemSize, systemSize, 12);
             for (int l = 0; l <= bK - k + 1; l++) {
-                sum = sum.add(creator.funcM(l).multiply(funcPhiWithWave(j - 1, bK - k -l + 1)));
+                sum = sum.add(creator.funcM(l).multiply(funcPhiWithWave(j - 1, bK - k - l + 1)));
             }
             return sum;
         }
@@ -314,14 +310,13 @@ public class ArbitararyTimeGenerator {
 
     public BigDecimalMatrix calculateP(int j) {
         BigDecimalMatrix result;
-        BigDecimalMatrix sum = new BigDecimalMatrix(1, systemSize * (K + 1), 10);
-
+        BigDecimalMatrix sum = BigDecimalMatrix.eRow(systemSize * (K + 1), ZERO);
         result = piVector.get(0).multiply(create(0, j));
 
         for (int r = 0; r <= j - 1; r++) {
             sum = sum.add(piVector.get(j - r).multiply(create(1, r + 1)));
         }
-        result = result.add(sum);
+        result = result.add(sum).multiply(lambda);
 
         return result;
     }
@@ -384,11 +379,11 @@ public class ArbitararyTimeGenerator {
     private BigDecimalMatrix funcPhiWithWaveWithHat(int n, int k) {
         BigDecimalMatrix result = BigDecimalMatrix.zeroMatrix(systemSize);
         BigDecimalMatrix val;
-        int i = n;
+        int l = k;
         do {
-            val = funcPhiWithWave(i, k);
+            val = funcPhiWithWave(n, l);
             result = result.add(val);
-            i++;
+            l++;
         } while (val.squaredEuclidianNorm().doubleValue() >= accuracy.doubleValue());
         return result;
     }

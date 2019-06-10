@@ -69,7 +69,7 @@ public class MatrixContainer {
         pSlashMatrices  = new HashMap<>();
         phiMatrices     = new HashMap<>();
         piVectors       = new HashMap<>();
-        // kMatrix         = new HashMap<>();
+        kMatrix         = new HashMap<>();
         pMatrix         = new HashMap<>();
         arbitryTimeGenerators = new HashMap<>();
     }

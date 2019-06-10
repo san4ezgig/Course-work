@@ -3,6 +3,7 @@ package core;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Objects;
+
 import kurs.BigDecimalMatrix;
 
 public class StationaryDistributionCreator {
@@ -60,38 +61,44 @@ public class StationaryDistributionCreator {
         BigDecimal result = BigDecimal.ZERO;
         BigDecimal sum = BigDecimal.ZERO;
         BigDecimalMatrix eCol = BigDecimalMatrix.eCol(systemSize, BigDecimal.ONE);
-        BigDecimalMatrix negativeD0 = d0.multiply(new BigDecimal(-1));
+        BigDecimalMatrix negativeD0 = d0.multiply(BigDecimal.ONE.negate());
         BigDecimalMatrix piRow;
 
         result = result.add(T);
 
-        for(int i = 0; i < phiMatrices.size(); i++) {
+        for (int i = 0; i < phiMatrices.size(); i++) {
             piRow = BigDecimalMatrix.eRow(systemSize, vectors.get(i).getElement(0, 0));
-            piRow.setElement(0, 1, vectors.get(i).getElement(0, 1));
-            sum = sum.add(piRow.multiply(new BigDecimal(1 / gamma.doubleValue())).multiply(eCol).getElement(0, 0));
+            if (systemSize == 2) {
+                piRow.setElement(0, 1, vectors.get(i).getElement(0, 1));
+            }
+            sum = sum.add(piRow.multiply(BigDecimal.valueOf(1 / gamma.doubleValue())).multiply(eCol).getElement(0, 0));
         }
         result = result.add(sum);
 
         sum = BigDecimal.ZERO;
-        for(int k = 0; k <= K; k++) {
+        for (int k = 0; k <= K; k++) {
             piRow = BigDecimalMatrix.eRow(systemSize, vectors.get(0).getElement(0, k * systemSize));
-            piRow.setElement(0, 1, vectors.get(0).getElement(0, systemSize * k + 1));
+            if (systemSize == 2) {
+                piRow.setElement(0, 1, vectors.get(0).getElement(0, systemSize * k + 1));
+            }
 
-            sum = sum.add(piRow.multiply(negativeD0.inverse().multiply(eCol)).getElement(0, 0));
+            sum = sum.add(piRow.multiply(negativeD0.inverse()).multiply(eCol).getElement(0, 0));
         }
         result = result.add(sum);
 
         piRow = BigDecimalMatrix.eRow(systemSize, vectors.get(0).getElement(0, 0));
-        piRow.setElement(0, 1, vectors.get(0).getElement(0, 1));
+        if (systemSize == 2) {
+            piRow.setElement(0, 1, vectors.get(0).getElement(0, 1));
+        }
         sum = piRow
-                .multiply(new BigDecimal(systemSize))
+                .multiply(BigDecimal.valueOf(2))
                 .multiply(negativeD0.add(BigDecimalMatrix.identity(systemSize).multiply(gamma)).inverse())
                 .multiply(eCol)
-                .getElement(0 ,0);
+                .getElement(0, 0);
         result = result.subtract(sum);
 
-        System.out.println(result);
-        System.out.println(1 / lambda.doubleValue());
+        System.out.println(1 / result.doubleValue());
+        System.out.println(lambda.doubleValue());
     }
 }
 
