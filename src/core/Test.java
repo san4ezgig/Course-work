@@ -30,7 +30,7 @@ public class Test {
         BigDecimal tForCheck = HALF;
         System.out.println();
         int j = 0;
-        BigDecimal K = new BigDecimal("4");
+        BigDecimal K = new BigDecimal("5");
         BigDecimalMatrix vMatrix;
         generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, tForCheck, accuracy, systemSize);
 

@@ -2,28 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eef21b55-213a-4f0a-bc7a-a376e078d157" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/For_Джига_Arbitrary_time_30_04_2019.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAP_G_1_harv_28_03_2019.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map.rar" beforeDir="false" afterPath="$PROJECT_DIR$/Map.rar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/31.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/41.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/document.log" beforeDir="false" afterPath="$PROJECT_DIR$/document.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/document.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/document.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document.tex" beforeDir="false" afterPath="$PROJECT_DIR$/document.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GradWork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator$MatrixElementCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator$MatrixElementCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/ArbitararyTimeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/MatrixContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/MatrixContainer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/StationaryDistributionCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/StationaryDistributionCreator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GradWork/core/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradWork/core/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/MatrixContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/MatrixContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/StationaryDistributionCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/StationaryDistributionCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stationaryDistribution.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Предзащита/~$dania_na_KRiD_2018-19.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Предзащита/Zadania_na_KRiD_2018-19.doc" beforeDir="false" afterPath="$PROJECT_DIR$/Предзащита/Zadania_na_KRiD_2018-19.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Предзащита/Исследование системы MAP.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/Предзащита/Исследование системы MAP.pptx" afterDir="false" />
     </list>
     <ignored path="GradWork.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,10 +37,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="387" column="22" lean-forward="true" selection-start-line="387" selection-start-column="22" selection-end-line="387" selection-end-column="22" />
+            <state relative-caret-position="505">
+              <caret line="190" column="38" selection-start-line="190" selection-start-column="12" selection-end-line="190" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,10 +49,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
+        <entry file="file://$PROJECT_DIR$/Readme.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="139" column="26" selection-start-line="139" selection-start-column="26" selection-end-line="139" selection-end-column="26" />
+            <state relative-caret-position="647">
+              <caret line="387" column="22" selection-start-line="387" selection-start-column="22" selection-end-line="387" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,32 +73,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1752">
-              <caret line="133" selection-start-line="133" selection-end-line="133" />
+            <state relative-caret-position="-323">
+              <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/ErgodicityCondition.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/kurs/ArrayMatrix.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -113,10 +95,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/PhiMatrixCreator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1054">
+              <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/GeneratorCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="595">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/StationaryDistributionCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="58" column="29" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="29" />
+            <state relative-caret-position="969">
+              <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -148,7 +139,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/MatrixContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-384">
+            <state relative-caret-position="374">
               <caret line="23" column="29" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="29" />
               <folding>
                 <element signature="e#1562#1563#0" expanded="true" />
@@ -222,12 +213,12 @@
         <option value="$PROJECT_DIR$/src/core/PSlashMatrixCreator.java" />
         <option value="$PROJECT_DIR$/src/core/ErgodicityCondition.java" />
         <option value="$PROJECT_DIR$/src/core/PerformanceParameters.java" />
-        <option value="$PROJECT_DIR$/src/core/StationaryDistributionCreator.java" />
-        <option value="$PROJECT_DIR$/src/core/Test.java" />
         <option value="$PROJECT_DIR$/src/core/MatrixContainer.java" />
         <option value="$PROJECT_DIR$/src/core/GeneratorCreator.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java" />
+        <option value="$PROJECT_DIR$/src/core/StationaryDistributionCreator.java" />
+        <option value="$PROJECT_DIR$/src/core/Test.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -242,7 +233,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -282,12 +272,13 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559779493642" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561331877679" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/xchart-3.5.4.jar!/" />
@@ -612,17 +603,20 @@
       <workItem from="1559770150412" duration="6016000" />
       <workItem from="1559853590075" duration="666000" />
       <workItem from="1559856380428" duration="5556000" />
+      <workItem from="1560293569577" duration="3553000" />
+      <workItem from="1560806548395" duration="38000" />
+      <workItem from="1561330014559" duration="955000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284160000" />
+    <option name="totallyTimeSpent" value="288706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24899329" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2590604" />
       <window_info id="Structure" order="1" weight="0.24966443" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -631,7 +625,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49731544" weight="0.39235127" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49731544" weight="0.33002833" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -741,13 +735,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/123.kt" />
     <entry file="file://$PROJECT_DIR$/src/core/PoisonStream.java" />
-    <entry file="file://$PROJECT_DIR$/src/core/PhiMatrixCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="54" column="80" selection-start-line="54" selection-start-column="80" selection-end-line="54" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/math/BigDecimal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -779,6 +766,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ErgodicityCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/kurs/ArrayMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
@@ -796,30 +793,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/PhiMatrixCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/StationaryDistributionCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="58" column="29" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1752">
-          <caret line="133" selection-start-line="133" selection-end-line="133" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/ErgodicityCondition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+        <state relative-caret-position="969">
+          <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -835,7 +819,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/MatrixContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-384">
+        <state relative-caret-position="374">
           <caret line="23" column="29" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="29" />
           <folding>
             <element signature="e#1562#1563#0" expanded="true" />
@@ -846,10 +830,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="387" column="22" selection-start-line="387" selection-start-column="22" selection-end-line="387" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/GeneratorCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="595">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -858,18 +870,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="139" column="26" selection-start-line="139" selection-start-column="26" selection-end-line="139" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/ArbitararyTimeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="387" column="22" lean-forward="true" selection-start-line="387" selection-start-column="22" selection-end-line="387" selection-end-column="22" />
+        <state relative-caret-position="505">
+          <caret line="190" column="38" selection-start-line="190" selection-start-column="12" selection-end-line="190" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

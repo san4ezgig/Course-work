@@ -120,7 +120,7 @@ public class Main {
                 frame.pack();
                 //frame.setVisible(true);
                 try {
-                    BitmapEncoder.saveBitmap(chart, "./" + (numberOfPerfomanceFunction + (systemSize == 1 ? 10 : 0) + 20), BitmapEncoder.BitmapFormat.JPG);
+                    BitmapEncoder.saveBitmap(chart, "./" + (numberOfPerfomanceFunction + (systemSize == 1 ? 10 : 0)), BitmapEncoder.BitmapFormat.JPG);
 
                 } catch (Exception e) {
                     System.out.println(1);
@@ -190,58 +190,22 @@ public class Main {
         ArrayList<String> nameOfLines = new ArrayList<>();
         int numberOfPerfomanceFunction = 11;
         //PP sector
-//        for (int n = 0; n < 6; n++) {
-//            for (BigDecimal t = HALF, i = ZERO; t.compareTo(valueOf(2)) <= 0; t = t.add(HALF), i = i.add(ONE)) {
-//                paramsValueList[i.intValue()] = new ArrayList<>();
-//                nameOfLines.add(t.toString());
-//                System.out.println();
-//                for (int k = 1; k <= 20; k++) {
-//                    BigDecimal K = new BigDecimal(k);
-//                    g0 = BigDecimalMatrix.identity(systemSize * (K.intValue() + 1));
-//                    generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, t, accuracy, systemSize);
-//                    gMatrixCreator = new GMatrixCreator(generatorCreator);
-//                    pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
-//                    phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue(), systemSize);
-//                    sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue(), systemSize);
-//                    ArrayList<BigDecimalMatrix> piVector = sdCreator.getPiVectors();
-//                    arbitararyTimeGenerator = new ArbitararyTimeGenerator(generatorCreator, piVector);
-//                    pParameters = new PerformanceParameters(piVector, lambda, d1, systemSize, arbitararyTimeGenerator);
-//                    BigDecimal param = pParameters.requestCorrectPerfomanceFunction(numberOfPerfomanceFunction, k);
-//                    System.out.println(param.toString().substring(0, 11));
-//                    paramsValueList[i.intValue()].add(param.doubleValue());
-//                    MatrixContainer.reInit();
-//                }
-//                System.out.println(t + " Completed");
-//            }
-//            DrawGraphics(paramsValueList, nameOfLines, numberOfPerfomanceFunction, systemSize);
-//            System.out.println(numberOfPerfomanceFunction + " Completed");
-//            numberOfPerfomanceFunction++;
-//        }
-
         for (int n = 0; n < 6; n++) {
             for (BigDecimal t = HALF, i = ZERO; t.compareTo(valueOf(2)) <= 0; t = t.add(HALF), i = i.add(ONE)) {
-                int k = 10;
-                BigDecimal lambdaRestriction = valueOf(ErgodicityCondition.getLambdaRestriction(t, gamma, k)).subtract(valueOf(0.000001));
-                System.out.println(lambdaRestriction);
                 paramsValueList[i.intValue()] = new ArrayList<>();
                 nameOfLines.add(t.toString());
                 System.out.println();
-                for (BigDecimal newLambda = lambdaRestriction.subtract(valueOf(0.000020)); newLambda.compareTo(lambdaRestriction) <= 0; newLambda = newLambda.add(valueOf(0.000001))) {
-                    BigDecimal coeff = valueOf(newLambda.doubleValue() / lambda.doubleValue());
-                    // System.out.println(coeff);
-                    BigDecimalMatrix d0New = d0.multiply(coeff);
-                    BigDecimalMatrix d1New = d1.multiply(coeff);
-                    //System.out.println(newLambda);
-                    BigDecimal K = valueOf(k);
+                for (int k = 1; k <= 20; k++) {
+                    BigDecimal K = new BigDecimal(k);
                     g0 = BigDecimalMatrix.identity(systemSize * (K.intValue() + 1));
-                    generatorCreator = new GeneratorCreator(gamma, newLambda, K.intValue(), d0New, d1New, t, accuracy, systemSize);
+                    generatorCreator = new GeneratorCreator(gamma, lambda, K.intValue(), d0, d1, t, accuracy, systemSize);
                     gMatrixCreator = new GMatrixCreator(generatorCreator);
                     pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
                     phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue(), systemSize);
                     sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue(), systemSize);
                     ArrayList<BigDecimalMatrix> piVector = sdCreator.getPiVectors();
                     arbitararyTimeGenerator = new ArbitararyTimeGenerator(generatorCreator, piVector);
-                    pParameters = new PerformanceParameters(piVector, newLambda, d1New, systemSize, arbitararyTimeGenerator);
+                    pParameters = new PerformanceParameters(piVector, lambda, d1, systemSize, arbitararyTimeGenerator);
                     BigDecimal param = pParameters.requestCorrectPerfomanceFunction(numberOfPerfomanceFunction, k);
                     System.out.println(param.toString().substring(0, 11));
                     paramsValueList[i.intValue()].add(param.doubleValue());
@@ -250,8 +214,44 @@ public class Main {
                 System.out.println(t + " Completed");
             }
             DrawGraphics(paramsValueList, nameOfLines, numberOfPerfomanceFunction, systemSize);
+            System.out.println(numberOfPerfomanceFunction + " Completed");
             numberOfPerfomanceFunction++;
         }
+
+//        for (int n = 0; n < 6; n++) {
+//            for (BigDecimal t = HALF, i = ZERO; t.compareTo(valueOf(2)) <= 0; t = t.add(HALF), i = i.add(ONE)) {
+//                int k = 10;
+//                BigDecimal lambdaRestriction = valueOf(ErgodicityCondition.getLambdaRestriction(t, gamma, k)).subtract(valueOf(0.000001));
+//                System.out.println(lambdaRestriction);
+//                paramsValueList[i.intValue()] = new ArrayList<>();
+//                nameOfLines.add(t.toString());
+//                System.out.println();
+//                for (BigDecimal newLambda = lambdaRestriction.subtract(valueOf(0.000020)); newLambda.compareTo(lambdaRestriction) <= 0; newLambda = newLambda.add(valueOf(0.000001))) {
+//                    BigDecimal coeff = valueOf(newLambda.doubleValue() / lambda.doubleValue());
+//                    // System.out.println(coeff);
+//                    BigDecimalMatrix d0New = d0.multiply(coeff);
+//                    BigDecimalMatrix d1New = d1.multiply(coeff);
+//                    //System.out.println(newLambda);
+//                    BigDecimal K = valueOf(k);
+//                    g0 = BigDecimalMatrix.identity(systemSize * (K.intValue() + 1));
+//                    generatorCreator = new GeneratorCreator(gamma, newLambda, K.intValue(), d0New, d1New, t, accuracy, systemSize);
+//                    gMatrixCreator = new GMatrixCreator(generatorCreator);
+//                    pSlashMatrixCreator = new PSlashMatrixCreator(generatorCreator, gMatrixCreator.create(g0));
+//                    phiMatrixCreator = new PhiMatrixCreator(pSlashMatrixCreator, K.intValue(), systemSize);
+//                    sdCreator = new StationaryDistributionCreator(pSlashMatrixCreator, phiMatrixCreator.getPhiMatrices(), K.intValue(), systemSize);
+//                    ArrayList<BigDecimalMatrix> piVector = sdCreator.getPiVectors();
+//                    arbitararyTimeGenerator = new ArbitararyTimeGenerator(generatorCreator, piVector);
+//                    pParameters = new PerformanceParameters(piVector, newLambda, d1New, systemSize, arbitararyTimeGenerator);
+//                    BigDecimal param = pParameters.requestCorrectPerfomanceFunction(numberOfPerfomanceFunction, k);
+//                    System.out.println(param.toString().substring(0, 11));
+//                    paramsValueList[i.intValue()].add(param.doubleValue());
+//                    MatrixContainer.reInit();
+//                }
+//                System.out.println(t + " Completed");
+//            }
+//            DrawGraphics(paramsValueList, nameOfLines, numberOfPerfomanceFunction, systemSize);
+//            numberOfPerfomanceFunction++;
+//        }
         //
         /*for (int n = 0; n < 5; n++) {
             for (BigDecimal coeff = valueOf(1), i = ZERO; coeff.compareTo(valueOf(2)) <= 0; coeff = coeff.add(valueOf(0.25)), i = i.add(ONE)) {
